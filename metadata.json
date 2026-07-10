@@ -1,0 +1,6 @@
+{
+  "name": "ふじみ野市飲食店マップ",
+  "description": "ふじみ野市消費活性化クーポン（A券・B券利用可）加盟店の飲食店85店舗をGoogle Map上にプロットしたマップアプリケーションです。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
