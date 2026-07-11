@@ -116,22 +116,25 @@ export default function App() {
       {/* Header */}
       <header className="h-14 bg-white border-b border-slate-200 flex items-center px-4 shrink-0 shadow-sm z-20 justify-between gap-4">
         <div className="flex items-center gap-3">
-          <img
-            src={cuponLogo}
-            alt="ふじみ野市消費活性化クーポンロゴ"
-            className="w-10 h-10 object-contain shrink-0 rounded"
-            onError={(e) => {
-              e.currentTarget.style.display = 'none';
-              const fallback = document.getElementById('header-logo-fallback');
-              if (fallback) fallback.classList.remove('hidden');
-            }}
-          />
-          <div id="header-logo-fallback" className="hidden w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-white text-base shrink-0">
-            🎫
+          <div className="flex flex-col items-center shrink-0">
+            <img
+              src={cuponLogo}
+              alt="ふじみ野市消費活性化クーポンロゴ"
+              className="w-10 h-10 object-contain shrink-0 rounded"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+                const fallback = document.getElementById('header-logo-fallback');
+                if (fallback) fallback.classList.remove('hidden');
+              }}
+            />
+            <div id="header-logo-fallback" className="hidden w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-white text-base shrink-0">
+              🎫
+            </div>
+            <span className="text-[8px] md:text-[9px] font-extrabold text-slate-600 mt-0.5 leading-none shrink-0">ふじみ野市</span>
           </div>
           <div>
             <h1 className="text-sm md:text-base font-bold text-slate-800 tracking-tight">
-              消費活性化クーポンマップ（令和8年度版）
+              消費活性化クーポン検索マップ2026
             </h1>
             <p className="hidden md:block text-[9px] text-slate-500 font-medium">
               加盟店舗 {RESTAURANTS.length}ヶ所
