@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { RESTAURANTS, CATEGORIES, Restaurant } from "./data";
 import LeafletMap from "./components/LeafletMap";
+import cuponLogo from "./assets/cupon_fujimin.webp";
 import { 
   Search, 
   MapPin, 
@@ -115,7 +116,17 @@ export default function App() {
       {/* Header */}
       <header className="h-14 bg-white border-b border-slate-200 flex items-center px-4 shrink-0 shadow-sm z-20 justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-white text-base shrink-0">
+          <img
+            src={cuponLogo}
+            alt="ふじみ野市消費活性化クーポンロゴ"
+            className="w-10 h-10 object-contain shrink-0 rounded"
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+              const fallback = document.getElementById('header-logo-fallback');
+              if (fallback) fallback.classList.remove('hidden');
+            }}
+          />
+          <div id="header-logo-fallback" className="hidden w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-white text-base shrink-0">
             🎫
           </div>
           <div>
