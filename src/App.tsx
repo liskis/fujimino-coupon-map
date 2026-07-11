@@ -153,7 +153,7 @@ export default function App() {
               animate={isMobile ? { x: 0, opacity: 1 } : { width: "320px", opacity: 1 }}
               exit={isMobile ? { x: "-100%", opacity: 0 } : { width: 0, opacity: 0 }}
               transition={{ duration: 0.2, ease: "easeInOut" }}
-              className="absolute md:relative top-0 left-0 h-full w-full md:w-80 bg-white border-r border-slate-200 flex flex-col z-[450] md:z-10 flex-shrink-0 shadow-md"
+              className="absolute md:relative top-0 left-0 h-full w-full md:w-80 bg-white border-r border-slate-200 flex flex-col z-[1050] md:z-10 flex-shrink-0 shadow-md"
             >
               {/* Mobile-only Header with clear Close Button */}
               <div className="md:hidden px-4 py-3 bg-slate-50 border-b border-slate-200 flex items-center justify-between flex-shrink-0">
