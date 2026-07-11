@@ -131,7 +131,7 @@ export default function App() {
           </div>
           <div>
             <h1 className="text-sm md:text-base font-bold text-slate-800 tracking-tight">
-              ふじみ野市消費活性化クーポン検索マップ（令和8年度版）
+              消費活性化クーポンマップ（令和8年度版）
             </h1>
             <p className="hidden md:block text-[9px] text-slate-500 font-medium">
               加盟店舗 {RESTAURANTS.length}ヶ所
@@ -177,7 +177,7 @@ export default function App() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="店名、住所、飲食ジャンル(カフェ等)で検索..."
-                    className="w-full pl-8 pr-7 py-1.5 bg-slate-100 border border-slate-200 rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                    className="w-full pl-8 pr-7 py-1.5 bg-white border border-slate-200 rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 shadow-xs"
                   />
                   {searchQuery && (
                     <button
@@ -190,14 +190,14 @@ export default function App() {
                 </div>
 
                 {/* Area dropdown */}
-                <div className="space-y-1">
-                  <label className="text-[9px] font-extrabold text-slate-500 uppercase tracking-wider block">
+                <div className="flex items-center justify-between gap-2 py-0.5">
+                  <label className="text-xs font-bold text-slate-700 shrink-0">
                     地区でさがす
                   </label>
                   <select
                     value={selectedArea}
                     onChange={(e) => setSelectedArea(e.target.value)}
-                    className="w-full text-xs bg-white border border-slate-200 rounded py-1 px-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                    className="w-40 text-xs bg-white border border-slate-200 rounded py-1 px-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500/20 shadow-xs cursor-pointer"
                   >
                     {AREAS.map((area) => (
                       <option key={area} value={area}>
@@ -208,17 +208,17 @@ export default function App() {
                 </div>
 
                 {/* Coupon Type Filter Segment */}
-                <div className="space-y-1.5">
-                  <label className="text-[9px] font-extrabold text-slate-500 uppercase tracking-wider block">
+                <div className="flex items-center justify-between gap-2 py-0.5">
+                  <label className="text-xs font-bold text-slate-700 shrink-0">
                     クーポン利用区分
                   </label>
-                  <div className="grid grid-cols-3 gap-0.5 bg-slate-100 p-0.5 rounded-md border border-slate-200 text-center">
+                  <div className="flex bg-slate-100 p-0.5 rounded border border-slate-200 text-center text-[10px] font-bold w-40 shadow-xs">
                     <button
                       type="button"
                       onClick={() => setSelectedCouponType("all")}
-                      className={`py-1 text-[10px] font-bold rounded transition-all duration-150 ${
+                      className={`flex-1 py-1 rounded transition-all duration-150 ${
                         selectedCouponType === "all"
-                          ? "bg-white text-slate-800 shadow-sm font-extrabold"
+                          ? "bg-white text-slate-800 shadow-xs font-extrabold"
                           : "text-slate-500 hover:text-slate-800"
                       }`}
                     >
@@ -227,98 +227,57 @@ export default function App() {
                     <button
                       type="button"
                       onClick={() => setSelectedCouponType("both")}
-                      className={`py-1 text-[10px] font-bold rounded transition-all duration-150 ${
+                      className={`flex-1 py-1 rounded transition-all duration-150 ${
                         selectedCouponType === "both"
-                          ? "bg-white text-emerald-700 shadow-sm font-extrabold"
+                          ? "bg-white text-emerald-700 shadow-xs font-extrabold"
                           : "text-slate-500 hover:text-slate-800"
                       }`}
                       title="A券とB券の両方が使えます"
                     >
-                      A・B券
+                      共通券
                     </button>
                     <button
                       type="button"
                       onClick={() => setSelectedCouponType("a_only")}
-                      className={`py-1 text-[10px] font-bold rounded transition-all duration-150 ${
+                      className={`flex-1 py-1 rounded transition-all duration-150 ${
                         selectedCouponType === "a_only"
-                          ? "bg-white text-green-700 shadow-sm font-extrabold"
+                          ? "bg-white text-green-700 shadow-xs font-extrabold"
                           : "text-slate-500 hover:text-slate-800"
                       }`}
                       title="A券のみが使えます"
                     >
-                      A券のみ
+                      Aのみ
                     </button>
                   </div>
                 </div>
 
                 {/* Shopping Malls Section */}
-                <div className="space-y-1.5 pt-0.5">
-                  <label className="text-[9px] font-extrabold text-slate-500 uppercase tracking-wider block flex justify-between items-center">
-                    <span>🏢 ショッピングモールから探す</span>
-                    {selectedMall && (
-                      <button
-                        onClick={() => setSelectedMall(null)}
-                        className="text-[9px] text-blue-600 hover:underline font-bold"
-                      >
-                        クリア
-                      </button>
-                    )}
+                <div className="flex items-center justify-between gap-2 py-0.5">
+                  <label className="text-xs font-bold text-slate-700 shrink-0">
+                    ショッピングモール
                   </label>
-                  <div className="grid grid-cols-2 gap-1 max-h-[110px] overflow-y-auto pr-1">
-                    {MALLS.map((mall) => {
-                      const isSelected = selectedMall === mall;
-                      const count = mallCounts[mall] || 0;
-                      return (
-                        <button
-                          key={mall}
-                          type="button"
-                          onClick={() => {
-                            if (isSelected) {
-                              setSelectedMall(null);
-                            } else {
-                              setSelectedMall(mall);
-                              setSelectedArea("すべて");
-                              setSelectedCategory("すべて");
-                              setSearchQuery("");
-                            }
-                          }}
-                          className={`py-1 px-1.5 rounded text-[10px] font-bold text-left border transition-all duration-150 flex items-center justify-between ${
-                            isSelected
-                              ? "bg-blue-600 border-blue-600 text-white font-extrabold shadow-sm"
-                              : "bg-white border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300"
-                          }`}
-                        >
-                          <span className="truncate mr-1">{mall}</span>
-                          <span className={`text-[8px] px-1 py-0.2 rounded-full font-extrabold shrink-0 ${
-                            isSelected ? "bg-white/20 text-white" : "bg-slate-100 text-slate-600"
-                          }`}>
-                            {count}
-                          </span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Filter statistics strip */}
-                <div className="flex items-center justify-between text-[10px] text-slate-500 font-medium">
-                  <p className="uppercase tracking-wider">
-                    検索結果: <strong className="text-slate-800">{filteredRestaurants.length}</strong> 件
-                  </p>
-                  {(searchQuery || selectedCategory !== "すべて" || selectedArea !== "すべて" || selectedCouponType !== "all" || selectedMall) && (
-                    <button
-                      onClick={() => {
-                        setSearchQuery("");
-                        setSelectedCategory("すべて");
-                        setSelectedArea("すべて");
-                        setSelectedCouponType("all");
+                  <select
+                    value={selectedMall || "選択しない"}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      if (val === "選択しない") {
                         setSelectedMall(null);
-                      }}
-                      className="text-blue-600 hover:text-blue-800 font-bold hover:underline"
-                    >
-                      条件クリア
-                    </button>
-                  )}
+                      } else {
+                        setSelectedMall(val);
+                        setSelectedArea("すべて");
+                        setSelectedCategory("すべて");
+                        setSearchQuery("");
+                      }
+                    }}
+                    className="w-40 text-xs bg-white border border-slate-200 rounded py-1 px-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500/20 shadow-xs cursor-pointer"
+                  >
+                    <option value="選択しない">選択しない</option>
+                    {MALLS.map((mall) => (
+                      <option key={mall} value={mall}>
+                        {mall}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
 
@@ -340,6 +299,27 @@ export default function App() {
                     </button>
                   );
                 })}
+              </div>
+
+              {/* Filter statistics strip - Moved under Categories */}
+              <div className="px-3 py-2 bg-slate-50 border-b border-slate-200 flex items-center justify-between text-xs text-slate-500 font-bold flex-shrink-0 shadow-xs">
+                <p className="tracking-wider">
+                  検索結果: <span className="text-slate-900 font-extrabold text-sm">{filteredRestaurants.length}</span> 件
+                </p>
+                {(searchQuery || selectedCategory !== "すべて" || selectedArea !== "すべて" || selectedCouponType !== "all" || selectedMall) && (
+                  <button
+                    onClick={() => {
+                      setSearchQuery("");
+                      setSelectedCategory("すべて");
+                      setSelectedArea("すべて");
+                      setSelectedCouponType("all");
+                      setSelectedMall(null);
+                    }}
+                    className="text-blue-600 hover:text-blue-800 font-bold hover:underline text-[10px]"
+                  >
+                    条件クリア
+                  </button>
+                )}
               </div>
 
               {/* Store List */}
@@ -473,7 +453,7 @@ export default function App() {
 
       {/* High-density Footer */}
       <footer className="h-8 bg-slate-800 flex items-center justify-center px-4 text-[10px] text-slate-400 shrink-0 z-20">
-        <div>ふじみ野市消費活性化クーポン検索マップ（令和8年度版）</div>
+        <div>ふじみ野市消費活性化クーポン検索マップ2026 ※2026/7/2現在</div>
       </footer>
     </div>
   );
