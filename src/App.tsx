@@ -12,18 +12,12 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
-// Areas list for filtering
+// Areas list for filtering (Dynamically extracted to cover every single district including "大原", "北", etc.)
 const AREAS = [
   "すべて",
-  "上福岡",
-  "ふじみ野",
-  "大井",
-  "苗間",
-  "鶴ヶ岡",
-  "亀久保",
-  "清見",
-  "うれし野",
-  "福岡"
+  ...Array.from(new Set(RESTAURANTS.map((r) => r.area).filter(Boolean))).sort((a, b) =>
+    a.localeCompare(b, "ja")
+  ),
 ];
 
 const MALLS = [
@@ -163,14 +157,14 @@ export default function App() {
             >
               {/* Mobile-only Header with clear Close Button */}
               <div className="md:hidden px-4 py-3 bg-slate-50 border-b border-slate-200 flex items-center justify-between flex-shrink-0">
+                <span className="text-xs font-extrabold text-slate-700">加盟店舗 検索・絞り込み</span>
                 <button
                   onClick={() => setIsSidebarOpen(false)}
-                  className="text-xs text-slate-700 hover:text-slate-900 font-bold flex items-center gap-1.5 px-3 py-2 bg-white border border-slate-300 rounded shadow-sm hover:bg-slate-50 transition-all duration-150 active:scale-95"
+                  className="text-xs text-white bg-slate-950 hover:bg-slate-900 font-bold flex items-center gap-1.5 px-3 py-2 border border-slate-950 rounded shadow-sm transition-all duration-150 active:scale-95"
                 >
                   <span className="text-[10px]">◀︎</span>
                   <span>メニューを閉じる</span>
                 </button>
-                <span className="text-xs font-extrabold text-slate-600">加盟店舗 検索・絞り込み</span>
               </div>
 
               {/* Search & Filters block */}
@@ -198,7 +192,7 @@ export default function App() {
                 {/* Area dropdown */}
                 <div className="space-y-1">
                   <label className="text-[9px] font-extrabold text-slate-500 uppercase tracking-wider block">
-                    エリア地区
+                    地区でさがす
                   </label>
                   <select
                     value={selectedArea}

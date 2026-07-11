@@ -5402,29 +5402,22 @@ export const RAW_RESTAURANTS: Restaurant[] = [
 ];
 
 export function getAreaFromAddress(address: string): string {
-  const local = address.replace(/^(埼玉県)?ふじみ野市/, "");
-  if (local.startsWith("上福岡")) return "上福岡";
-  if (local.startsWith("ふじみ野")) return "ふじみ野";
-  if (local.startsWith("大井中央") || local.startsWith("大井武蔵野") || local.startsWith("大井")) {
-    return "大井";
-  }
-  if (local.startsWith("苗間")) return "苗間";
-  if (local.startsWith("鶴ヶ岡") || local.startsWith("西鶴ヶ岡")) return "鶴ヶ岡";
-  if (local.startsWith("亀久保")) return "亀久保";
-  if (local.startsWith("清見")) return "清見";
-  if (local.startsWith("うれし野")) return "うれし野";
-  if (local.startsWith("福岡新田") || local.startsWith("福岡東") || local.startsWith("福岡中央") || local.startsWith("福岡")) {
-    return "福岡";
-  }
-  if (local.startsWith("大原") || local.startsWith("霞ヶ丘") || local.startsWith("霞ケ丘") || local.startsWith("鶴ヶ舞") || local.startsWith("北野")) {
-    return "上福岡";
-  }
-  if (local.startsWith("駒林")) return "福岡";
-  if (local.startsWith("桜ヶ丘") || local.startsWith("東久保")) return "大井";
-  if (local.startsWith("富士見台")) return "福岡";
+  const local = address.replace(/^(埼玉県)?ふじみ野市/, "").trim();
   
-  for (const area of ["上福岡", "ふじみ野", "大井", "苗間", "鶴ヶ岡", "亀久保", "清見", "うれし野", "福岡"]) {
-    if (local.includes(area)) return area;
+  // Extract up to the first digit, hyphen, space, etc. representing a street number or block.
+  const match = local.match(/^([^0-9０-９\-\—\－\ー\s一二三四五六七八九十番丁]+)/);
+  if (match) {
+    let area = match[1];
+    
+    // Normalize "ケ" and "ヶ" to "ヶ" for consistency
+    area = area.replace(/ケ/g, "ヶ");
+    
+    // Handle neighboring cities or out-of-city locations
+    if (area.includes("三芳") || area.includes("鶴瀬") || area.includes("川越") || area.includes("富士見")) {
+      return "市外";
+    }
+    
+    return area;
   }
   return "その他";
 }
