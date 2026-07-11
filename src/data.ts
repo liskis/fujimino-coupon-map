@@ -8,12 +8,25 @@ export interface Restaurant {
   menu: string;
   lat: number;
   lng: number;
-  isGeocoded?: boolean;
-  couponType?: "both" | "onlyB" | string;
+  couponType?: "both" | "a_only" | string;
   mall?: string;
+  area?: string;
 }
 
-export const CATEGORIES = ["すべて", "スーパー・食料品", "商業・ショッピング", "ドラッグストア", "飲食店", "サービス", "大型店"];
+export const CATEGORIES = [
+  "すべて",
+  "飲食料品",
+  "衣料品・靴・寝具",
+  "生活用品",
+  "ドラッグストア",
+  "コンビニエンスストア・スーパーマーケット",
+  "その他の小売",
+  "飲食店",
+  "理容・美容",
+  "その他のサービス",
+  "建築・リフォーム・各種設備工事",
+  "大型店"
+];
 
 export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> = {
   "うれし野１－３－２１": {
@@ -23,6 +36,14 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
   "うれし野１－３－８": {
     "lat": 35.854789,
     "lng": 139.517941
+  },
+  "うれし野２－10－37": {
+    "lat": 35.858166,
+    "lng": 139.525162
+  },
+  "うれし野２－15－14": {
+    "lat": 35.855831,
+    "lng": 139.52269
   },
   "うれし野２－１－２": {
     "lat": 35.856327,
@@ -40,9 +61,17 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.856045,
     "lng": 139.522232
   },
+  "うれし野２－３－１": {
+    "lat": 35.855991,
+    "lng": 139.52063
+  },
   "うれし野２－４－１": {
     "lat": 35.85685,
     "lng": 139.521484
+  },
+  "うれし野２－５－18": {
+    "lat": 35.856819,
+    "lng": 139.522919
   },
   "うれし野２－５－１８ ２F": {
     "lat": 35.856817,
@@ -64,6 +93,10 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.857845,
     "lng": 139.515808
   },
+  "ふじみ野１－５－２": {
+    "lat": 35.857399,
+    "lng": 139.515182
+  },
   "ふじみ野１－７－２": {
     "lat": 35.857132,
     "lng": 139.514511
@@ -83,6 +116,10 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
   "ふじみ野２－１－６４": {
     "lat": 35.86081,
     "lng": 139.512439
+  },
+  "ふじみ野２－１２－２５": {
+    "lat": 35.861389,
+    "lng": 139.514053
   },
   "ふじみ野２－２５－１": {
     "lat": 35.862248,
@@ -116,6 +153,10 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.862132,
     "lng": 139.517568
   },
+  "ふじみ野４－13－７": {
+    "lat": 35.858643,
+    "lng": 139.518204
+  },
   "ふじみ野４－１－２": {
     "lat": 35.859592,
     "lng": 139.515594
@@ -148,9 +189,49 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.87759,
     "lng": 139.524963
   },
+  "上福岡１－10－10": {
+    "lat": 35.875843,
+    "lng": 139.512894
+  },
+  "上福岡１－10－２": {
+    "lat": 35.875916,
+    "lng": 139.511902
+  },
+  "上福岡１－11－17": {
+    "lat": 35.876709,
+    "lng": 139.514145
+  },
+  "上福岡１－11－24": {
+    "lat": 35.876488,
+    "lng": 139.513412
+  },
+  "上福岡１－11－２": {
+    "lat": 35.875435,
+    "lng": 139.512924
+  },
+  "上福岡１－12－27": {
+    "lat": 35.875843,
+    "lng": 139.513702
+  },
   "上福岡１－12－８": {
     "lat": 35.87542,
     "lng": 139.514145
+  },
+  "上福岡１－14－40": {
+    "lat": 35.875031,
+    "lng": 139.515076
+  },
+  "上福岡１－14－43": {
+    "lat": 35.875183,
+    "lng": 139.515518
+  },
+  "上福岡１－14－45": {
+    "lat": 35.875378,
+    "lng": 139.515457
+  },
+  "上福岡１－14－７": {
+    "lat": 35.874546,
+    "lng": 139.514832
   },
   "上福岡１－15－15": {
     "lat": 35.876171,
@@ -171,6 +252,10 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
   "上福岡１－１０－２ エーデルビル２Ｆ": {
     "lat": 35.875984,
     "lng": 139.511913
+  },
+  "上福岡１－１０－６": {
+    "lat": 35.875629,
+    "lng": 139.512527
   },
   "上福岡１－１１－１": {
     "lat": 35.875326,
@@ -216,6 +301,10 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.875897,
     "lng": 139.513902
   },
+  "上福岡１－１２－３０": {
+    "lat": 35.875496,
+    "lng": 139.513458
+  },
   "上福岡１－１４－２１": {
     "lat": 35.875679,
     "lng": 139.515499
@@ -239,6 +328,10 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
   "上福岡１－１５－５": {
     "lat": 35.875839,
     "lng": 139.51535
+  },
+  "上福岡１－２－17": {
+    "lat": 35.873207,
+    "lng": 139.513626
   },
   "上福岡１－２－１１": {
     "lat": 35.873053,
@@ -264,13 +357,25 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.873642,
     "lng": 139.512527
   },
+  "上福岡１－４－12": {
+    "lat": 35.873444,
+    "lng": 139.514328
+  },
   "上福岡１－４－１": {
     "lat": 35.873738,
     "lng": 139.513191
   },
+  "上福岡１－４－３": {
+    "lat": 35.873474,
+    "lng": 139.51326
+  },
   "上福岡１－４－５": {
     "lat": 35.87331,
     "lng": 139.513535
+  },
+  "上福岡１－５－17": {
+    "lat": 35.874508,
+    "lng": 139.514786
   },
   "上福岡１－５－１２": {
     "lat": 35.874043,
@@ -283,6 +388,14 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
   "上福岡１－５－２６": {
     "lat": 35.874641,
     "lng": 139.513672
+  },
+  "上福岡１－６－17": {
+    "lat": 35.875046,
+    "lng": 139.513626
+  },
+  "上福岡１－６－34": {
+    "lat": 35.874306,
+    "lng": 139.513199
   },
   "上福岡１－６－１７ 友和ビル１F": {
     "lat": 35.87499,
@@ -316,6 +429,10 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.874267,
     "lng": 139.513202
   },
+  "上福岡１－６－３５": {
+    "lat": 35.874367,
+    "lng": 139.513351
+  },
   "上福岡１－６－３６": {
     "lat": 35.874645,
     "lng": 139.513565
@@ -327,6 +444,10 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
   "上福岡１－６－４": {
     "lat": 35.873714,
     "lng": 139.512863
+  },
+  "上福岡１－７－26": {
+    "lat": 35.874306,
+    "lng": 139.511932
   },
   "上福岡１－７－１０": {
     "lat": 35.875027,
@@ -347,6 +468,10 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
   "上福岡１－８－12": {
     "lat": 35.875614,
     "lng": 139.512421
+  },
+  "上福岡１－８－16": {
+    "lat": 35.875904,
+    "lng": 139.51181
   },
   "上福岡１－８－１２ ホシノビル１F": {
     "lat": 35.87556,
@@ -384,6 +509,10 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.874939,
     "lng": 139.516571
   },
+  "上福岡２－６－２": {
+    "lat": 35.875011,
+    "lng": 139.516418
+  },
   "上福岡２－６－３": {
     "lat": 35.875072,
     "lng": 139.516281
@@ -391,6 +520,14 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
   "上福岡２－７－１２セザール桜通り上福岡１０１": {
     "lat": 35.874748,
     "lng": 139.516983
+  },
+  "上福岡２－９－５": {
+    "lat": 35.873371,
+    "lng": 139.517838
+  },
+  "上福岡３－11－22": {
+    "lat": 35.87125,
+    "lng": 139.515213
   },
   "上福岡３－１１－１２": {
     "lat": 35.871342,
@@ -416,6 +553,18 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.872641,
     "lng": 139.516417
   },
+  "上福岡３－７－４": {
+    "lat": 35.872368,
+    "lng": 139.516663
+  },
+  "上福岡３－８－２": {
+    "lat": 35.872246,
+    "lng": 139.516541
+  },
+  "上福岡４－４－２": {
+    "lat": 35.87072,
+    "lng": 139.512772
+  },
   "上福岡４－６－１１ー１０３": {
     "lat": 35.868465,
     "lng": 139.511765
@@ -423,6 +572,10 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
   "上福岡４－７－３": {
     "lat": 35.868729,
     "lng": 139.512695
+  },
+  "上福岡５－１－10": {
+    "lat": 35.872196,
+    "lng": 139.512405
   },
   "上福岡５－１－１０プランドールふじみの102": {
     "lat": 35.872299,
@@ -468,6 +621,10 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.868032,
     "lng": 139.510275
   },
+  "上福岡６－１－20": {
+    "lat": 35.871777,
+    "lng": 139.511368
+  },
   "上福岡６－１－２": {
     "lat": 35.872747,
     "lng": 139.511709
@@ -475,6 +632,18 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
   "上福岡６－１－２０ 大原ビル１０１": {
     "lat": 35.871841,
     "lng": 139.511388
+  },
+  "上福岡６－１－８": {
+    "lat": 35.872494,
+    "lng": 139.510941
+  },
+  "上福岡６－３－１１": {
+    "lat": 35.872414,
+    "lng": 139.508759
+  },
+  "上福岡６－４－２": {
+    "lat": 35.87199,
+    "lng": 139.50882
   },
   "上福岡６－４－５": {
     "lat": 35.871838,
@@ -484,21 +653,53 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.871567,
     "lng": 139.508881
   },
+  "上野台１－２－１": {
+    "lat": 35.876663,
+    "lng": 139.516968
+  },
   "上野台１－２－３": {
     "lat": 35.876978,
     "lng": 139.517361
+  },
+  "中ノ島１－１－19": {
+    "lat": 35.875378,
+    "lng": 139.531479
   },
   "中ノ島１－１－１７": {
     "lat": 35.875378,
     "lng": 139.531479
   },
+  "中丸１－２－５": {
+    "lat": 35.876862,
+    "lng": 139.530655
+  },
   "中福岡２７０－１": {
     "lat": 35.875492,
     "lng": 139.535692
   },
+  "中福岡２７２": {
+    "lat": 35.875126,
+    "lng": 139.534698
+  },
+  "亀久保1146－17": {
+    "lat": 35.853668,
+    "lng": 139.502686
+  },
+  "亀久保1243－５": {
+    "lat": 35.858631,
+    "lng": 139.500641
+  },
   "亀久保１－１－２２": {
     "lat": 35.858521,
     "lng": 139.508711
+  },
+  "亀久保１－３－１": {
+    "lat": 35.858391,
+    "lng": 139.508759
+  },
+  "亀久保１－３－３５": {
+    "lat": 35.857964,
+    "lng": 139.508865
   },
   "亀久保１－６－２７": {
     "lat": 35.857548,
@@ -508,13 +709,25 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.85358,
     "lng": 139.505169
   },
+  "亀久保１１５４": {
+    "lat": 35.853668,
+    "lng": 139.502686
+  },
   "亀久保１２３９ー１": {
+    "lat": 35.859207,
+    "lng": 139.501694
+  },
+  "亀久保１２３９－26": {
     "lat": 35.859207,
     "lng": 139.501694
   },
   "亀久保１２４８－６": {
     "lat": 35.857647,
     "lng": 139.500671
+  },
+  "亀久保１６６９－２": {
+    "lat": 35.853168,
+    "lng": 139.481354
   },
   "亀久保１６７７－１": {
     "lat": 35.857773,
@@ -532,6 +745,10 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.862095,
     "lng": 139.507721
   },
+  "亀久保３－12－37": {
+    "lat": 35.862389,
+    "lng": 139.511063
+  },
   "亀久保３－１－５": {
     "lat": 35.859404,
     "lng": 139.509441
@@ -544,9 +761,17 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.861961,
     "lng": 139.509949
   },
+  "亀久保３－９－１０": {
+    "lat": 35.864376,
+    "lng": 139.509323
+  },
   "亀久保４－4－３５": {
     "lat": 35.860348,
     "lng": 139.51207
+  },
+  "亀久保４－３－１": {
+    "lat": 35.860165,
+    "lng": 139.511627
   },
   "亀久保４－６－６": {
     "lat": 35.860004,
@@ -560,6 +785,22 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.858051,
     "lng": 139.513504
   },
+  "仲１－４－２": {
+    "lat": 35.87376,
+    "lng": 139.533783
+  },
+  "仲２－２－８": {
+    "lat": 35.873051,
+    "lng": 139.532745
+  },
+  "元福岡２－２－３": {
+    "lat": 35.883175,
+    "lng": 139.517792
+  },
+  "北野１－７－９": {
+    "lat": 35.87804,
+    "lng": 139.511276
+  },
   "北野１－８－１": {
     "lat": 35.877968,
     "lng": 139.510056
@@ -567,6 +808,10 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
   "北野１－８－８": {
     "lat": 35.878624,
     "lng": 139.510117
+  },
+  "北野２－12－１": {
+    "lat": 35.881184,
+    "lng": 139.515106
   },
   "北野２－１２－８": {
     "lat": 35.881618,
@@ -576,9 +821,69 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.878078,
     "lng": 139.512192
   },
+  "北野２－７－５": {
+    "lat": 35.879189,
+    "lng": 139.513641
+  },
+  "北野２－７－８": {
+    "lat": 35.879505,
+    "lng": 139.513794
+  },
+  "北野２－８－１": {
+    "lat": 35.879551,
+    "lng": 139.513947
+  },
+  "南台１－１０": {
+    "lat": 35.869011,
+    "lng": 139.519302
+  },
+  "南台１－５－９": {
+    "lat": 35.869724,
+    "lng": 139.518188
+  },
+  "南台１－７－５": {
+    "lat": 35.869411,
+    "lng": 139.518463
+  },
+  "南台２－５－19": {
+    "lat": 35.867672,
+    "lng": 139.516983
+  },
+  "大井1073－１": {
+    "lat": 35.850906,
+    "lng": 139.515976
+  },
   "大井中央１－16－１": {
     "lat": 35.85812,
     "lng": 139.507202
+  },
+  "大井中央１－８－37": {
+    "lat": 35.856812,
+    "lng": 139.507507
+  },
+  "大井中央２－20－１": {
+    "lat": 35.856792,
+    "lng": 139.504715
+  },
+  "大井中央２－８－３": {
+    "lat": 35.858185,
+    "lng": 139.506882
+  },
+  "大井中央３－12－26": {
+    "lat": 35.858021,
+    "lng": 139.502991
+  },
+  "大井中央３－22－５": {
+    "lat": 35.859837,
+    "lng": 139.504135
+  },
+  "大井中央３－１－２４": {
+    "lat": 35.860828,
+    "lng": 139.507462
+  },
+  "大井中央３－７－４８": {
+    "lat": 35.859928,
+    "lng": 139.505692
   },
   "大井中央４－１－１０": {
     "lat": 35.8592,
@@ -608,6 +913,10 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.854656,
     "lng": 139.491837
   },
+  "大井１－２－33": {
+    "lat": 35.852623,
+    "lng": 139.516556
+  },
   "大井１－２－４３": {
     "lat": 35.85347,
     "lng": 139.516159
@@ -624,6 +933,10 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.851239,
     "lng": 139.517235
   },
+  "大井２－19－１": {
+    "lat": 35.851871,
+    "lng": 139.518372
+  },
   "大井２－１－１": {
     "lat": 35.852943,
     "lng": 139.518036
@@ -631,6 +944,10 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
   "大井２－１０－１": {
     "lat": 35.852905,
     "lng": 139.521729
+  },
+  "大井２－１１－１４": {
+    "lat": 35.851532,
+    "lng": 139.522568
   },
   "大井２－２－１８": {
     "lat": 35.852932,
@@ -651,6 +968,10 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
   "大井６０３": {
     "lat": 35.850025,
     "lng": 139.527039
+  },
+  "大井６５１－４": {
+    "lat": 35.849453,
+    "lng": 139.525894
   },
   "大原１－１－１０": {
     "lat": 35.87616,
@@ -684,6 +1005,10 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.876419,
     "lng": 139.514877
   },
+  "大原１－６－11": {
+    "lat": 35.877872,
+    "lng": 139.513458
+  },
   "大原１－７－２４": {
     "lat": 35.878384,
     "lng": 139.513245
@@ -691,6 +1016,10 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
   "大原２－１－２４": {
     "lat": 35.879772,
     "lng": 139.519348
+  },
+  "大原２－１－２９": {
+    "lat": 35.880322,
+    "lng": 139.519608
   },
   "大原２－１－３０": {
     "lat": 35.880405,
@@ -712,6 +1041,10 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.871613,
     "lng": 139.522247
   },
+  "富士見台１８－３": {
+    "lat": 35.872284,
+    "lng": 139.523697
+  },
   "富士見台４－１１": {
     "lat": 35.871876,
     "lng": 139.52124
@@ -720,13 +1053,29 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.871826,
     "lng": 139.521622
   },
+  "川崎１１－６": {
+    "lat": 35.887337,
+    "lng": 139.521011
+  },
   "川崎２１９－２": {
     "lat": 35.888935,
     "lng": 139.521301
   },
+  "市沢１－14－21": {
+    "lat": 35.855858,
+    "lng": 139.525803
+  },
+  "市沢２－12－13": {
+    "lat": 35.854702,
+    "lng": 139.52562
+  },
   "市沢２－１４－２１": {
     "lat": 35.853693,
     "lng": 139.525321
+  },
+  "新田２－１－６": {
+    "lat": 35.871765,
+    "lng": 139.524582
   },
   "新駒林２－１－１３": {
     "lat": 35.867043,
@@ -736,13 +1085,25 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.867599,
     "lng": 139.527145
   },
+  "新駒林２－４－20": {
+    "lat": 35.86874,
+    "lng": 139.527435
+  },
   "新駒林２－４－１２": {
     "lat": 35.868553,
     "lng": 139.528198
   },
+  "新駒林３－４－11": {
+    "lat": 35.870537,
+    "lng": 139.528336
+  },
   "新駒林４－１－８": {
     "lat": 35.870636,
     "lng": 139.529297
+  },
+  "新駒林４－４－２": {
+    "lat": 35.870308,
+    "lng": 139.528931
   },
   "旭１－１４－２６": {
     "lat": 35.856396,
@@ -752,6 +1113,10 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.854187,
     "lng": 139.515808
   },
+  "東久保１－１－２７": {
+    "lat": 35.862839,
+    "lng": 139.511307
+  },
   "東久保１－１－５": {
     "lat": 35.863106,
     "lng": 139.510727
@@ -759,6 +1124,10 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
   "東久保１－１９－５": {
     "lat": 35.864342,
     "lng": 139.513824
+  },
+  "東久保１－２－２": {
+    "lat": 35.863529,
+    "lng": 139.510315
   },
   "東久保２－３－４": {
     "lat": 35.864155,
@@ -768,9 +1137,25 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.872654,
     "lng": 139.524933
   },
+  "松山１－３－７": {
+    "lat": 35.87315,
+    "lng": 139.526489
+  },
+  "松山２－２－４": {
+    "lat": 35.872227,
+    "lng": 139.527908
+  },
+  "松山２－６－２": {
+    "lat": 35.87299,
+    "lng": 139.528549
+  },
   "桜ケ丘３－３９－２５": {
     "lat": 35.850304,
     "lng": 139.504929
+  },
+  "桜ヶ丘１－１－29": {
+    "lat": 35.855881,
+    "lng": 139.506714
   },
   "桜ヶ丘２－１４－２５": {
     "lat": 35.852486,
@@ -792,6 +1177,10 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.850639,
     "lng": 139.507294
   },
+  "桜ヶ丘２－７－33": {
+    "lat": 35.851501,
+    "lng": 139.509186
+  },
   "桜ヶ丘２－７－１１": {
     "lat": 35.851295,
     "lng": 139.509644
@@ -799,6 +1188,10 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
   "清見１－１－９": {
     "lat": 35.880878,
     "lng": 139.519806
+  },
+  "清見１－２－２": {
+    "lat": 35.881111,
+    "lng": 139.518784
   },
   "清見２－１－２３": {
     "lat": 35.881912,
@@ -808,9 +1201,25 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.882324,
     "lng": 139.519653
   },
+  "清見３－１－41": {
+    "lat": 35.883251,
+    "lng": 139.521194
+  },
+  "清見３－１－２": {
+    "lat": 35.883251,
+    "lng": 139.521194
+  },
   "清見３－４－８": {
     "lat": 35.883991,
     "lng": 139.519485
+  },
+  "滝１－２－38": {
+    "lat": 35.878239,
+    "lng": 139.525375
+  },
+  "福岡中央１－１－14": {
+    "lat": 35.872959,
+    "lng": 139.517929
   },
   "福岡中央１－１－１": {
     "lat": 35.873466,
@@ -848,13 +1257,25 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.873978,
     "lng": 139.521652
   },
+  "福岡中央１－６－24": {
+    "lat": 35.873589,
+    "lng": 139.521851
+  },
   "福岡中央１－６－２０": {
     "lat": 35.874092,
     "lng": 139.522125
   },
+  "福岡中央２－10－18": {
+    "lat": 35.871025,
+    "lng": 139.518982
+  },
   "福岡中央２－１－３": {
     "lat": 35.872747,
     "lng": 139.517473
+  },
+  "福岡中央２－１３－２０": {
+    "lat": 35.872856,
+    "lng": 139.518326
   },
   "福岡中央２－４－５": {
     "lat": 35.871826,
@@ -888,9 +1309,41 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.867757,
     "lng": 139.512527
   },
+  "福岡武蔵野５－11": {
+    "lat": 35.867256,
+    "lng": 139.512772
+  },
   "福岡武蔵野６－１７": {
     "lat": 35.868031,
     "lng": 139.512003
+  },
+  "福岡２－１－６": {
+    "lat": 35.879387,
+    "lng": 139.522018
+  },
+  "福岡３－２－１６": {
+    "lat": 35.885117,
+    "lng": 139.521881
+  },
+  "築地１－１－１６": {
+    "lat": 35.874462,
+    "lng": 139.529739
+  },
+  "緑ケ丘２－１２－２２": {
+    "lat": 35.860863,
+    "lng": 139.500534
+  },
+  "緑ヶ丘１－１－２": {
+    "lat": 35.860546,
+    "lng": 139.502121
+  },
+  "緑ヶ丘１－５－８": {
+    "lat": 35.859421,
+    "lng": 139.501038
+  },
+  "苗間１－14－16": {
+    "lat": 35.857441,
+    "lng": 139.521545
   },
   "苗間１－１０－３０": {
     "lat": 35.85767,
@@ -928,9 +1381,25 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.859043,
     "lng": 139.525787
   },
+  "苗間２３９": {
+    "lat": 35.859486,
+    "lng": 139.527344
+  },
+  "苗間２５－23": {
+    "lat": 35.851906,
+    "lng": 139.511978
+  },
   "苗間２９５－１": {
     "lat": 35.861116,
     "lng": 139.528064
+  },
+  "苗間３１－１": {
+    "lat": 35.854275,
+    "lng": 139.513931
+  },
+  "苗間３５３－４": {
+    "lat": 35.860954,
+    "lng": 139.530762
   },
   "苗間３７２－１０": {
     "lat": 35.859044,
@@ -948,9 +1417,21 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.858101,
     "lng": 139.526016
   },
+  "苗間４０－２１": {
+    "lat": 35.854275,
+    "lng": 139.513931
+  },
+  "苗間４００－１": {
+    "lat": 35.856701,
+    "lng": 139.526855
+  },
   "苗間４１２－４": {
     "lat": 35.857819,
     "lng": 139.521637
+  },
+  "苗間４２－５": {
+    "lat": 35.853584,
+    "lng": 139.514587
   },
   "苗間５８５－１１４": {
     "lat": 35.863261,
@@ -960,9 +1441,33 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.862699,
     "lng": 139.533116
   },
+  "西鶴ヶ岡１－３－15": {
+    "lat": 35.862591,
+    "lng": 139.501144
+  },
+  "西鶴ヶ岡１７４８－１０": {
+    "lat": 35.862747,
+    "lng": 139.495987
+  },
+  "西鶴ヶ岡２－１－２": {
+    "lat": 35.862854,
+    "lng": 139.50061
+  },
+  "西鶴ヶ岡２－３－１": {
+    "lat": 35.863682,
+    "lng": 139.498932
+  },
+  "西１－１－４": {
+    "lat": 35.872608,
+    "lng": 139.508224
+  },
   "西１－１５－４": {
     "lat": 35.869667,
     "lng": 139.506531
+  },
+  "西２－１－20": {
+    "lat": 35.872097,
+    "lng": 139.507584
   },
   "西２－１－１": {
     "lat": 35.873077,
@@ -971,6 +1476,18 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
   "西２－１２－２５": {
     "lat": 35.870438,
     "lng": 139.506165
+  },
+  "西２－８－19": {
+    "lat": 35.871853,
+    "lng": 139.504135
+  },
+  "霞ヶ丘１－100": {
+    "lat": 35.873848,
+    "lng": 139.510193
+  },
+  "霞ヶ丘１－１－３": {
+    "lat": 35.873058,
+    "lng": 139.511795
   },
   "霞ヶ丘１－２－２７": {
     "lat": 35.873539,
@@ -992,6 +1509,10 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.87318,
     "lng": 139.509514
   },
+  "霞ヶ丘２－１－４": {
+    "lat": 35.873344,
+    "lng": 139.50827
+  },
   "霞ヶ丘３－８－８": {
     "lat": 35.8764,
     "lng": 139.508377
@@ -1003,6 +1524,10 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
   "駒林元町１－１０－５": {
     "lat": 35.866997,
     "lng": 139.527695
+  },
+  "駒林元町２－１－20": {
+    "lat": 35.866768,
+    "lng": 139.525436
   },
   "駒林元町３－８－１": {
     "lat": 35.866203,
@@ -1027,6 +1552,14 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
   "駒林８９４": {
     "lat": 35.870838,
     "lng": 139.53537
+  },
+  "鶴ヶ岡１－１－１": {
+    "lat": 35.862892,
+    "lng": 139.505783
+  },
+  "鶴ヶ岡１－１５－１": {
+    "lat": 35.865562,
+    "lng": 139.500946
   },
   "鶴ヶ岡２－１－１７": {
     "lat": 35.864674,
@@ -1060,6 +1593,10 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.8671,
     "lng": 139.505524
   },
+  "鶴ヶ岡３－１－３５": {
+    "lat": 35.867462,
+    "lng": 139.503052
+  },
   "鶴ヶ岡３－１－４４シャトウ鶴ヶ丘１０２": {
     "lat": 35.866932,
     "lng": 139.502304
@@ -1092,6 +1629,14 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.865273,
     "lng": 139.499924
   },
+  "鶴ヶ舞１－16－６": {
+    "lat": 35.866913,
+    "lng": 139.51268
+  },
+  "鶴ヶ舞１－18－７": {
+    "lat": 35.866966,
+    "lng": 139.512985
+  },
   "鶴ヶ舞１－１２－３": {
     "lat": 35.865704,
     "lng": 139.512985
@@ -1112,9 +1657,25 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.864811,
     "lng": 139.509094
   },
+  "鶴ヶ舞２－２－17": {
+    "lat": 35.866268,
+    "lng": 139.509399
+  },
+  "鶴ヶ舞２－３－９": {
+    "lat": 35.867195,
+    "lng": 139.510101
+  },
+  "鶴ヶ舞２－６－12": {
+    "lat": 35.869007,
+    "lng": 139.511536
+  },
   "鶴ヶ舞２－６－８": {
     "lat": 35.868702,
     "lng": 139.511292
+  },
+  "鶴ヶ舞２－７－９": {
+    "lat": 35.869442,
+    "lng": 139.511871
   },
   "鶴ヶ舞３ー５－２": {
     "lat": 35.866416,
@@ -1136,9 +1697,21 @@ export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> =
     "lat": 35.868942,
     "lng": 139.506165
   },
+  "鶴ヶ舞３－２－22": {
+    "lat": 35.866116,
+    "lng": 139.50914
+  },
+  "鶴ヶ舞３－３－１９": {
+    "lat": 35.866375,
+    "lng": 139.509338
+  },
   "鶴ヶ舞３－６－１５": {
     "lat": 35.868257,
     "lng": 139.506483
+  },
+  "鶴ヶ舞３－７－３": {
+    "lat": 35.868694,
+    "lng": 139.506073
   },
   "鶴ヶ舞３－８－１０": {
     "lat": 35.870146,
@@ -1157,7 +1730,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "清見２－１－２３",
     "phone": "278-1222",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "食品",
     "lat": 35.881912,
     "lng": 139.520523,
@@ -1169,7 +1741,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "清見３－４－８",
     "phone": "263-5696",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "灯油・食料品など",
     "lat": 35.883991,
     "lng": 139.519485,
@@ -1181,7 +1752,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "大原１－７－２４",
     "phone": "293-4498",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "菓子、野菜、果物",
     "lat": 35.878384,
     "lng": 139.513245,
@@ -1193,7 +1763,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "大原２－１－２４",
     "phone": "293-5608",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "海鮮丼",
     "lat": 35.879772,
     "lng": 139.519348,
@@ -1205,7 +1774,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "上福岡１－４－１３",
     "phone": "261-1403",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "洋菓子、サブレ、喫茶",
     "lat": 35.873738,
     "lng": 139.513191,
@@ -1217,7 +1785,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "上福岡１－６－２４",
     "phone": "261-1455",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "米穀、和洋酒",
     "lat": 35.874695,
     "lng": 139.512894,
@@ -1225,11 +1792,10 @@ export const RAW_RESTAURANTS: Restaurant[] = [
   },
   {
     "id": 7,
-    "name": "（Ref.）（有）松澤園",
+    "name": "（有）松澤園",
     "address": "上福岡１－６－３６",
     "phone": "261-6104",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "お茶、のり、茶器、おかきなど",
     "lat": 35.874645,
     "lng": 139.513565,
@@ -1241,7 +1807,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "上福岡１－７－１５",
     "phone": "267-8500",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "焼鳥 お刺身 一品料理 アルコール",
     "lat": 35.875465,
     "lng": 139.512726,
@@ -1250,11 +1815,10 @@ export const RAW_RESTAURANTS: Restaurant[] = [
   {
     "id": 9,
     "name": "（合）SAO VIET",
-    "address": "上福岡１－１５－１０ パークヴィラ上野台１０２",
+    "address": "上福岡１－１５－１０",
     "phone": "080-4389-8005",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
-    "menu": "タピオカ、サンドイッチ",
+    "menu": "タピオカ､サンドイッチ",
     "lat": 35.875774,
     "lng": 139.515945,
     "couponType": "both"
@@ -1262,10 +1826,9 @@ export const RAW_RESTAURANTS: Restaurant[] = [
   {
     "id": 10,
     "name": "フーズワン（株）",
-    "address": "上福岡２－７－１２セザール桜通り上福岡１０１",
+    "address": "上福岡２－７－１２",
     "phone": "261-2074",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "フルーツゼリー",
     "lat": 35.874748,
     "lng": 139.516983,
@@ -1274,10 +1837,9 @@ export const RAW_RESTAURANTS: Restaurant[] = [
   {
     "id": 11,
     "name": "協働舎レタス",
-    "address": "上福岡４－６－１１ー１０３",
+    "address": "上福岡４－６－１１",
     "phone": "264-5497",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "パン、お菓子",
     "lat": 35.868465,
     "lng": 139.511765,
@@ -1289,7 +1851,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "上福岡５－３－２５",
     "phone": "261-2779",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "和菓子、おにぎり、だんご等",
     "lat": 35.872128,
     "lng": 139.51239,
@@ -1301,7 +1862,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "上福岡５－４－２３",
     "phone": "261-2735",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "お茶、茶器、食品",
     "lat": 35.870506,
     "lng": 139.512527,
@@ -1313,8 +1873,7 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "上福岡５－１０－１８",
     "phone": "269-4129",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
-    "menu": "食料品、お酒、精肉、野菜、果物、総菜、魚など",
+    "menu": "食料品、お酒、精肉、野菜、果物、惣菜、魚など",
     "lat": 35.867065,
     "lng": 139.509872,
     "couponType": "both"
@@ -1325,7 +1884,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "上福岡６－５－１",
     "phone": "264-0531",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "狭山茶 他",
     "lat": 35.871567,
     "lng": 139.508881,
@@ -1337,7 +1895,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "北野２－１２－８",
     "phone": "263-7817",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "茶、のり、茶器",
     "lat": 35.881618,
     "lng": 139.516006,
@@ -1349,7 +1906,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "福岡新田２６０－４",
     "phone": "262-2003",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "ドーナツ",
     "lat": 35.874329,
     "lng": 139.540558,
@@ -1361,7 +1917,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "福岡中央１－４－１",
     "phone": "261-0166",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "精肉、惣菜",
     "lat": 35.872719,
     "lng": 139.520279,
@@ -1373,7 +1928,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "福岡中央１－４－７",
     "phone": "261-0308",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "和生菓子、赤飯",
     "lat": 35.872677,
     "lng": 139.521194,
@@ -1385,8 +1939,7 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "富士見台１６－８",
     "phone": "261-1454",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
-    "menu": "酒類、食品、飲料",
+    "menu": "酒類､食品､飲料",
     "lat": 35.871613,
     "lng": 139.522247,
     "couponType": "both"
@@ -1397,7 +1950,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "駒林１１７－２",
     "phone": "266-6635",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "キムチ",
     "lat": 35.868645,
     "lng": 139.532959,
@@ -1409,7 +1961,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "駒林８９４",
     "phone": "261-4436",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "赤飯、饅頭 他",
     "lat": 35.870838,
     "lng": 139.53537,
@@ -1421,7 +1972,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "駒林元町３－８－１",
     "phone": "214-4774",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "パン",
     "lat": 35.866203,
     "lng": 139.523224,
@@ -1433,7 +1983,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "鶴ヶ岡２－２４－１６",
     "phone": "261-4188",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "緑茶、和紅茶",
     "lat": 35.867912,
     "lng": 139.506409,
@@ -1442,10 +1991,9 @@ export const RAW_RESTAURANTS: Restaurant[] = [
   {
     "id": 25,
     "name": "お菓子の家 favori",
-    "address": "鶴ヶ岡３－１－４４シャトウ鶴ヶ丘１０２",
+    "address": "鶴ヶ岡３－１－４４",
     "phone": "265-5545",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "洋菓子",
     "lat": 35.866932,
     "lng": 139.502304,
@@ -1457,7 +2005,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "鶴ヶ岡５－１－８",
     "phone": "264-8801",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "パン",
     "lat": 35.865273,
     "lng": 139.499924,
@@ -1469,7 +2016,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "亀久保４－６－６",
     "phone": "262-4657",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "野菜、果物",
     "lat": 35.860004,
     "lng": 139.511551,
@@ -1481,7 +2027,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "亀久保１２４８－６",
     "phone": "264-5330",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "果実、野菜",
     "lat": 35.857647,
     "lng": 139.500671,
@@ -1493,7 +2038,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "亀久保１８５７－１",
     "phone": "262-0377",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "菓子類",
     "lat": 35.856941,
     "lng": 139.494614,
@@ -1505,7 +2049,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "苗間１－１０－３０",
     "phone": "266-3315",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "弁当、惣菜",
     "lat": 35.85767,
     "lng": 139.522842,
@@ -1517,7 +2060,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "苗間１－１２－１",
     "phone": "264-0249",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "生洋菓子、焼き菓子",
     "lat": 35.857994,
     "lng": 139.52179,
@@ -1525,11 +2067,10 @@ export const RAW_RESTAURANTS: Restaurant[] = [
   },
   {
     "id": 32,
-    "name": "（Ref.）（Ref.）（有）サン・スマイル",
+    "name": "（有）サン・スマイル",
     "address": "苗間１－１５－２７",
     "phone": "264-1903",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "自然食品、雑貨",
     "lat": 35.856915,
     "lng": 139.519913,
@@ -1541,7 +2082,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "大井２－５－９",
     "phone": "267-2323",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "パン",
     "lat": 35.854122,
     "lng": 139.52153,
@@ -1553,7 +2093,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "大井６０３",
     "phone": "261-1199",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "狭山茶、緑茶、紅茶、抹茶、ほうじ茶",
     "lat": 35.850025,
     "lng": 139.527039,
@@ -1565,7 +2104,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "大井武蔵野１２８２－７",
     "phone": "269-7005",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "とうふ、ドーナツ、湯葉、厚揚げ 等",
     "lat": 35.854118,
     "lng": 139.495895,
@@ -1577,7 +2115,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "うれし野２－４－１",
     "phone": "263-5637",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "お米、野菜、一般食品、肥料、農業資材、農薬等",
     "lat": 35.85685,
     "lng": 139.521484,
@@ -1589,7 +2126,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "ふじみ野４－９－２３",
     "phone": "070-9444-3137",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "洋菓子",
     "lat": 35.85796,
     "lng": 139.517059,
@@ -1601,7 +2137,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "大井中央４－７－１９",
     "phone": "262-3370",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "米穀全般",
     "lat": 35.859337,
     "lng": 139.501831,
@@ -1613,7 +2148,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "桜ヶ丘２－３８－８",
     "phone": "263-6766",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "鮮魚介類",
     "lat": 35.850639,
     "lng": 139.507294,
@@ -1625,7 +2159,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "桜ケ丘３－３９－２５",
     "phone": "080-9555-1218",
     "category": "スーパー・食料品",
-    "subCategory": "飲食料品",
     "menu": "豆腐、油揚げ、おからドーナツ",
     "lat": 35.850304,
     "lng": 139.504929,
@@ -1637,7 +2170,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "上福岡１－６－４",
     "phone": "263-0400",
     "category": "商業・ショッピング",
-    "subCategory": "衣料品・靴・寝具",
     "menu": "家具、婦人服、紳士服、貴金属",
     "lat": 35.873714,
     "lng": 139.512863,
@@ -1649,7 +2181,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "上福岡１－９－２５",
     "phone": "264-3111",
     "category": "商業・ショッピング",
-    "subCategory": "衣料品・靴・寝具",
     "menu": "きものと帯、和装小物、加工、洗い",
     "lat": 35.877186,
     "lng": 139.512299,
@@ -1658,10 +2189,9 @@ export const RAW_RESTAURANTS: Restaurant[] = [
   {
     "id": 43,
     "name": "衣料 シューズ バッグ ローマ",
-    "address": "上福岡１－12－８",
+    "address": "上福岡１－１２－８",
     "phone": "264-8385",
     "category": "商業・ショッピング",
-    "subCategory": "衣料品・靴・寝具",
     "menu": "靴、婦人服肌着、日用雑貨",
     "lat": 35.87542,
     "lng": 139.514145,
@@ -1673,7 +2203,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "福岡中央１－４－２",
     "phone": "261-0378",
     "category": "商業・ショッピング",
-    "subCategory": "衣料品・靴・寝具",
     "menu": "衣料品販売",
     "lat": 35.872707,
     "lng": 139.520447,
@@ -1685,7 +2214,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "鶴ヶ舞２－１－３",
     "phone": "261-0127",
     "category": "商業・ショッピング",
-    "subCategory": "衣料品・靴・寝具",
     "menu": "学校用衣料品",
     "lat": 35.864811,
     "lng": 139.509094,
@@ -1693,11 +2221,10 @@ export const RAW_RESTAURANTS: Restaurant[] = [
   },
   {
     "id": 46,
-    "name": "洋服の青山 埼玉大井町店",
+    "name": "洋服の青山 埼玉大井店",
     "address": "東久保１－１－５",
     "phone": "261-5233",
     "category": "商業・ショッピング",
-    "subCategory": "衣料品・靴・寝具",
     "menu": "メンズ・レディース スーツ、カジュアル",
     "lat": 35.863106,
     "lng": 139.510727,
@@ -1709,7 +2236,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "苗間２２９－１",
     "phone": "261-0638",
     "category": "商業・ショッピング",
-    "subCategory": "衣料品・靴・寝具",
     "menu": "学校用品、日用品",
     "lat": 35.859043,
     "lng": 139.525787,
@@ -1721,7 +2247,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "大井１－２－４３",
     "phone": "264-1988",
     "category": "商業・ショッピング",
-    "subCategory": "衣料品・靴・寝具",
     "menu": "メンズ・レディース衣料品",
     "lat": 35.85347,
     "lng": 139.516159,
@@ -1732,8 +2257,7 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "name": "（有）ベルオートスズキ販売",
     "address": "川崎２１９－２",
     "phone": "264-8340",
-    "category": "その他",
-    "subCategory": "生活用品",
+    "category": "サービス",
     "menu": "オートバイ販売、点検、修理、用品販売",
     "lat": 35.888935,
     "lng": 139.521301,
@@ -1744,8 +2268,7 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "name": "マツイ時計店",
     "address": "上福岡１－２－２０",
     "phone": "261-6284",
-    "category": "その他",
-    "subCategory": "生活用品",
+    "category": "サービス",
     "menu": "時計、メガネ、バッグなど",
     "lat": 35.873455,
     "lng": 139.513214,
@@ -1753,11 +2276,10 @@ export const RAW_RESTAURANTS: Restaurant[] = [
   },
   {
     "id": 51,
-    "name": "（Ref.）（有）細谷時計店",
+    "name": "（有）細谷時計店",
     "address": "上福岡１－４－５",
     "phone": "261-0164",
-    "category": "その他",
-    "subCategory": "生活用品",
+    "category": "サービス",
     "menu": "時計、メガネ、宝飾",
     "lat": 35.87331,
     "lng": 139.513535,
@@ -1765,11 +2287,10 @@ export const RAW_RESTAURANTS: Restaurant[] = [
   },
   {
     "id": 52,
-    "name": "（Ref.）（有）福岡モータース",
+    "name": "（Reflet? いいえ、(有)福岡モータース) （有）福岡モータース",
     "address": "上福岡１－５－１４",
     "phone": "261-0270",
-    "category": "その他",
-    "subCategory": "生活用品",
+    "category": "サービス",
     "menu": "自動車整備、販売",
     "lat": 35.874252,
     "lng": 139.514908,
@@ -1780,8 +2301,7 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "name": "電化百貨 RED BOX",
     "address": "上福岡１－９－２８",
     "phone": "261-0437",
-    "category": "その他",
-    "subCategory": "生活用品",
+    "category": "サービス",
     "menu": "一般家電品及びその付帯工事と修理",
     "lat": 35.876842,
     "lng": 139.512009,
@@ -1792,8 +2312,7 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "name": "サイクルショップ オオノ",
     "address": "上福岡２－３－９",
     "phone": "261-0107",
-    "category": "その他",
-    "subCategory": "生活用品",
+    "category": "サービス",
     "menu": "自転車全般",
     "lat": 35.87302,
     "lng": 139.517181,
@@ -1804,8 +2323,7 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "name": "はんこの正和堂",
     "address": "上福岡２－５－２１",
     "phone": "261-6556",
-    "category": "その他",
-    "subCategory": "生活用品",
+    "category": "サービス",
     "menu": "印鑑、軽印刷",
     "lat": 35.874168,
     "lng": 139.514969,
@@ -1816,8 +2334,7 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "name": "ツチヤ電器",
     "address": "上福岡２－６－３",
     "phone": "262-5048",
-    "category": "その他",
-    "subCategory": "生活用品",
+    "category": "サービス",
     "menu": "一般家電品",
     "lat": 35.875072,
     "lng": 139.516281,
@@ -1828,8 +2345,7 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "name": "関根薬局",
     "address": "上福岡５－１－１１",
     "phone": "261-4959",
-    "category": "その他",
-    "subCategory": "生活用品",
+    "category": "サービス",
     "menu": "薬、漢方（薬膳）、サプリメント",
     "lat": 35.87207,
     "lng": 139.512543,
@@ -1840,8 +2356,7 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "name": "タチバナ電器商会",
     "address": "西２－１－１",
     "phone": "261-3248",
-    "category": "その他",
-    "subCategory": "生活用品",
+    "category": "サービス",
     "menu": "家庭用電器製品",
     "lat": 35.873077,
     "lng": 139.508484,
@@ -1852,8 +2367,7 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "name": "富士電化サービス",
     "address": "上ノ原２－６－３",
     "phone": "264-7337",
-    "category": "その他",
-    "subCategory": "生活用品",
+    "category": "サービス",
     "menu": "家電品販売、取付、修理",
     "lat": 35.87759,
     "lng": 139.524963,
@@ -1864,8 +2378,7 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "name": "小峰住設",
     "address": "松山１－１－７",
     "phone": "261-0406",
-    "category": "その他",
-    "subCategory": "生活用品",
+    "category": "サービス",
     "menu": "プロパンガス、灯油、住宅設備機器",
     "lat": 35.872654,
     "lng": 139.524933,
@@ -1876,8 +2389,7 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "name": "上福岡自動車（株）",
     "address": "新駒林２－３－１１",
     "phone": "262-0007",
-    "category": "その他",
-    "subCategory": "生活用品",
+    "category": "サービス",
     "menu": "車の整備、販売",
     "lat": 35.867599,
     "lng": 139.527145,
@@ -1888,8 +2400,7 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "name": "㈱ホンダプロモーション Honda Cars 川越 ふじみ野中央店",
     "address": "ふじみ野１－７－７",
     "phone": "261-5011",
-    "category": "その他",
-    "subCategory": "生活用品",
+    "category": "サービス",
     "menu": "新車、中古車、関連用品、整備、WHILL（電動モビリティ）",
     "lat": 35.857288,
     "lng": 139.514893,
@@ -1897,11 +2408,10 @@ export const RAW_RESTAURANTS: Restaurant[] = [
   },
   {
     "id": 63,
-    "name": "（Ref.）（有）上野輪店",
+    "name": "（有）上野輪店",
     "address": "旭１－１９－１６",
     "phone": "261-0029",
-    "category": "その他",
-    "subCategory": "生活用品",
+    "category": "サービス",
     "menu": "一般車・電動自転車",
     "lat": 35.854187,
     "lng": 139.515808,
@@ -1909,11 +2419,10 @@ export const RAW_RESTAURANTS: Restaurant[] = [
   },
   {
     "id": 64,
-    "name": "（Ref.）（有）島田電気",
+    "name": "（有）島田電気",
     "address": "苗間５９５",
     "phone": "261-5668",
-    "category": "その他",
-    "subCategory": "生活用品",
+    "category": "サービス",
     "menu": "エアコン、テレビ、冷蔵庫、各種家電",
     "lat": 35.862699,
     "lng": 139.533116,
@@ -1924,8 +2433,7 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "name": "サイクルセンターアライ",
     "address": "桜ヶ丘２－７－１１",
     "phone": "080-1038-2356",
-    "category": "その他",
-    "subCategory": "生活用品",
+    "category": "サービス",
     "menu": "自転車 販売 修理",
     "lat": 35.851295,
     "lng": 139.509644,
@@ -1937,7 +2445,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "清見１－１－９",
     "phone": "256-5311",
     "category": "ドラッグストア",
-    "subCategory": "ドラッグストア",
     "menu": "医薬品、化粧品、雑貨、食品",
     "lat": 35.880878,
     "lng": 139.519806,
@@ -1949,7 +2456,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "西１－１５－４",
     "phone": "256-8885",
     "category": "ドラッグストア",
-    "subCategory": "ドラッグストア",
     "menu": "医薬品、化粧品、雑貨、食品",
     "lat": 35.869667,
     "lng": 139.506531,
@@ -1958,10 +2464,9 @@ export const RAW_RESTAURANTS: Restaurant[] = [
   {
     "id": 68,
     "name": "セイジョー上福岡店",
-    "address": "霞ヶ丘１－３ コンフォール霞ヶ丘",
+    "address": "霞ヶ丘１－３",
     "phone": "267-9066",
     "category": "ドラッグストア",
-    "subCategory": "ドラッグストア",
     "menu": "医薬品、化粧品など",
     "lat": 35.873711,
     "lng": 139.509872,
@@ -1973,7 +2478,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "中ノ島１－１－１７",
     "phone": "267-3360",
     "category": "ドラッグストア",
-    "subCategory": "ドラッグストア",
     "menu": "医薬品、日用品、食品",
     "lat": 35.875378,
     "lng": 139.531479,
@@ -1985,7 +2489,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "新駒林２－４－１２",
     "phone": "256-5051",
     "category": "ドラッグストア",
-    "subCategory": "ドラッグストア",
     "menu": "医薬品、食品、雑貨、化粧品",
     "lat": 35.868553,
     "lng": 139.528198,
@@ -1997,7 +2500,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "駒林３－８－２０",
     "phone": "256-6401",
     "category": "ドラッグストア",
-    "subCategory": "ドラッグストア",
     "menu": "医薬品、化粧品、日用品、食品",
     "lat": 35.869312,
     "lng": 139.537704,
@@ -2006,10 +2508,9 @@ export const RAW_RESTAURANTS: Restaurant[] = [
   {
     "id": 72,
     "name": "（株）マツモトキヨシ 大井町店",
-    "address": "ふじみ野２－13－１",
+    "address": "ふじみ野２－１３－１",
     "phone": "261-9301",
     "category": "ドラッグストア",
-    "subCategory": "ドラッグストア",
     "menu": "医薬品、化粧品、日用品、食品、酒類",
     "lat": 35.861538,
     "lng": 139.514236,
@@ -2021,7 +2522,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "ふじみ野４－８－５１",
     "phone": "214-6772",
     "category": "ドラッグストア",
-    "subCategory": "ドラッグストア",
     "menu": "医薬品、食品、雑貨",
     "lat": 35.858322,
     "lng": 139.515961,
@@ -2030,10 +2530,9 @@ export const RAW_RESTAURANTS: Restaurant[] = [
   {
     "id": 74,
     "name": "スギ薬局 亀久保店",
-    "address": "亀久保１２３９ー１",
+    "address": "亀久保１２３９－１",
     "phone": "293-6218",
     "category": "ドラッグストア",
-    "subCategory": "ドラッグストア",
     "menu": "医薬品、化粧品、日用品、食品",
     "lat": 35.859207,
     "lng": 139.501694,
@@ -2045,7 +2544,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "亀久保４－９－２０",
     "phone": "278-7205",
     "category": "ドラッグストア",
-    "subCategory": "ドラッグストア",
     "menu": "医薬品、化粧品、日用品、食品等",
     "lat": 35.858051,
     "lng": 139.513504,
@@ -2057,7 +2555,6 @@ export const RAW_RESTAURANTS: Restaurant[] = [
     "address": "大井２－７－９",
     "phone": "267-7030",
     "category": "ドラッグストア",
-    "subCategory": "ドラッグストア",
     "menu": "医薬品、化粧品、雑貨、食品",
     "lat": 35.853203,
     "lng": 139.521957,
@@ -2066,10 +2563,9 @@ export const RAW_RESTAURANTS: Restaurant[] = [
   {
     "id": 77,
     "name": "ウエルシア大井町中央店",
-    "address": "大井中央１－16－１",
+    "address": "大井中央１－１６－１",
     "phone": "278-2731",
     "category": "ドラッグストア",
-    "subCategory": "ドラッグストア",
     "menu": "医薬品、化粧品、日用品、食品等",
     "lat": 35.85812,
     "lng": 139.507202,
@@ -2077,3076 +2573,2883 @@ export const RAW_RESTAURANTS: Restaurant[] = [
   },
   {
     "id": 78,
-    "name": "ファミリーマート上福岡一丁目店",
-    "address": "上福岡１－６－３３",
-    "phone": "262-6285",
+    "name": "ファミリーマートふじみ野清見店",
+    "address": "清見３－１－２",
+    "phone": "256-8865",
     "category": "スーパー・食料品",
-    "subCategory": "コンビニ・スーパー",
-    "menu": "コンビニエンスストア",
-    "lat": 35.874252,
-    "lng": 139.513046,
+    "menu": "食品",
+    "lat": 35.883251,
+    "lng": 139.521194,
     "couponType": "both"
   },
   {
     "id": 79,
-    "name": "セブンイレブン上福岡駅東口店",
-    "address": "上福岡１－７－２",
-    "phone": "262-1114",
+    "name": "ローソンストア１００上福岡店",
+    "address": "上福岡１－１２－３０",
+    "phone": "256-3099",
     "category": "スーパー・食料品",
-    "subCategory": "コンビニ・スーパー",
-    "menu": "コンビニエンスストア",
-    "lat": 35.874092,
-    "lng": 139.512375,
+    "menu": "食品、飲料、酒、雑貨",
+    "lat": 35.875496,
+    "lng": 139.513458,
     "couponType": "both"
   },
   {
     "id": 80,
-    "name": "ファミリーマート上福岡駅前店",
-    "address": "上福岡１－７－２２",
-    "phone": "269-0211",
+    "name": "ビッグ・エー上福岡一丁目店",
+    "address": "上福岡１－１０－６",
+    "phone": "262-2255",
     "category": "スーパー・食料品",
-    "subCategory": "コンビニ・スーパー",
-    "menu": "コンビニエンスストア",
-    "lat": 35.874092,
-    "lng": 139.512375,
+    "menu": "食料品、日用品、お酒など",
+    "lat": 35.875629,
+    "lng": 139.512527,
     "couponType": "both"
   },
   {
     "id": 81,
     "name": "セブンイレブン上福岡駅西口店",
-    "address": "霞ヶ丘１－２－２７",
-    "phone": "266-7117",
+    "address": "霞ヶ丘１－１－３",
+    "phone": "261-0711",
     "category": "スーパー・食料品",
-    "subCategory": "コンビニ・スーパー",
-    "menu": "コンビニエンスストア",
-    "lat": 35.873539,
-    "lng": 139.510986,
+    "menu": "食品、雑貨",
+    "lat": 35.873058,
+    "lng": 139.511795,
     "couponType": "both"
   },
   {
     "id": 82,
-    "name": "セブンイレブンふじみ野新駒林２丁目店",
-    "address": "新駒林２－１－１３",
-    "phone": "267-8822",
+    "name": "業務スーパー ふじみ野上福岡店",
+    "address": "福岡３－２－１６",
+    "phone": "278-5577",
     "category": "スーパー・食料品",
-    "subCategory": "コンビニ・スーパー",
-    "menu": "コンビニエンスストア",
-    "lat": 35.867043,
-    "lng": 139.525009,
+    "menu": "日用品、食料品、お酒など",
+    "lat": 35.885117,
+    "lng": 139.521881,
     "couponType": "both"
   },
   {
     "id": 83,
-    "name": "セブンイレブンふじみ野新駒林店",
-    "address": "新駒林４－１－８",
-    "phone": "264-5556",
+    "name": "ローソンふじみ野中福岡店",
+    "address": "中福岡２７２",
+    "phone": "257-6830",
     "category": "スーパー・食料品",
-    "subCategory": "コンビニ・スーパー",
-    "menu": "コンビニエンスストア",
-    "lat": 35.870636,
-    "lng": 139.529297,
+    "menu": "弁当、食品、飲料、酒、薬",
+    "lat": 35.875126,
+    "lng": 139.534698,
     "couponType": "both"
   },
   {
     "id": 84,
-    "name": "東武ストア 上福岡店",
-    "address": "福岡中央１－１－１",
-    "phone": "261-0536",
+    "name": "(Reflet? いいえ、(有)野本企画 ファミリーマートふじみ野上野台店) (有)野本企画 ファミリーマートふじみ野上野台店",
+    "address": "上野台１－２－１",
+    "phone": "090-4719-7518",
     "category": "スーパー・食料品",
-    "subCategory": "コンビニ・スーパー",
-    "menu": "生鮮食品、一般食品、日用雑貨、酒",
-    "lat": 35.873466,
-    "lng": 139.518738,
+    "menu": "食品等",
+    "lat": 35.876663,
+    "lng": 139.516968,
     "couponType": "both"
   },
   {
     "id": 85,
-    "name": "ヤオコー 上福岡西口店",
-    "address": "霞ヶ丘１－２－３",
-    "phone": "256-5511",
+    "name": "（株）コモディイイダ 築地店",
+    "address": "築地１－１－１６",
+    "phone": "264-6561",
     "category": "スーパー・食料品",
-    "subCategory": "コンビニ・スーパー",
-    "menu": "食料品、お酒、住居、家庭用品",
-    "lat": 35.873573,
-    "lng": 139.510391,
+    "menu": "生鮮食品、食料品、日用品、酒等",
+    "lat": 35.874462,
+    "lng": 139.529739,
     "couponType": "both"
   },
   {
     "id": 86,
-    "name": "セブンイレブン上福岡北野店",
-    "address": "北野１－８－８",
-    "phone": "264-1622",
+    "name": "ビッグ・エー上福岡松山店",
+    "address": "松山１－３－７",
+    "phone": "266-6201",
     "category": "スーパー・食料品",
-    "subCategory": "コンビニ・スーパー",
-    "menu": "コンビニエンスストア",
-    "lat": 35.878624,
-    "lng": 139.510117,
+    "menu": "食料品、日用品、お酒など",
+    "lat": 35.87315,
+    "lng": 139.526489,
     "couponType": "both"
   },
   {
     "id": 87,
-    "name": "セブンイレブンふじみ野大原２丁目店",
-    "address": "大原２－１－３０",
-    "phone": "263-8877",
+    "name": "ローソンふじみ野松山店",
+    "address": "松山２－２－４",
+    "phone": "265-6116",
     "category": "スーパー・食料品",
-    "subCategory": "コンビニ・スーパー",
-    "menu": "コンビニエンスストア",
-    "lat": 35.880405,
-    "lng": 139.51947,
+    "menu": "食料品、日用品､雑貨､お酒など",
+    "lat": 35.872227,
+    "lng": 139.527908,
     "couponType": "both"
   },
   {
     "id": 88,
-    "name": "ベルク ふじみ野東店",
-    "address": "大原２－１－３２",
-    "phone": "264-8899",
+    "name": "ヤマザキショップ ミヤザキ",
+    "address": "福岡中央２－１３－２０",
+    "phone": "261-0123",
     "category": "スーパー・食料品",
-    "subCategory": "コンビニ・スーパー",
-    "menu": "食品、お酒、日用品",
-    "lat": 35.880547,
-    "lng": 139.51918,
+    "menu": "酒類、食品、飲料、弁当 他",
+    "lat": 35.872856,
+    "lng": 139.518326,
     "couponType": "both"
   },
   {
     "id": 89,
-    "name": "セブンイレブン上福岡駒林店",
-    "address": "駒林１－１－２３",
-    "phone": "267-3311",
+    "name": "（株）コモディイイダ 南台店",
+    "address": "南台１－１０",
+    "phone": "263-3161",
     "category": "スーパー・食料品",
-    "subCategory": "コンビニ・スーパー",
-    "menu": "コンビニエンスストア",
-    "lat": 35.869312,
-    "lng": 139.537704,
+    "menu": "生鮮食品、食料品、お酒、日用品等",
+    "lat": 35.869011,
+    "lng": 139.519302,
     "couponType": "both"
   },
   {
     "id": 90,
-    "name": "セブンイレブンふじみ野駒林元町店",
-    "address": "駒林元町１－１０－５",
-    "phone": "256-5775",
+    "name": "セブンイレブン上福岡富士見通り店",
+    "address": "鶴ヶ舞２－６－８",
+    "phone": "261-1673",
     "category": "スーパー・食料品",
-    "subCategory": "コンビニ・スーパー",
-    "menu": "コンビニエンスストア",
-    "lat": 35.866997,
-    "lng": 139.527695,
+    "menu": "飲食、日用品",
+    "lat": 35.868702,
+    "lng": 139.511292,
     "couponType": "both"
   },
   {
     "id": 91,
-    "name": "セブンイレブンふじみ野鶴ヶ岡２丁目店",
-    "address": "鶴ヶ岡２－３０－２２",
-    "phone": "266-7111",
+    "name": "ファミリーマート＋ドラッグエース鶴ヶ岡店",
+    "address": "鶴ヶ岡１－１－１",
+    "phone": "256-3521",
     "category": "スーパー・食料品",
-    "subCategory": "コンビニ・スーパー",
-    "menu": "コンビニエンスストア",
-    "lat": 35.8671,
-    "lng": 139.505524,
+    "menu": "食品、日用品、医薬品、化粧品",
+    "lat": 35.862892,
+    "lng": 139.505783,
     "couponType": "both"
   },
   {
     "id": 92,
-    "name": "セブンイレブン上福岡西２丁目店",
-    "address": "西２－１２－２５",
-    "phone": "266-1711",
+    "name": "セブンイレブンふじみ野鶴ヶ岡店",
+    "address": "鶴ヶ岡１－１５－１",
+    "phone": "261-0110",
     "category": "スーパー・食料品",
-    "subCategory": "コンビニ・スーパー",
-    "menu": "コンビニエンスストア",
-    "lat": 35.870438,
-    "lng": 139.506165,
+    "menu": "飲料、食品、雑貨",
+    "lat": 35.865562,
+    "lng": 139.500946,
     "couponType": "both"
   },
   {
     "id": 93,
-    "name": "マミーマート 鶴ヶ舞店",
-    "address": "鶴ヶ舞３－１１－１",
-    "phone": "256-5533",
+    "name": "ビッグ・エーふじみ野鶴ヶ岡店",
+    "address": "鶴ヶ岡３－１－３５",
+    "phone": "266-2033",
     "category": "スーパー・食料品",
-    "subCategory": "コンビニ・スーパー",
-    "menu": "食料品、お酒、日用雑貨",
-    "lat": 35.868942,
-    "lng": 139.506165,
+    "menu": "食料品、日用品、お酒など",
+    "lat": 35.867462,
+    "lng": 139.503052,
     "couponType": "both"
   },
   {
     "id": 94,
-    "name": "セブンイレブンふじみ野鶴ヶ舞３丁目店",
-    "address": "鶴ヶ舞３－１１－２１",
-    "phone": "264-7711",
+    "name": "セブンイレブン大井町東久保店",
+    "address": "ふじみ野１－５－２",
+    "phone": "262-7161",
     "category": "スーパー・食料品",
-    "subCategory": "コンビニ・スーパー",
-    "menu": "コンビニエンスストア",
-    "lat": 35.868942,
-    "lng": 139.506165,
+    "menu": "お弁当、ソフトドリンク、酒、タバコ、菓子、雑貨",
+    "lat": 35.857399,
+    "lng": 139.515182,
     "couponType": "both"
   },
   {
     "id": 95,
-    "name": "イオンスタイルふじみ野",
-    "address": "ふじみ野１－２－１",
-    "phone": "264-5100",
+    "name": "セブンイレブン大井東久保北店",
+    "address": "ふじみ野２－１２－２５",
+    "phone": "263-2778",
     "category": "スーパー・食料品",
-    "subCategory": "コンビニ・スーパー",
-    "menu": "食料品、お酒、日用雑貨、衣料品、医薬品",
-    "lat": 35.860817,
-    "lng": 139.513092,
+    "menu": "日用品、食料品、お酒など",
+    "lat": 35.861389,
+    "lng": 139.514053,
     "couponType": "both"
   },
   {
     "id": 96,
-    "name": "ヤオコー ふじみ野大原店",
-    "address": "大原１－１－１５",
-    "phone": "214-5311",
+    "name": "（株）コモディイイダ 大井店",
+    "address": "亀久保１１５４",
+    "phone": "264-2565",
     "category": "スーパー・食料品",
-    "subCategory": "コンビニ・スーパー",
-    "menu": "食料品、お酒、住居、家庭用品",
-    "lat": 35.876041,
-    "lng": 139.51619,
+    "menu": "生鮮食品、食料品、日用品、酒、衣料品等",
+    "lat": 35.853668,
+    "lng": 139.502686,
     "couponType": "both"
   },
   {
     "id": 97,
-    "name": "クイーンズ伊勢丹 ふじみ野店",
-    "address": "うれし野２－１０－８７",
-    "phone": "269-3171",
+    "name": "ビッグ・エー大井亀久保店",
+    "address": "亀久保１－３－３５",
+    "phone": "263-4475",
     "category": "スーパー・食料品",
-    "subCategory": "コンビニ・スーパー",
-    "menu": "食料品、酒",
-    "lat": 35.856411,
-    "lng": 139.522858,
+    "menu": "食料品、日用品、お酒など",
+    "lat": 35.857964,
+    "lng": 139.508865,
     "couponType": "both"
   },
   {
     "id": 98,
-    "name": "セブンイレブン大井中央４丁目店",
-    "address": "大井中央４－１－１０",
-    "phone": "269-1700",
+    "name": "生鮮市場 大井店",
+    "address": "大井２－１１－１４",
+    "phone": "265-0011",
     "category": "スーパー・食料品",
-    "subCategory": "コンビニ・スーパー",
-    "menu": "コンビニエンスストア",
-    "lat": 35.8592,
-    "lng": 139.503281,
+    "menu": "生鮮食料品など",
+    "lat": 35.851532,
+    "lng": 139.522568,
     "couponType": "both"
   },
   {
     "id": 99,
-    "name": "セブンイレブンふじみ野亀久保４丁目店",
-    "address": "亀久保４－4－３５",
-    "phone": "266-7011",
+    "name": "セブンイレブン埼玉大井中央店",
+    "address": "大井中央２－８－３",
+    "phone": "263-7110",
     "category": "スーパー・食料品",
-    "subCategory": "コンビニ・スーパー",
-    "menu": "コンビニエンスストア",
-    "lat": 35.860348,
-    "lng": 139.51207,
+    "menu": "食品、雑貨、日用品",
+    "lat": 35.858185,
+    "lng": 139.506882,
     "couponType": "both"
   },
   {
     "id": 100,
-    "name": "セブンイレブン大井東久保店",
-    "address": "東久保２－３－４",
-    "phone": "269-3711",
+    "name": "業務スーパー ふじみ野店",
+    "address": "大井中央３－１－２４",
+    "phone": "256-3701",
     "category": "スーパー・食料品",
-    "subCategory": "コンビニ・スーパー",
-    "menu": "コンビニエンスストア",
-    "lat": 35.864155,
-    "lng": 139.513382,
+    "menu": "日用品、食料品、お酒など",
+    "lat": 35.860828,
+    "lng": 139.507462,
     "couponType": "both"
   },
   {
     "id": 101,
-    "name": "ファミリーマートふじみ野苗間店",
-    "address": "苗間３８７－１",
-    "phone": "269-1066",
-    "category": "スーパー・食料品",
-    "subCategory": "コンビニ・スーパー",
-    "menu": "コンビニエンスストア",
-    "lat": 35.858101,
-    "lng": 139.526016,
+    "name": "（株）プラザスポーツ",
+    "address": "大原２－１－２９",
+    "phone": "264-7326",
+    "category": "商業・ショッピング",
+    "menu": "学校体育着、学生服、スポーツ用品",
+    "lat": 35.880322,
+    "lng": 139.519608,
     "couponType": "both"
   },
   {
     "id": 102,
-    "name": "ベルク おお井プラザ店",
-    "address": "大井２－１０－１",
-    "phone": "267-8800",
-    "category": "スーパー・食料品",
-    "subCategory": "コンビニ・スーパー",
-    "menu": "食品、お酒、日用品",
-    "lat": 35.852905,
-    "lng": 139.521729,
+    "name": "ｆｌｅｕｒ ＫＡＬＩＮ （フルールカリン）",
+    "address": "上福岡１－２－２５",
+    "phone": "264-9125",
+    "category": "商業・ショッピング",
+    "menu": "生花、鉢物、プリザーブドフラワーなど",
+    "lat": 35.873846,
+    "lng": 139.512359,
     "couponType": "both"
   },
   {
     "id": 103,
-    "name": "ヤオコー ふじみ野市役所前店",
-    "address": "福岡１－２－１",
-    "phone": "256-8311",
-    "category": "スーパー・食料品",
-    "subCategory": "コンビニ・スーパー",
-    "menu": "食料品、お酒、住居、家庭用品",
-    "lat": 35.873053,
-    "lng": 139.513315,
+    "name": "テニスプレイヤーズラウンジ",
+    "address": "上福岡１－６－１",
+    "phone": "090-8871-1466",
+    "category": "商業・ショッピング",
+    "menu": "テニス用品、ソフトテニス用品、ガット張り替え",
+    "lat": 35.87499,
+    "lng": 139.513546,
     "couponType": "both"
   },
   {
     "id": 104,
-    "name": "セブンイレブンふじみ野うれし野店",
-    "address": "うれし野１－３－２１",
-    "phone": "256-5111",
-    "category": "スーパー・食料品",
-    "subCategory": "コンビニ・スーパー",
-    "menu": "コンビニエンスストア",
-    "lat": 35.85437,
-    "lng": 139.518219,
+    "name": "（有）トライアングル",
+    "address": "上福岡１－６－３５",
+    "phone": "264-1037",
+    "category": "商業・ショッピング",
+    "menu": "CD",
+    "lat": 35.874367,
+    "lng": 139.513351,
     "couponType": "both"
   },
   {
     "id": 105,
-    "name": "セブンイレブンふじみ野亀久保店",
-    "address": "亀久保１６７７－１",
-    "phone": "256-0711",
-    "category": "スーパー・食料品",
-    "subCategory": "コンビニ・スーパー",
-    "menu": "コンビニエンスストア",
-    "lat": 35.857773,
-    "lng": 139.484268,
-    "couponType": "both"
-  },
-  {
-    "id": 106,
-    "name": "セブンイレブンふじみ野苗間店",
-    "address": "苗間１－１３－１５",
-    "phone": "256-8151",
-    "category": "スーパー・食料品",
-    "subCategory": "コンビニ・スーパー",
-    "menu": "コンビニエンスストア",
-    "lat": 35.857643,
-    "lng": 139.52153,
-    "couponType": "both"
-  },
-  {
-    "id": 107,
-    "name": "（株）アサヒ商会",
-    "address": "上福岡１－２－３",
-    "phone": "261-0010",
-    "category": "商業・ショッピング",
-    "subCategory": "その他の小売",
-    "menu": "文具、事務用品、事務機、OA消耗品",
-    "lat": 35.873642,
-    "lng": 139.512527,
-    "couponType": "both"
-  },
-  {
-    "id": 108,
-    "name": "（株）石崎スポーツ店",
-    "address": "上福岡１－４－１２",
-    "phone": "261-0322",
-    "category": "商業・ショッピング",
-    "subCategory": "その他の小売",
-    "menu": "スポーツ用品全般",
-    "lat": 35.873738,
-    "lng": 139.513191,
-    "couponType": "both"
-  },
-  {
-    "id": 109,
-    "name": "メガネのパリミキ 上福岡店",
-    "address": "上福岡１－５－２６",
-    "phone": "264-5000",
-    "category": "商業・ショッピング",
-    "subCategory": "その他の小売",
-    "menu": "メガネ、補聴器、コンタクトレンズ",
-    "lat": 35.874641,
-    "lng": 139.513672,
-    "couponType": "both"
-  },
-  {
-    "id": 110,
-    "name": "本の店 太陽堂",
-    "address": "上福岡１－６－２８",
-    "phone": "261-1681",
-    "category": "商業・ショッピング",
-    "subCategory": "その他の小売",
-    "menu": "書籍、教科書、雑誌、カード類",
-    "lat": 35.874122,
-    "lng": 139.512848,
-    "couponType": "both"
-  },
-  {
-    "id": 111,
-    "name": "（株）ハセガワ（長谷川釣具店）",
-    "address": "上福岡１－７－２３",
-    "phone": "261-2679",
-    "category": "商業・ショッピング",
-    "subCategory": "その他の小売",
-    "menu": "釣具、エサ",
-    "lat": 35.874092,
-    "lng": 139.512375,
-    "couponType": "both"
-  },
-  {
-    "id": 112,
-    "name": "山田釣具店",
-    "address": "上福岡３－１１－１２",
-    "phone": "261-2559",
-    "category": "商業・ショッピング",
-    "subCategory": "その他の小売",
-    "menu": "釣り用品、エサ",
-    "lat": 35.871342,
-    "lng": 139.515808,
-    "couponType": "both"
-  },
-  {
-    "id": 113,
-    "name": "（株）金美堂上福岡店",
-    "address": "上福岡５－１－１０",
-    "phone": "261-2661",
-    "category": "商業・ショッピング",
-    "subCategory": "その他の小売",
-    "menu": "ジュエリー、ウォッチ、メガネ、宝飾・時計の修理",
-    "lat": 35.872299,
-    "lng": 139.512557,
-    "couponType": "both"
-  },
-  {
-    "id": 114,
-    "name": "ミヤコシ金物店",
-    "address": "上福岡５－１－１２",
-    "phone": "261-0534",
-    "category": "商業・ショッピング",
-    "subCategory": "その他の小売",
-    "menu": "一般金物、建築金物、日用雑貨、合鍵、水道修理等",
-    "lat": 35.871998,
-    "lng": 139.512634,
-    "couponType": "both"
-  },
-  {
-    "id": 115,
-    "name": "（Ref.）（有）お茶の野村園",
-    "address": "福岡中央１－４－１",
-    "phone": "261-0160",
-    "category": "商業・ショッピング",
-    "subCategory": "その他の小売",
-    "menu": "狭山茶、のり、茶器、ギフト好適品",
-    "lat": 35.872719,
-    "lng": 139.520279,
-    "couponType": "both"
-  },
-  {
-    "id": 116,
-    "name": "（Ref.）（有）石井畳工業",
-    "address": "福岡中央１－４－５",
-    "phone": "261-0570",
-    "category": "商業・ショッピング",
-    "subCategory": "その他の小売",
-    "menu": "畳の表替、新畳等",
-    "lat": 35.872677,
-    "lng": 139.520935,
-    "couponType": "both"
-  },
-  {
-    "id": 117,
-    "name": "（株）藤澤園（お茶のフジサワ）",
-    "address": "福岡中央１－４－６",
-    "phone": "261-0676",
-    "category": "商業・ショッピング",
-    "subCategory": "その他の小売",
-    "menu": "緑茶、海苔、急須、和紙等",
-    "lat": 35.872677,
-    "lng": 139.521103,
-    "couponType": "both"
-  },
-  {
-    "id": 118,
-    "name": "つり具の上州屋上福岡店",
-    "address": "鶴ヶ岡２－２－１８",
-    "phone": "266-7243",
-    "category": "商業・ショッピング",
-    "subCategory": "その他の小売",
-    "menu": "釣具、レジャー用品、アウトドア用品",
-    "lat": 35.864651,
-    "lng": 139.507065,
-    "couponType": "both"
-  },
-  {
-    "id": 119,
-    "name": "（株）アペックス（アップガレージ埼玉上福岡店）",
-    "address": "鶴ヶ岡３－１６－３８",
-    "phone": "269-0269",
-    "category": "商業・ショッピング",
-    "subCategory": "その他の小売",
-    "menu": "中古カー用品、バイク用品",
-    "lat": 35.869423,
-    "lng": 139.501877,
-    "couponType": "both"
-  },
-  {
-    "id": 120,
-    "name": "サイクルベースあさひふじみ野店",
-    "address": "鶴ヶ岡４－１－３５",
-    "phone": "256-7880",
-    "category": "商業・ショッピング",
-    "subCategory": "その他の小売",
-    "menu": "自転車、関連パーツ、修理、点検",
-    "lat": 35.865963,
-    "lng": 139.500916,
-    "couponType": "both"
-  },
-  {
-    "id": 121,
-    "name": "フラワーショップ 花つむぎ",
-    "address": "亀久保２－２６－２４",
-    "phone": "256-7287",
-    "category": "商業・ショッピング",
-    "subCategory": "その他の小売",
-    "menu": "切花、鉢、観葉、ソープフラワー等",
-    "lat": 35.859825,
-    "lng": 139.508759,
-    "couponType": "both"
-  },
-  {
-    "id": 122,
-    "name": "東京靴流通センターふじみ野店",
-    "address": "亀久保３－１４－３０",
-    "phone": "278-5744",
-    "category": "商業・ショッピング",
-    "subCategory": "その他の小売",
-    "menu": "紳士靴、婦人靴、子供靴、スニーカー",
-    "lat": 35.861961,
-    "lng": 139.509949,
-    "couponType": "both"
-  },
-  {
-    "id": 123,
-    "name": "釣具特急ふじみ野店",
-    "address": "苗間４１２－４",
-    "phone": "269-1109",
-    "category": "商業・ショッピング",
-    "subCategory": "その他の小売",
-    "menu": "釣具、エサ",
-    "lat": 35.857819,
-    "lng": 139.521637,
-    "couponType": "both"
-  },
-  {
-    "id": 124,
-    "name": "餃子の王将 上福岡店",
-    "address": "上福岡１－１４－３",
-    "phone": "262-1088",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "中華、ラーメン、餃子等",
-    "lat": 35.874939,
-    "lng": 139.514246,
-    "couponType": "both"
-  },
-  {
-    "id": 125,
-    "name": "餃子 興福",
-    "address": "上福岡１－12－２",
-    "phone": "269-1068",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "餃子、中華、弁当",
-    "lat": 35.875207,
-    "lng": 139.513549,
-    "couponType": "both"
-  },
-  {
-    "id": 126,
-    "name": "長寿庵",
-    "address": "大原１－２－１",
-    "phone": "261-1279",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "そば、うどん、中華",
-    "lat": 35.877562,
-    "lng": 139.517371,
-    "couponType": "both"
-  },
-  {
-    "id": 127,
-    "name": "秀登",
-    "address": "大原１－１１－１５",
-    "phone": "256-8322",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "そば、うどん、天ぷら",
-    "lat": 35.878967,
-    "lng": 139.515579,
-    "couponType": "both"
-  },
-  {
-    "id": 128,
-    "name": "さつき苑",
-    "address": "大原２－１－３",
-    "phone": "262-1329",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "焼肉、韓国料理、テイクアウト弁当",
-    "lat": 35.880405,
-    "lng": 139.51947,
-    "couponType": "both"
-  },
-  {
-    "id": 129,
-    "name": "（Ref.）パティスリー ドゥ・コトブキ",
-    "address": "上福岡１－５－１",
-    "phone": "261-0428",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "洋菓子、ケーキ、焼菓子",
-    "lat": 35.874252,
-    "lng": 139.514908,
-    "couponType": "both"
-  },
-  {
-    "id": 130,
-    "name": "炭火焼肉 王道 上福岡店",
-    "address": "上福岡１－６－３８",
-    "phone": "256-8229",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "焼肉",
-    "lat": 35.874535,
-    "lng": 139.513275,
-    "couponType": "both"
-  },
-  {
-    "id": 131,
-    "name": "しんちゃんこ",
+    "name": "花進生花店",
     "address": "上福岡１－７－１０",
-    "phone": "261-2670",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "ちゃんこ鍋、一品料理、刺身",
+    "phone": "262-1456",
+    "category": "商業・ショッピング",
+    "menu": "生花、花の鉢物",
     "lat": 35.875027,
     "lng": 139.513062,
     "couponType": "both"
   },
   {
-    "id": 132,
-    "name": "うどん 讃・香・庵",
-    "address": "上福岡１－７－２６",
-    "phone": "090-3472-8878",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "讃岐うどん",
-    "lat": 35.874092,
-    "lng": 139.512375,
+    "id": 106,
+    "name": "フラワード",
+    "address": "上福岡２－５－２１",
+    "phone": "261-3033",
+    "category": "商業・ショッピング",
+    "menu": "生花、鉢花",
+    "lat": 35.874168,
+    "lng": 139.514969,
     "couponType": "both"
   },
   {
-    "id": 133,
-    "name": "むさし野",
-    "address": "上福岡１－８－２",
-    "phone": "261-1351",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "うなぎ、どぜう、天ぷら、割烹",
-    "lat": 35.874542,
-    "lng": 139.511993,
-    "couponType": "both"
-  },
-  {
-    "id": 134,
-    "name": "カフェ Ｄ＆Ｄ",
-    "address": "上福岡１－１２－２２",
-    "phone": "214-5551",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "カレーライス、パスタ、ピザ、トースト、パフェ、コーヒー",
-    "lat": 35.875207,
-    "lng": 139.513549,
-    "couponType": "both"
-  },
-  {
-    "id": 135,
-    "name": "からあげ・惣菜 もも",
-    "address": "上福岡１－１４－２１",
-    "phone": "261-7132",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "からあげ、惣菜",
-    "lat": 35.875679,
-    "lng": 139.515499,
-    "couponType": "both"
-  },
-  {
-    "id": 136,
-    "name": "焼きだんご・おにぎり「和む」",
-    "address": "上福岡１－１５－５",
-    "phone": "264-5002",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "焼きだんご、和菓子、おにぎり、惣菜",
-    "lat": 35.875839,
-    "lng": 139.51535,
-    "couponType": "both"
-  },
-  {
-    "id": 137,
-    "name": "そば処 やぶ重",
-    "address": "上福岡２－２－１３",
-    "phone": "261-1205",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "そば、うどん、和食",
-    "lat": 35.873703,
-    "lng": 139.515732,
-    "couponType": "both"
-  },
-  {
-    "id": 138,
-    "name": "讃岐うどん 條辺",
-    "address": "上福岡１－７－９",
-    "phone": "269-1153",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "讃岐うどん、お土産用生うどん",
-    "lat": 35.874905,
-    "lng": 139.512985,
-    "couponType": "both"
-  },
-  {
-    "id": 139,
-    "name": "創作中華 華苑",
+    "id": 107,
+    "name": "ガーデンいずみ",
     "address": "上福岡２－６－１",
-    "phone": "265-2882",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "中華、ラーメン等",
+    "phone": "278-2087",
+    "category": "商業・ショッピング",
+    "menu": "生花、鉢物、園芸資材",
     "lat": 35.874939,
     "lng": 139.516571,
     "couponType": "both"
   },
   {
-    "id": 140,
-    "name": "そば処 新島屋",
-    "address": "上福岡３－１１－３",
-    "phone": "261-2401",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "そば、うどん、中華、丼物、セットメニュー等",
-    "lat": 35.870369,
-    "lng": 139.515839,
+    "id": 108,
+    "name": "（有）有山人形店",
+    "address": "上福岡４－４－２",
+    "phone": "261-0073",
+    "category": "商業・ショッピング",
+    "menu": "節句人形",
+    "lat": 35.87072,
+    "lng": 139.512772,
     "couponType": "both"
   },
   {
-    "id": 141,
-    "name": "蕎麦 くりはら",
-    "address": "上福岡３－１１－１８",
-    "phone": "262-8178",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "手打ちそば、うどん、丼、天ぷら",
-    "lat": 35.871628,
-    "lng": 139.515701,
+    "id": 109,
+    "name": "ふじみ野うさぎハウス",
+    "address": "上福岡６－３－１１",
+    "phone": "238-4828",
+    "category": "商業・ショッピング",
+    "menu": "コーヒー、お茶、うさぎ用品",
+    "lat": 35.872414,
+    "lng": 139.508759,
     "couponType": "both"
   },
   {
-    "id": 142,
-    "name": "かっぱ寿司 上福岡店",
-    "address": "上福岡４－７－３",
-    "phone": "256-8317",
+    "id": 110,
+    "name": "福岡フラワー",
+    "address": "上福岡６－１－２６",
+    "phone": "261-2726",
+    "category": "商業・ショッピング",
+    "menu": "花キューピット、生花、プリザーブドフラワー、シャボンブーケ、観葉植物",
+    "lat": 35.872747,
+    "lng": 139.511709,
+    "couponType": "both"
+  },
+  {
+    "id": 111,
+    "name": "（有）石田金物",
+    "address": "西１－１－４",
+    "phone": "261-4889",
+    "category": "商業・ショッピング",
+    "menu": "日用品、工具、金物",
+    "lat": 35.872608,
+    "lng": 139.508224,
+    "couponType": "both"
+  },
+  {
+    "id": 112,
+    "name": "花いちもんめ",
+    "address": "北野２－７－５",
+    "phone": "264-1828",
+    "category": "商業・ショッピング",
+    "menu": "生花、苗物、園芸用品、庭木の剪定、天然石など",
+    "lat": 35.879189,
+    "lng": 139.513641,
+    "couponType": "both"
+  },
+  {
+    "id": 113,
+    "name": "（Reflet? いいえ、(有)玉田商店) （有）玉田商店",
+    "address": "仲１－４－２",
+    "phone": "261-3610",
+    "category": "商業・ショッピング",
+    "menu": "灯油販売(配達)",
+    "lat": 35.87376,
+    "lng": 139.533783,
+    "couponType": "both"
+  },
+  {
+    "id": 114,
+    "name": "おかもと模型",
+    "address": "鶴ヶ舞２－７－９",
+    "phone": "261-1559",
+    "category": "商業・ショッピング",
+    "menu": "プラモデル、ミニカー、教材、他",
+    "lat": 35.869442,
+    "lng": 139.511871,
+    "couponType": "both"
+  },
+  {
+    "id": 115,
+    "name": "（有）種七農芸園",
+    "address": "鶴ヶ舞３－３－１９",
+    "phone": "261-1504",
+    "category": "商業・ショッピング",
+    "menu": "野菜、花、果樹等の種、苗､農園芸資材、農薬、肥料等",
+    "lat": 35.866375,
+    "lng": 139.509338,
+    "couponType": "both"
+  },
+  {
+    "id": 116,
+    "name": "ＷＩＬＤー１ ふじみ野店",
+    "address": "東久保１－１－２７",
+    "phone": "269-6863",
+    "category": "商業・ショッピング",
+    "menu": "アウトドア用品",
+    "lat": 35.862839,
+    "lng": 139.511307,
+    "couponType": "both"
+  },
+  {
+    "id": 117,
+    "name": "メナード化粧品ふじみの幸代行店",
+    "address": "緑ケ丘２－１２－２２",
+    "phone": "263-7291",
+    "category": "商業・ショッピング",
+    "menu": "化粧品、健康食品",
+    "lat": 35.860863,
+    "lng": 139.500534,
+    "couponType": "both"
+  },
+  {
+    "id": 118,
+    "name": "シャディウチダ",
+    "address": "西鶴ヶ岡１７４８－１０",
+    "phone": "264-6400",
+    "category": "商業・ショッピング",
+    "menu": "贈答品、内祝、引出物",
+    "lat": 35.862747,
+    "lng": 139.495987,
+    "couponType": "both"
+  },
+  {
+    "id": 119,
+    "name": "（株）カネセンイ",
+    "address": "亀久保３－９－１０",
+    "phone": "261-5575",
+    "category": "商業・ショッピング",
+    "menu": "作業用品、工具 等",
+    "lat": 35.864376,
+    "lng": 139.509323,
+    "couponType": "both"
+  },
+  {
+    "id": 120,
+    "name": "HANAFUL",
+    "address": "苗間１－１２－１",
+    "phone": "266-8087",
+    "category": "商業・ショッピング",
+    "menu": "花",
+    "lat": 35.857994,
+    "lng": 139.52179,
+    "couponType": "both"
+  },
+  {
+    "id": 121,
+    "name": "フラワーショップ 彩花",
+    "address": "苗間４０－２１",
+    "phone": "262-7751",
+    "category": "商業・ショッピング",
+    "menu": "生花、鉢植え",
+    "lat": 35.854275,
+    "lng": 139.513931,
+    "couponType": "both"
+  },
+  {
+    "id": 122,
+    "name": "㈱花のん",
+    "address": "うれし野２－３－１",
+    "phone": "293-8138",
+    "category": "商業・ショッピング",
+    "menu": "生花、プリザーブドフラワー等",
+    "lat": 35.855991,
+    "lng": 139.52063,
+    "couponType": "both"
+  },
+  {
+    "id": 123,
+    "name": "Ｎｉｎｏｐｌａｎｎｉｎｇ",
+    "address": "大井中央３－７－４８",
+    "phone": "080-5943-2344",
+    "category": "商業・ショッピング",
+    "menu": "ハンドメイド雑貨など",
+    "lat": 35.859928,
+    "lng": 139.505692,
+    "couponType": "both"
+  },
+  {
+    "id": 124,
+    "name": "おこのみ亭",
+    "address": "大原１－１－10",
+    "phone": "263-5020",
     "category": "飲食店",
-    "subCategory": "飲食店",
+    "menu": "広島流・大阪流お好み焼きなど",
+    "lat": 35.87616,
+    "lng": 139.515485,
+    "couponType": "both"
+  },
+  {
+    "id": 125,
+    "name": "寿司のえびす",
+    "address": "大原１－１－11",
+    "phone": "266-1043",
+    "category": "飲食店",
     "menu": "寿司",
-    "lat": 35.868729,
-    "lng": 139.512695,
+    "lat": 35.876099,
+    "lng": 139.515615,
     "couponType": "both"
   },
   {
-    "id": 143,
-    "name": "手打うどん・そば 橘庵",
-    "address": "上福岡５－６－１７",
-    "phone": "261-3004",
+    "id": 126,
+    "name": "焼肉さんあい 上福岡店",
+    "address": "大原１－１－16",
+    "phone": "269-3129",
     "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "うどん、そば、丼物",
-    "lat": 35.869038,
-    "lng": 139.511444,
+    "menu": "焼肉",
+    "lat": 35.876209,
+    "lng": 139.516168,
     "couponType": "both"
   },
   {
-    "id": 144,
-    "name": "（Ref.）美乃り",
-    "address": "上福岡５－７－５",
-    "phone": "261-1221",
+    "id": 127,
+    "name": "ネオ アマーレ",
+    "address": "大原１－２－15",
+    "phone": "261-7196",
     "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "日本料理・和食・うなぎ・懐石",
-    "lat": 35.869869,
-    "lng": 139.510345,
-    "couponType": "both"
-  },
-  {
-    "id": 145,
-    "name": "手打ちそば処 やぶ",
-    "address": "上福岡６－４－５",
-    "phone": "261-1288",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "そば、うどん、丼、天ぷら等",
-    "lat": 35.871838,
-    "lng": 139.509918,
-    "couponType": "both"
-  },
-  {
-    "id": 146,
-    "name": "カフェテラス ぷらんたん",
-    "address": "霞ヶ丘１－２－３ ２Ｆ",
-    "phone": "264-1554",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "パスタ、カレー、ハンバーグ、ケーキ、コーヒー、紅茶",
-    "lat": 35.873573,
-    "lng": 139.510391,
-    "couponType": "both"
-  },
-  {
-    "id": 147,
-    "name": "（株）アライ・フード・サービス 上福岡西口店",
-    "address": "霞ヶ丘１－２－２７",
-    "phone": "261-2292",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "らーめん、ぎょうざ等",
-    "lat": 35.873539,
-    "lng": 139.510986,
-    "couponType": "both"
-  },
-  {
-    "id": 148,
-    "name": "デニーズ 上福岡店",
-    "address": "霞ヶ丘３－８－８",
-    "phone": "263-2281",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "ハンバーグ、和洋食、パスタ、デザート等",
-    "lat": 35.8764,
-    "lng": 139.508377,
-    "couponType": "both"
-  },
-  {
-    "id": 149,
-    "name": "つきじ千代だ鮨 上福岡東武店",
-    "address": "福岡中央１－１－１",
-    "phone": "264-2114",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "寿司、いなり、太巻",
-    "lat": 35.873466,
-    "lng": 139.518738,
-    "couponType": "both"
-  },
-  {
-    "id": 150,
-    "name": "ドトールコーヒーショップ 上福岡駅東口店",
-    "address": "福岡中央１－２－１",
-    "phone": "265-8120",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "コーヒー、ミラノサンド等",
-    "lat": 35.873455,
-    "lng": 139.519226,
-    "couponType": "both"
-  },
-  {
-    "id": 151,
-    "name": "やきとり 大吉",
-    "address": "福岡中央１－４－２",
-    "phone": "265-7228",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "やきとり、ビール、一品料理",
-    "lat": 35.872707,
-    "lng": 139.520447,
-    "couponType": "both"
-  },
-  {
-    "id": 152,
-    "name": "（Ref.）中華・洋食 満福",
-    "address": "福岡中央１－４－８",
-    "phone": "261-0421",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "中華、洋食、弁当",
-    "lat": 35.872734,
-    "lng": 139.52124,
-    "couponType": "both"
-  },
-  {
-    "id": 153,
-    "name": "天ぷら 弥七",
-    "address": "福岡中央１－５－１２",
-    "phone": "264-4113",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "天ぷら、天丼、天ぷらコース、アルコール",
-    "lat": 35.873978,
-    "lng": 139.521652,
-    "couponType": "both"
-  },
-  {
-    "id": 154,
-    "name": "日本料理 橘",
-    "address": "福岡中央１－６－２０",
-    "phone": "261-0026",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "和食・弁当",
-    "lat": 35.874092,
-    "lng": 139.522125,
-    "couponType": "both"
-  },
-  {
-    "id": 155,
-    "name": "よしうどん",
-    "address": "福岡中央２－４－５",
-    "phone": "261-2182",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "讃岐手打ちうどん",
-    "lat": 35.871826,
-    "lng": 139.517303,
-    "couponType": "both"
-  },
-  {
-    "id": 156,
-    "name": "うなぎ 荒川",
-    "address": "福岡東１－２－１",
-    "phone": "264-5838",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "うなぎ、和食全般、アルコール",
-    "lat": 35.878422,
-    "lng": 139.521103,
-    "couponType": "both"
-  },
-  {
-    "id": 157,
-    "name": "コメダ珈琲店 福岡店",
-    "address": "福岡東２－１－１",
-    "phone": "256-7871",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "コメダブレンド、シロノワール、カツパン等",
-    "lat": 35.878422,
-    "lng": 139.521103,
-    "couponType": "both"
-  },
-  {
-    "id": 158,
-    "name": "マスクドナルド ２５４福岡店",
-    "address": "福岡東２－２－１",
-    "phone": "264-0737",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "ハンバーガー、ポテト、ドリンク等",
-    "lat": 35.878422,
-    "lng": 139.521103,
-    "couponType": "both"
-  },
-  {
-    "id": 159,
-    "name": "焼肉きんぐ ふじみ野店",
-    "address": "福岡東２－４－５",
-    "phone": "269-2329",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "焼肉食べ放題コース",
-    "lat": 35.878422,
-    "lng": 139.521103,
-    "couponType": "both"
-  },
-  {
-    "id": 160,
-    "name": "（Ref.）中華 桃園",
-    "address": "富士見台４－１１",
-    "phone": "261-4122",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "中華、ラーメン等",
-    "lat": 35.871876,
-    "lng": 139.52124,
-    "couponType": "both"
-  },
-  {
-    "id": 161,
-    "name": "（Ref.）割烹 司",
-    "address": "富士見台６－１４",
-    "phone": "262-1264",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "日本料理・和食・うなぎ・懐石",
-    "lat": 35.871826,
-    "lng": 139.521622,
-    "couponType": "both"
-  },
-  {
-    "id": 162,
-    "name": "そば処 松月庵",
-    "address": "富士見台１０－１４",
-    "phone": "261-2481",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "そば、うどん、丼、天ぷら、中華",
-    "lat": 35.872017,
-    "lng": 139.522476,
-    "couponType": "both"
-  },
-  {
-    "id": 163,
-    "name": "（Ref.）スジャータ",
-    "address": "北野１－８－１",
-    "phone": "262-8170",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "インドカレー",
-    "lat": 35.877968,
-    "lng": 139.510056,
-    "couponType": "both"
-  },
-  {
-    "id": 164,
-    "name": "インド・ネパールアジアン料理 ナマステ",
-    "address": "北野２－２－２３",
-    "phone": "263-0402",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "インド、ネパールカレー",
-    "lat": 35.878078,
-    "lng": 139.512192,
-    "couponType": "both"
-  },
-  {
-    "id": 165,
-    "name": "（Ref.）ふじや寿司",
-    "address": "駒林元町１－１－２",
-    "phone": "261-1250",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "寿司、うなぎ",
-    "lat": 35.867573,
-    "lng": 139.528564,
-    "couponType": "both"
-  },
-  {
-    "id": 166,
-    "name": "むさしの森珈琲 上福岡店",
-    "address": "鶴ヶ岡３－１５－２",
-    "phone": "256-1122",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "ふわっとろパンケーキ、パスタ、カレー等",
-    "lat": 35.869511,
-    "lng": 139.502197,
-    "couponType": "both"
-  },
-  {
-    "id": 167,
-    "name": "居酒屋 あら川",
-    "address": "鶴ヶ岡３－１６－２８",
-    "phone": "261-1970",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "焼鳥、一品料理、アルコール",
-    "lat": 35.869423,
-    "lng": 139.501877,
-    "couponType": "both"
-  },
-  {
-    "id": 168,
-    "name": "手打ち蕎麦 ぐらの",
-    "address": "鶴ヶ岡４－１－３４",
-    "phone": "264-4634",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "そば、天ぷら等",
-    "lat": 35.866024,
-    "lng": 139.500992,
-    "couponType": "both"
-  },
-  {
-    "id": 169,
-    "name": "カフェドパルク",
-    "address": "鶴ヶ岡４－４－５",
-    "phone": "263-7186",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "ランチ、パスタ、トースト、コーヒー、紅茶",
-    "lat": 35.866604,
-    "lng": 139.500671,
-    "couponType": "both"
-  },
-  {
-    "id": 170,
-    "name": "手打ちうどん つるまる",
-    "address": "鶴ヶ舞１－３－１１",
-    "phone": "262-4311",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "うどん、天ぷら",
-    "lat": 35.865784,
-    "lng": 139.511063,
-    "couponType": "both"
-  },
-  {
-    "id": 171,
-    "name": "炭火焼肉 新生園",
-    "address": "鶴ヶ舞１－１２－４",
-    "phone": "261-6893",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "焼肉、韓国料理",
-    "lat": 35.865772,
-    "lng": 139.512939,
-    "couponType": "both"
-  },
-  {
-    "id": 172,
-    "name": "焼鳥 だいちゃん",
-    "address": "鶴ヶ舞２－６－８",
-    "phone": "080-6644-2454",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "焼鳥、一品料理",
-    "lat": 35.868702,
-    "lng": 139.511292,
-    "couponType": "both"
-  },
-  {
-    "id": 173,
-    "name": "らーめん・中華 一力",
-    "address": "鶴ヶ舞３－１１－２２",
-    "phone": "262-4889",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "ラーメン、チャーハン、餃子、定食",
-    "lat": 35.868942,
-    "lng": 139.506165,
-    "couponType": "both"
-  },
-  {
-    "id": 174,
-    "name": "くい処 呑処 まるみ",
-    "address": "鶴ヶ舞３－１２－６",
-    "phone": "256-7080",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "刺身、串焼、その他一品、アルコール",
-    "lat": 35.868942,
-    "lng": 139.506165,
-    "couponType": "both"
-  },
-  {
-    "id": 175,
-    "name": "パスタとピザのお店 じゅりあん",
-    "address": "亀久保１－６－２７",
-    "phone": "264-2101",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "パスタ、ピザ等",
-    "lat": 35.857548,
-    "lng": 139.509262,
-    "couponType": "both"
-  },
-  {
-    "id": 176,
-    "name": "（株）アライ・フード・サービス 大井町店",
-    "address": "東久保１－１９－５",
-    "phone": "262-5644",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "らーめん、ぎょうざ等",
-    "lat": 35.864342,
-    "lng": 139.513824,
-    "couponType": "both"
-  },
-  {
-    "id": 177,
-    "name": "庄や ふじみ野店",
-    "address": "ふじみ野１－１－２０",
-    "phone": "264-4161",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "刺身、焼鳥、一品料理、アルコール",
-    "lat": 35.859756,
-    "lng": 139.513519,
-    "couponType": "both"
-  },
-  {
-    "id": 178,
-    "name": "大衆イタリアン ぱたぱた ふじみ野店",
-    "address": "ふじみ野１－４－２５",
-    "phone": "293-3331",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "パスタ、ピザ、ローストビーフ等",
-    "lat": 35.857845,
-    "lng": 139.515808,
-    "couponType": "both"
-  },
-  {
-    "id": 179,
-    "name": "ブロンコビリー ふじみ野店",
-    "address": "ふじみ野１－７－２",
-    "phone": "256-5529",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "ステーキ、ハンバーグ、サラダバー",
-    "lat": 35.857132,
-    "lng": 139.514511,
-    "couponType": "both"
-  },
-  {
-    "id": 180,
-    "name": "とんかつ 家族",
-    "address": "ふじみ野２－２５－３３",
-    "phone": "263-5473",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "とんかつ、フライ、かつ丼等",
-    "lat": 35.862602,
-    "lng": 139.517838,
-    "couponType": "both"
-  },
-  {
-    "id": 181,
-    "name": "寿し惣",
-    "address": "ふじみ野３－１－１７",
-    "phone": "262-3103",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "寿司、うなぎ、割烹料理",
-    "lat": 35.86126,
-    "lng": 139.514664,
-    "couponType": "both"
-  },
-  {
-    "id": 182,
-    "name": "焼肉・ホルモン びんびん ふじみ野店",
-    "address": "ふじみ野３－３－１４",
-    "phone": "256-3221",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "焼肉、ホルモン",
-    "lat": 35.86174,
-    "lng": 139.516327,
-    "couponType": "both"
-  },
-  {
-    "id": 183,
-    "name": "まんが喫茶 ゲラゲラ ふじみ野店",
-    "address": "ふじみ野３－１０－３５",
-    "phone": "256-9150",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "各種フード・ドリンク等",
-    "lat": 35.85994,
-    "lng": 139.515106,
-    "couponType": "both"
-  },
-  {
-    "id": 184,
-    "name": "徳寿庵 ふじみ野店",
-    "address": "ふじみ野４－１－２",
-    "phone": "262-1155",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "そば、うどん、和食、寿司、ステーキ等",
-    "lat": 35.859592,
-    "lng": 139.515594,
-    "couponType": "both"
-  },
-  {
-    "id": 185,
-    "name": "マクドナルド ふじみ野店",
-    "address": "ふじみ野４－５－１",
-    "phone": "266-9937",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "ハンバーガー、ポテト、ドリンク等",
-    "lat": 35.8601,
-    "lng": 139.518402,
-    "couponType": "both"
-  },
-  {
-    "id": 186,
-    "name": "はま寿司 ふじみ野店",
-    "address": "ふじみ野４－９－２",
-    "phone": "256-8201",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "寿司、サイドメニュー",
-    "lat": 35.85796,
-    "lng": 139.517059,
-    "couponType": "both"
-  },
-  {
-    "id": 187,
-    "name": "食事処 おがわ",
-    "address": "ふじみ野４－１３－１７",
-    "phone": "261-0294",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "定食等",
-    "lat": 35.858555,
-    "lng": 139.518127,
-    "couponType": "both"
-  },
-  {
-    "id": 188,
-    "name": "らあめん花月嵐 ふじみ野店",
-    "address": "ふじみ野４－１３－２０",
-    "phone": "256-7450",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "ラーメン、ギョーザ等",
-    "lat": 35.858639,
-    "lng": 139.51915,
-    "couponType": "both"
-  },
-  {
-    "id": 189,
-    "name": "やよい軒 ふじみ野店",
-    "address": "ふじみ野４－１３－２５",
-    "phone": "256-8231",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "定食等",
-    "lat": 35.858555,
-    "lng": 139.518127,
-    "couponType": "both"
-  },
-  {
-    "id": 190,
-    "name": "安楽亭 大井店",
-    "address": "苗間３７５－１",
-    "phone": "261-8419",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "焼肉、食べ放題コース等",
-    "lat": 35.859638,
-    "lng": 139.529099,
-    "couponType": "both"
-  },
-  {
-    "id": 191,
-    "name": "割烹 大井",
-    "address": "苗間１－１３－３１",
-    "phone": "261-1256",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "和食・懐石料理・仕出し等",
-    "lat": 35.856968,
-    "lng": 139.521408,
-    "couponType": "both"
-  },
-  {
-    "id": 192,
-    "name": "とんでん おお井店",
-    "address": "大井１－４－１",
-    "phone": "262-8411",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "和食、そば、うどん、寿司、天ぷら",
-    "lat": 35.852287,
-    "lng": 139.517639,
-    "couponType": "both"
-  },
-  {
-    "id": 193,
-    "name": "ココス 大井店",
-    "address": "大井１－４－２",
-    "phone": "264-2454",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "ハンバーグ、パスタ、ピザ、和食等",
-    "lat": 35.852322,
-    "lng": 139.517746,
-    "couponType": "both"
-  },
-  {
-    "id": 194,
-    "name": "デニーズ 大井町店",
-    "address": "大井２－１－１",
-    "phone": "261-7140",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "ハンバーグ、和洋食、パスタ、デザート等",
-    "lat": 35.852943,
-    "lng": 139.518036,
-    "couponType": "both"
-  },
-  {
-    "id": 195,
-    "name": "そば処 やぶ久",
-    "address": "大井２－２－１８",
-    "phone": "264-5005",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "そば、うどん、丼、天ぷら等",
-    "lat": 35.852932,
-    "lng": 139.519302,
-    "couponType": "both"
-  },
-  {
-    "id": 196,
-    "name": "ビストロ・ヴィーヴル",
-    "address": "大井２－８－２２",
-    "phone": "269-0220",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "フレンチ、洋食、ステーキ、ワイン等",
-    "lat": 35.852966,
-    "lng": 139.520615,
-    "couponType": "both"
-  },
-  {
-    "id": 197,
-    "name": "（Ref.）あすか寿司",
-    "address": "大井中央４－１－２０",
-    "phone": "266-0007",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "寿司",
-    "lat": 35.859615,
-    "lng": 139.503998,
-    "couponType": "both"
-  },
-  {
-    "id": 198,
-    "name": "お食事処 大海",
-    "address": "大井中央４－８－２",
-    "phone": "264-7774",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "和食・中華・定食全般",
-    "lat": 35.859646,
-    "lng": 139.502075,
-    "couponType": "both"
-  },
-  {
-    "id": 199,
-    "name": "手打うどん・そば 風の里",
-    "address": "大井武蔵野３９８－１",
-    "phone": "264-8846",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "そば、うどん、天ぷら、もつ煮",
-    "lat": 35.854656,
-    "lng": 139.491837,
-    "couponType": "both"
-  },
-  {
-    "id": 200,
-    "name": "日本料理 くりはら",
-    "address": "桜ヶ丘２－２－５",
-    "phone": "261-1186",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "日本料理、和食、割烹",
-    "lat": 35.852554,
-    "lng": 139.509018,
-    "couponType": "both"
-  },
-  {
-    "id": 201,
-    "name": "鮨の光",
-    "address": "桜ヶ丘２－７－１",
-    "phone": "262-3921",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "寿司、うなぎ",
-    "lat": 35.851295,
-    "lng": 139.509644,
-    "couponType": "both"
-  },
-  {
-    "id": 202,
-    "name": "洋食エリー",
-    "address": "桜ヶ丘２－１４－２５",
-    "phone": "264-5554",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "洋食、オムライス、ハンバーグ、スパゲッティ等",
-    "lat": 35.852486,
-    "lng": 139.508102,
-    "couponType": "both"
-  },
-  {
-    "id": 203,
-    "name": "三笠鮨",
-    "address": "桜ヶ丘２－１６－６",
-    "phone": "263-8820",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "寿司",
-    "lat": 35.852459,
-    "lng": 139.507904,
-    "couponType": "both"
-  },
-  {
-    "id": 204,
-    "name": "パティスリー・ブロンディール",
-    "address": "うれし野２－１－２",
-    "phone": "293-6052",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "ケーキ、焼菓子等",
-    "lat": 35.856327,
-    "lng": 139.520599,
-    "couponType": "both"
-  },
-  {
-    "id": 205,
-    "name": "（Ref.）星乃珈琲店 ふじみ野店",
-    "address": "うれし野２－１６－１",
-    "phone": "266-6631",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "ハンドドリップコーヒー、スフレパンケーキ等",
-    "lat": 35.855995,
-    "lng": 139.522141,
-    "couponType": "both"
-  },
-  {
-    "id": 206,
-    "name": "魚屋路 ふじみ野店",
-    "address": "うれし野２－１６－２",
-    "phone": "256-3232",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "回転寿司",
-    "lat": 35.856045,
-    "lng": 139.522232,
-    "couponType": "both"
-  },
-  {
-    "id": 207,
-    "name": "満腹ラーメン ミキサ",
-    "address": "福岡新田６－２",
-    "phone": "262-1828",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "ラーメン、定食等",
-    "lat": 35.874851,
-    "lng": 139.536987,
-    "couponType": "both"
-  },
-  {
-    "id": 208,
-    "name": "そば処 亀久保 松月庵",
-    "address": "亀久保２－２７－３３",
-    "phone": "261-3950",
-    "category": "飲食店",
-    "subCategory": "飲食店",
-    "menu": "そば、うどん、丼、天ぷら、セットメニュー",
-    "lat": 35.862095,
-    "lng": 139.507721,
-    "couponType": "both"
-  },
-  {
-    "id": 209,
-    "name": "（Ref.）サロンド・パリス",
-    "address": "大原１－２－１",
-    "phone": "261-2900",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "美容全般、着付、ネイル",
+    "menu": "パスタ、ピザ",
     "lat": 35.877562,
     "lng": 139.517371,
     "couponType": "both"
   },
   {
-    "id": 210,
-    "name": "Ｈａｉｒ Ｓｔｕｄｉｏ Ｒｅｍｉｘ",
-    "address": "大原１－３－１",
-    "phone": "267-3331",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "カット、カラー、パーマ等、美容技術全般",
-    "lat": 35.876419,
-    "lng": 139.514877,
+    "id": 128,
+    "name": "居酒屋ビッグ 上福岡西口店",
+    "address": "上福岡１－１－１",
+    "phone": "256-5055",
+    "category": "飲食店",
+    "menu": "酒類、肉類、魚",
+    "lat": 35.874105,
+    "lng": 139.511399,
     "couponType": "both"
   },
   {
-    "id": 211,
-    "name": "理容ハセガワ",
-    "address": "大原２－１－２",
-    "phone": "262-1718",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "理容一般、赤ちゃんの筆、ヘッドスパ",
-    "lat": 35.879772,
-    "lng": 139.519348,
+    "id": 129,
+    "name": "博龍",
+    "address": "上福岡１－２－11",
+    "phone": "261-1467",
+    "category": "飲食店",
+    "menu": "餃子､ラーメン､チャーハン",
+    "lat": 35.873053,
+    "lng": 139.513315,
     "couponType": "both"
   },
   {
-    "id": 212,
-    "name": "ビューティスタジオハセガワ",
-    "address": "大原２－１－２",
-    "phone": "261-7585",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "美容一般、着付",
-    "lat": 35.879772,
-    "lng": 139.519348,
+    "id": 130,
+    "name": "上福岡酒遊 ほがらか",
+    "address": "上福岡１－２－19",
+    "phone": "080-4118-1159",
+    "category": "飲食店",
+    "menu": "ちゃんこ鍋",
+    "lat": 35.873353,
+    "lng": 139.513279,
     "couponType": "both"
   },
   {
-    "id": 213,
-    "name": "クレヨン（CRAYON）",
-    "address": "上福岡１－２－２３",
-    "phone": "262-1327",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "美容一般、着付け",
-    "lat": 35.873699,
-    "lng": 139.512787,
+    "id": 131,
+    "name": "居酒屋さぶちゃん",
+    "address": "上福岡１－２－25",
+    "phone": "263-0100",
+    "category": "飲食店",
+    "menu": "アルコール飲料、一品料理（やきとり、煮込み等）",
+    "lat": 35.873846,
+    "lng": 139.512359,
     "couponType": "both"
   },
   {
-    "id": 214,
-    "name": "hair resort chic",
-    "address": "上福岡１－５－１２",
-    "phone": "265-5139",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "美容全般（カット、カラー、パーマ、トリートメント、ヘッドスパ等）",
-    "lat": 35.874043,
-    "lng": 139.514755,
+    "id": 132,
+    "name": "ジジの、村",
+    "address": "上福岡１－４－１",
+    "phone": "090-4933-0651",
+    "category": "飲食店",
+    "menu": "もつ煮、焼魚、やきとり、お酒など",
+    "lat": 35.873738,
+    "lng": 139.513191,
     "couponType": "both"
   },
   {
-    "id": 215,
-    "name": "マチエール",
-    "address": "上福岡１－６－２４",
-    "phone": "261-2673",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "カット、パーマ、ヘアマニキュア、シャンプー等",
-    "lat": 35.874695,
-    "lng": 139.512894,
+    "id": 133,
+    "name": "(Reflet? いいえ、(Reflet? いいえ、(有)小巻商事 (黄河菜館プラス))) (有)小巻商事 (黄河菜館プラス)",
+    "address": "上福岡１－６－17",
+    "phone": "261-3280",
+    "category": "飲食店",
+    "menu": "中華料理全般",
+    "lat": 35.875046,
+    "lng": 139.513626,
     "couponType": "both"
   },
   {
-    "id": 216,
-    "name": "Ｈａｉｒ Ｄｅｓｉｇｎ Ｌｉｂｅｒ",
-    "address": "上福岡１－７－２６",
-    "phone": "256-8313",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "カット、カラー、パーマ、トリートメント等",
-    "lat": 35.874092,
-    "lng": 139.512375,
+    "id": 134,
+    "name": "ダイニングレストラン天空",
+    "address": "上福岡１－６－20",
+    "phone": "262-7271",
+    "category": "飲食店",
+    "menu": "中華料理",
+    "lat": 35.875069,
+    "lng": 139.513265,
     "couponType": "both"
   },
   {
-    "id": 217,
-    "name": "Ｈａｉｒ Ｍａｋｅ Ｖｅｌｏｃｅ",
-    "address": "上福岡１－８－１２",
-    "phone": "261-7177",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "美容室業務全般",
-    "lat": 35.87556,
-    "lng": 139.512392,
+    "id": 135,
+    "name": "ワンズワンコーヒー",
+    "address": "上福岡１－６－26",
+    "phone": "265-6368",
+    "category": "飲食店",
+    "menu": "コーヒー他各種ドリンク、フード",
+    "lat": 35.874362,
+    "lng": 139.512798,
     "couponType": "both"
   },
   {
-    "id": 218,
-    "name": "美容室エルム",
-    "address": "上福岡１－１２－２２",
-    "phone": "261-4606",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "美容技術売上、整髪料、シャンプー等",
-    "lat": 35.875207,
-    "lng": 139.513549,
+    "id": 136,
+    "name": "焼肉ホドリ",
+    "address": "上福岡１－６－28",
+    "phone": "261-9255",
+    "category": "飲食店",
+    "menu": "焼肉、キムチなど",
+    "lat": 35.874122,
+    "lng": 139.512848,
     "couponType": "both"
   },
   {
-    "id": 219,
-    "name": "ｈａｉｒ ａｔｅｌｉｅｒ ｄｅｃｏ．",
-    "address": "上福岡１－15－15",
-    "phone": "293-6031",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "カット、カラー、パーマ等",
-    "lat": 35.876171,
-    "lng": 139.515305,
+    "id": 137,
+    "name": "日高屋 上福岡店",
+    "address": "上福岡１－６－28",
+    "phone": "262-8500",
+    "category": "飲食店",
+    "menu": "ラーメン、餃子、定食",
+    "lat": 35.874122,
+    "lng": 139.512848,
     "couponType": "both"
   },
   {
-    "id": 220,
-    "name": "美容室 クイーン",
-    "address": "上福岡３－１１－１２",
-    "phone": "261-4389",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "パーマ、カット、毛染め、マニキュア、化粧品等",
-    "lat": 35.871342,
-    "lng": 139.515808,
+    "id": 138,
+    "name": "磯料理 豊漁",
+    "address": "上福岡１－６－34",
+    "phone": "266-6550",
+    "category": "飲食店",
+    "menu": "各種アルコール飲料、お刺身、一品料理など",
+    "lat": 35.874306,
+    "lng": 139.513199,
     "couponType": "both"
   },
   {
-    "id": 221,
-    "name": "美容室 フォルム",
-    "address": "上福岡５－６－17",
-    "phone": "264-5044",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "美容一般、縮毛矯正",
-    "lat": 35.869038,
-    "lng": 139.511444,
+    "id": 139,
+    "name": "レザン",
+    "address": "上福岡１－８－16",
+    "phone": "263-2015",
+    "category": "飲食店",
+    "menu": "ワイン、食事",
+    "lat": 35.875904,
+    "lng": 139.51181,
     "couponType": "both"
   },
   {
-    "id": 222,
-    "name": "プラージュ上福岡店",
-    "address": "霞ヶ丘１－２－３",
-    "phone": "265-7488",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "理容、美容、ヘアケア商品",
-    "lat": 35.873573,
-    "lng": 139.510391,
-    "couponType": "both"
-  },
-  {
-    "id": 223,
-    "name": "ｈａｉｒｓ ｇａｌｌｅｒｙ ｓｉｌｋｙ",
-    "address": "霞ヶ丘１－２－２７",
-    "phone": "256-5536",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "カット、カラー、パーマ、トリートメント、縮毛矯正等",
-    "lat": 35.873539,
-    "lng": 139.510986,
-    "couponType": "both"
-  },
-  {
-    "id": 224,
-    "name": "ｈａｉｒ ｍａｋｅ ｃａｌｍ",
-    "address": "霞ヶ丘１－４－１２ー１０２",
-    "phone": "214-7278",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "美容技術料全般、ヘアケア商品",
-    "lat": 35.874128,
-    "lng": 139.510456,
-    "couponType": "both"
-  },
-  {
-    "id": 225,
-    "name": "美容室ラッキー 上福岡駅前店",
-    "address": "福岡中央１－２－１",
-    "phone": "261-1996",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "カット、カラー、パーマ等、ヘアケア商品",
-    "lat": 35.873455,
-    "lng": 139.519226,
-    "couponType": "both"
-  },
-  {
-    "id": 226,
-    "name": "（Ref.）ヘア・ステーション ＪＯＹ",
-    "address": "福岡中央１－４－２",
-    "phone": "263-1244",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "調髪、シャンプー、シェービング、ヘアカラー、頭皮ケア等",
-    "lat": 35.872707,
-    "lng": 139.520447,
-    "couponType": "both"
-  },
-  {
-    "id": 227,
-    "name": "ヘアメイク ピュア",
-    "address": "福岡中央１－４－６",
-    "phone": "264-7714",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "カット、パーマ、カラー、縮毛矯正等",
-    "lat": 35.872677,
-    "lng": 139.521103,
-    "couponType": "both"
-  },
-  {
-    "id": 228,
-    "name": "ピュアヘアー",
-    "address": "駒林１１７－２",
-    "phone": "266-0750",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "カット、カラー、パーマ、縮毛矯正",
-    "lat": 35.868645,
-    "lng": 139.532959,
-    "couponType": "both"
-  },
-  {
-    "id": 229,
-    "name": "ｈａｉｒ ｓａｌｏｎ ｔｅｔｏ.",
-    "address": "鶴ヶ岡２－１０－１４",
-    "phone": "293-8588",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "カット、カラー、パーマ等",
-    "lat": 35.866508,
-    "lng": 139.505478,
-    "couponType": "both"
-  },
-  {
-    "id": 230,
-    "name": "ＨＡＩＲ ＤＥＳＩＧＮ ＣＨＥＲＩＳＨ",
-    "address": "鶴ヶ岡３－１－４４",
-    "phone": "293-2708",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "カット、パーマ、ヘアカラー等、店販商品",
-    "lat": 35.866932,
-    "lng": 139.502304,
-    "couponType": "both"
-  },
-  {
-    "id": 231,
-    "name": "びようしつ のんのん",
-    "address": "鶴ヶ舞１－２－６",
-    "phone": "261-7994",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "美容一般、着付",
-    "lat": 35.864979,
-    "lng": 139.509995,
-    "couponType": "both"
-  },
-  {
-    "id": 232,
-    "name": "ビューティサロン ル・ミエール",
-    "address": "鶴ヶ舞１－１２－３",
-    "phone": "263-2253",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "美容技術売上、店販、着付",
-    "lat": 35.865704,
-    "lng": 139.512985,
-    "couponType": "both"
-  },
-  {
-    "id": 233,
-    "name": "髪風船",
-    "address": "鶴ヶ舞２－６－８",
-    "phone": "262-6323",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "美容室全般",
-    "lat": 35.868702,
-    "lng": 139.511292,
-    "couponType": "both"
-  },
-  {
-    "id": 234,
-    "name": "あおい理容",
-    "address": "亀久保２－２６－２４",
-    "phone": "261-4993",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "理容一般",
-    "lat": 35.859825,
-    "lng": 139.508759,
-    "couponType": "both"
-  },
-  {
-    "id": 235,
-    "name": "サロン・ド・ジュン",
-    "address": "亀久保３－１４－３０",
-    "phone": "256-5080",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "カット、カラー、パーマ、縮毛、ヘアケア商品",
-    "lat": 35.861961,
-    "lng": 139.509949,
-    "couponType": "both"
-  },
-  {
-    "id": 236,
-    "name": "美容室 ぽけっと",
-    "address": "苗間１－１２－１",
-    "phone": "263-4796",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "美容技術、美容品販売",
-    "lat": 35.857994,
-    "lng": 139.52179,
-    "couponType": "both"
-  },
-  {
-    "id": 237,
-    "name": "美容室 リンクス",
-    "address": "苗間１－１４－２８",
-    "phone": "261-5991",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "美容技術、シャンプー・トリートメント等の販売",
-    "lat": 35.85701,
-    "lng": 139.520416,
-    "couponType": "both"
-  },
-  {
-    "id": 238,
-    "name": "ヘアー・メーク・モア",
-    "address": "大井２－１－１３",
-    "phone": "264-2195",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "カット、カラー、パーマ、トリートメント等",
-    "lat": 35.852943,
-    "lng": 139.518036,
-    "couponType": "both"
-  },
-  {
-    "id": 239,
-    "name": "ＨＡＩＲ ＳＡＬＯＮ ＢＥＡＴ",
-    "address": "大井２－８－２２",
-    "phone": "256-5152",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "カット、カラー、パーマ、顔そり",
-    "lat": 35.852966,
-    "lng": 139.520615,
-    "couponType": "both"
-  },
-  {
-    "id": 240,
-    "name": "ｈａｉｒ ｓａｌｏｎ Ｌｏｏｐ",
-    "address": "大井中央４－１－２０",
-    "phone": "267-3103",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "カット、カラー、パーマ、縮毛矯正等、物販（シャンプー・トリートメント等）",
-    "lat": 35.859615,
-    "lng": 139.503998,
-    "couponType": "both"
-  },
-  {
-    "id": 241,
-    "name": "理容 コンドー",
-    "address": "桜ヶ丘２－７－１",
-    "phone": "261-2646",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "調髪、毛染、アイロン等",
-    "lat": 35.851295,
-    "lng": 139.509644,
-    "couponType": "both"
-  },
-  {
-    "id": 242,
-    "name": "サロン・ド・アン",
-    "address": "桜ヶ丘２－２９－５",
-    "phone": "261-3974",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "カット、パーマ、カラー、縮毛矯正等",
-    "lat": 35.851631,
-    "lng": 139.507584,
-    "couponType": "both"
-  },
-  {
-    "id": 243,
-    "name": "ビューティサロン やよい",
-    "address": "福岡新田６－２",
-    "phone": "262-3903",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "パーマ、カット、ヘアカラー",
-    "lat": 35.874851,
-    "lng": 139.536987,
-    "couponType": "both"
-  },
-  {
-    "id": 244,
-    "name": "（Ref.）サロンド・キミ",
-    "address": "清見２－４－12",
-    "phone": "261-2852",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "美容一般、着付、貸衣装等",
-    "lat": 35.882324,
-    "lng": 139.519653,
-    "couponType": "both"
-  },
-  {
-    "id": 245,
-    "name": "ＳＯＬ ＨＡＩＲ ＤＥＳＩＧＮ",
-    "address": "清見３－４－８",
-    "phone": "293-8448",
-    "category": "サービス",
-    "subCategory": "理容・美容",
-    "menu": "カット、カラー、パーマ、縮毛矯正、トリートメント等",
-    "lat": 35.883991,
-    "lng": 139.519485,
-    "couponType": "both"
-  },
-  {
-    "id": 246,
-    "name": "ホワイト急便 福岡店",
-    "address": "福岡１－５－２６",
-    "phone": "256-6582",
-    "category": "サービス",
-    "subCategory": "その他のサービス",
-    "menu": "衣類のクリーニング、じゅうたん、ふとん、皮革等のクリーニング",
-    "lat": 35.874641,
-    "lng": 139.513672,
-    "couponType": "both"
-  },
-  {
-    "id": 247,
-    "name": "（株）アサクラ（アサクラクリーニング）",
-    "address": "上福岡１－２－２３",
-    "phone": "261-0309",
-    "category": "サービス",
-    "subCategory": "その他のサービス",
-    "menu": "衣類全般のクリーニング、リペア",
-    "lat": 35.873699,
-    "lng": 139.512787,
-    "couponType": "both"
-  },
-  {
-    "id": 248,
-    "name": "クリーニングのいせや 上福岡東口店",
-    "address": "上福岡１－６－３３",
-    "phone": "261-2779",
-    "category": "サービス",
-    "subCategory": "その他のサービス",
-    "menu": "クリーニング・洋服・靴・バッグ修理・その他各種加工",
-    "lat": 35.874252,
-    "lng": 139.513046,
-    "couponType": "both"
-  },
-  {
-    "id": 249,
-    "name": "ホワイト急便 上福岡１丁目店",
-    "address": "上福岡１－７－２",
-    "phone": "263-1282",
-    "category": "サービス",
-    "subCategory": "その他のサービス",
-    "menu": "クリーニング",
-    "lat": 35.874092,
-    "lng": 139.512375,
-    "couponType": "both"
-  },
-  {
-    "id": 250,
-    "name": "ホワイト急便 大原通り店",
+    "id": 140,
+    "name": "アリガトウヤ ココロ （（有）roots）",
     "address": "上福岡１－８－12",
-    "phone": "264-8356",
-    "category": "サービス",
-    "subCategory": "その他のサービス",
-    "menu": "衣類等のクリーニング",
+    "phone": "293-5123",
+    "category": "飲食店",
+    "menu": "飲料、調理食品",
     "lat": 35.875614,
     "lng": 139.512421,
     "couponType": "both"
   },
   {
-    "id": 251,
-    "name": "富士写真館",
-    "address": "上福岡１－１２－２２",
-    "phone": "261-0628",
-    "category": "サービス",
-    "subCategory": "その他のサービス",
-    "menu": "証明写真、肖像写真、記念写真、デジカメプリント、ダビング等",
+    "id": 141,
+    "name": "欧風居酒屋ぶーふーうー",
+    "address": "上福岡１－10－２",
+    "phone": "261-9859",
+    "category": "飲食店",
+    "menu": "酒、ピザ、パスタ、オムレツ",
+    "lat": 35.875916,
+    "lng": 139.511902,
+    "couponType": "both"
+  },
+  {
+    "id": 142,
+    "name": "隠れ家 どん亭",
+    "address": "上福岡１－10－２",
+    "phone": "265-5291",
+    "category": "飲食店",
+    "menu": "お酒、お料理",
+    "lat": 35.875916,
+    "lng": 139.511902,
+    "couponType": "both"
+  },
+  {
+    "id": 143,
+    "name": "ダイニング絆",
+    "address": "上福岡１－10－10",
+    "phone": "269-5677",
+    "category": "飲食店",
+    "menu": "もつ鍋、明太子入りだし巻卵、生ビール、酒類、ハラミ、チキン南蛮",
+    "lat": 35.875843,
+    "lng": 139.512894,
+    "couponType": "both"
+  },
+  {
+    "id": 144,
+    "name": "炭火焼鳥小江戸鳥や",
+    "address": "上福岡１－１１－１",
+    "phone": "080-3210-8866",
+    "category": "飲食店",
+    "menu": "焼鳥など",
+    "lat": 35.875326,
+    "lng": 139.513219,
+    "couponType": "both"
+  },
+  {
+    "id": 145,
+    "name": "竹むら",
+    "address": "上福岡１－１１－８",
+    "phone": "261-2879",
+    "category": "飲食店",
+    "menu": "そば、うどん、ご飯物",
+    "lat": 35.875722,
+    "lng": 139.513396,
+    "couponType": "both"
+  },
+  {
+    "id": 146,
+    "name": "創作割烹 旬菜",
+    "address": "上福岡１－１１－22",
+    "phone": "266-3023",
+    "category": "飲食店",
+    "menu": "発酵食品",
+    "lat": 35.876743,
+    "lng": 139.513665,
+    "couponType": "both"
+  },
+  {
+    "id": 147,
+    "name": "定食屋ほとり",
+    "address": "上福岡１－１１－26",
+    "phone": "267-7505",
+    "category": "飲食店",
+    "menu": "和食、洋食",
+    "lat": 35.876237,
+    "lng": 139.513301,
+    "couponType": "both"
+  },
+  {
+    "id": 148,
+    "name": "㈱魚利 大漁船",
+    "address": "上福岡１－12－２",
+    "phone": "266-6718",
+    "category": "飲食店",
+    "menu": "魚介料理、酒類",
     "lat": 35.875207,
     "lng": 139.513549,
     "couponType": "both"
   },
   {
-    "id": 252,
-    "name": "（株）アパマンショップリーシング 埼玉上福岡店",
-    "address": "上福岡１－１４－３",
-    "phone": "263-1133",
-    "category": "サービス",
-    "subCategory": "その他のサービス",
-    "menu": "不動産仲介手数料",
+    "id": 149,
+    "name": "居酒屋にし上",
+    "address": "上福岡１－12－12",
+    "phone": "265-0477",
+    "category": "飲食店",
+    "menu": "刺身、焼トリ、煮込",
+    "lat": 35.875928,
+    "lng": 139.514472,
+    "couponType": "both"
+  },
+  {
+    "id": 150,
+    "name": "大番",
+    "address": "上福岡１－12－15",
+    "phone": "262-1718",
+    "category": "飲食店",
+    "menu": "ラーメン ギョウザ",
+    "lat": 35.876234,
+    "lng": 139.514695,
+    "couponType": "both"
+  },
+  {
+    "id": 151,
+    "name": "珍華",
+    "address": "上福岡１－12－18",
+    "phone": "262-1755",
+    "category": "飲食店",
+    "menu": "ラーメン、五目、チャーハン、焼肉丼他",
+    "lat": 35.876431,
+    "lng": 139.514562,
+    "couponType": "both"
+  },
+  {
+    "id": 152,
+    "name": "もともと",
+    "address": "上福岡１－12－25",
+    "phone": "263-7115",
+    "category": "飲食店",
+    "menu": "海鮮、寿司、焼き鳥 等",
+    "lat": 35.876138,
+    "lng": 139.514073,
+    "couponType": "both"
+  },
+  {
+    "id": 153,
+    "name": "潤寅",
+    "address": "上福岡１－12－25",
+    "phone": "090-5412-9413",
+    "category": "飲食店",
+    "menu": "ホルモン、焼肉居酒屋",
+    "lat": 35.876138,
+    "lng": 139.514073,
+    "couponType": "both"
+  },
+  {
+    "id": 154,
+    "name": "ジンギスカン万年・とん國",
+    "address": "上福岡１－12－27",
+    "phone": "264-1380",
+    "category": "飲食店",
+    "menu": "とんかつ、ジンギスカン、酒、他",
+    "lat": 35.875843,
+    "lng": 139.513702,
+    "couponType": "both"
+  },
+  {
+    "id": 155,
+    "name": "ファンタジー３",
+    "address": "上福岡１－14－３",
+    "phone": "080-9991-8420",
+    "category": "飲食店",
+    "menu": "おにぎり、弁当、そうざい、ちょいのみ",
     "lat": 35.874939,
     "lng": 139.514246,
     "couponType": "both"
   },
   {
-    "id": 253,
-    "name": "ほけんの窓口 上福岡店",
-    "address": "上福岡１－１５－１０",
-    "phone": "256-5503",
-    "category": "サービス",
-    "subCategory": "その他のサービス",
-    "menu": "生命保険、損害保険、ペット保険の募集代理店業務",
-    "lat": 35.875774,
-    "lng": 139.515945,
+    "id": 156,
+    "name": "やきとり大興",
+    "address": "上福岡１－14－28",
+    "phone": "261-6564",
+    "category": "飲食店",
+    "menu": "焼鳥、ビール",
+    "lat": 35.875199,
+    "lng": 139.514727,
     "couponType": "both"
   },
   {
-    "id": 254,
-    "name": "クリーニングのいせや 新駒林店",
-    "address": "新駒林２－４－１２",
-    "phone": "261-2779",
-    "category": "サービス",
-    "subCategory": "その他のサービス",
-    "menu": "クリーニング・洋服・靴・バッグ修理・その他各種加工",
-    "lat": 35.868553,
-    "lng": 139.528198,
+    "id": 157,
+    "name": "中華そば わた辺",
+    "address": "上福岡１－15－11",
+    "phone": "090-2474-3442",
+    "category": "飲食店",
+    "menu": "ラーメン",
+    "lat": 35.875837,
+    "lng": 139.515932,
     "couponType": "both"
   },
   {
-    "id": 255,
-    "name": "日本生命保険（相） 上福岡西口営業部",
-    "address": "霞ヶ丘１－２－３",
-    "phone": "264-1522",
-    "category": "サービス",
-    "subCategory": "その他のサービス",
-    "menu": "生命保険、個人年金保険等の販売、コンサルティング業務",
-    "lat": 35.873573,
-    "lng": 139.510391,
+    "id": 158,
+    "name": "MOON SIDE COFFEE",
+    "address": "上福岡１－14－21",
+    "phone": "050-3637-1421",
+    "category": "飲食店",
+    "menu": "コーヒー、ベーグル",
+    "lat": 35.875679,
+    "lng": 139.515499,
     "couponType": "both"
   },
   {
-    "id": 256,
-    "name": "泰平写真館",
-    "address": "西２－１－１",
-    "phone": "261-0161",
-    "category": "サービス",
-    "subCategory": "その他のサービス",
-    "menu": "記念写真、証明写真等スタジオ撮影、出張撮影、デジタルプリント等",
-    "lat": 35.873077,
-    "lng": 139.508484,
+    "id": 159,
+    "name": "ホルモン丸和",
+    "address": "上福岡３－６－７",
+    "phone": "269-6100",
+    "category": "飲食店",
+    "menu": "ホルモン焼き、お酒など",
+    "lat": 35.872907,
+    "lng": 139.515327,
     "couponType": "both"
   },
   {
-    "id": 257,
-    "name": "明治安田生命保険（相） 埼玉支社ふじみ野営業所",
-    "address": "ふじみ野１－７－７",
-    "phone": "261-6453",
-    "category": "サービス",
-    "subCategory": "その他のサービス",
-    "menu": "生命保険の販売等",
-    "lat": 35.857288,
-    "lng": 139.514893,
+    "id": 160,
+    "name": "食事処 野ざわ",
+    "address": "上福岡３－７－13",
+    "phone": "090-8586-8057",
+    "category": "飲食店",
+    "menu": "刺身、焼鳥",
+    "lat": 35.872913,
+    "lng": 139.517024,
     "couponType": "both"
   },
   {
-    "id": 258,
-    "name": "（Ref.）白洋舍ふじみ野サービス店",
-    "address": "ふじみ野３－１０－３５",
-    "phone": "264-4482",
+    "id": 161,
+    "name": "（有）旭庵 甚五郎",
+    "address": "上福岡３－７－14",
+    "phone": "261-1274",
+    "category": "飲食店",
+    "menu": "天ぷらそば、かも南蛮そば",
+    "lat": 35.872641,
+    "lng": 139.516417,
+    "couponType": "both"
+  },
+  {
+    "id": 162,
+    "name": "江戸切そば 英",
+    "address": "上福岡５－１－15",
+    "phone": "264-2126",
+    "category": "飲食店",
+    "menu": "そば、酒",
+    "lat": 35.871782,
+    "lng": 139.513067,
+    "couponType": "both"
+  },
+  {
+    "id": 163,
+    "name": "氷処 ハナミズキ",
+    "address": "上福岡５－１－10",
+    "phone": "なし",
+    "category": "飲食店",
+    "menu": "かき氷、あんみつ",
+    "lat": 35.872196,
+    "lng": 139.512405,
+    "couponType": "both"
+  },
+  {
+    "id": 164,
+    "name": "居酒屋 泡盛 こんぺき",
+    "address": "上福岡５－１－10",
+    "phone": "090-1555-7143",
+    "category": "飲食店",
+    "menu": "泡盛",
+    "lat": 35.872196,
+    "lng": 139.512405,
+    "couponType": "both"
+  },
+  {
+    "id": 165,
+    "name": "しょうざん 大穀",
+    "address": "上福岡５－９－17",
+    "phone": "264-7151",
+    "category": "飲食店",
+    "menu": "和食料理、飲み物、デザート",
+    "lat": 35.868032,
+    "lng": 139.510275,
+    "couponType": "both"
+  },
+  {
+    "id": 166,
+    "name": "Happincss Coffee",
+    "address": "上福岡６－１－２",
+    "phone": "080-1278-2326",
+    "category": "飲食店",
+    "menu": "ハンドドリップコーヒー、自家焙煎珈琲",
+    "lat": 35.872747,
+    "lng": 139.511709,
+    "couponType": "both"
+  },
+  {
+    "id": 167,
+    "name": "ぬいぐるみと繋がるカフェ トンキーズカフェ",
+    "address": "上福岡６－１－20",
+    "phone": "090-5515-0707",
+    "category": "飲食店",
+    "menu": "定食、ドリンク、酒、スイーツ",
+    "lat": 35.871777,
+    "lng": 139.511368,
+    "couponType": "both"
+  },
+  {
+    "id": 168,
+    "name": "イタリアンバルＫｅｎｔｉｎａ",
+    "address": "霞ヶ丘１－４",
+    "phone": "257-5225",
+    "category": "飲食店",
+    "menu": "パスタ、ワイン、おつまみ",
+    "lat": 35.874128,
+    "lng": 139.510456,
+    "couponType": "both"
+  },
+  {
+    "id": 169,
+    "name": "大衆酒場だいすけ",
+    "address": "霞ヶ丘１－５－15",
+    "phone": "265-6900",
+    "category": "飲食店",
+    "menu": "お酒、やきとり、一品料理 等",
+    "lat": 35.87318,
+    "lng": 139.509514,
+    "couponType": "both"
+  },
+  {
+    "id": 170,
+    "name": "フライングガーデンふじみ野店",
+    "address": "中福岡２７０－１",
+    "phone": "256-5122",
+    "category": "飲食店",
+    "menu": "ハンバーグレストラン",
+    "lat": 35.875492,
+    "lng": 139.535692,
+    "couponType": "both"
+  },
+  {
+    "id": 171,
+    "name": "トマトアンドオニオン上福岡店",
+    "address": "上野台１－２－３",
+    "phone": "269-6113",
+    "category": "飲食店",
+    "menu": "ファミリーレストラン",
+    "lat": 35.876978,
+    "lng": 139.517361,
+    "couponType": "both"
+  },
+  {
+    "id": 172,
+    "name": "大むら",
+    "address": "富士見台１－10",
+    "phone": "261-3458",
+    "category": "飲食店",
+    "menu": "日本そば",
+    "lat": 35.872532,
+    "lng": 139.521515,
+    "couponType": "both"
+  },
+  {
+    "id": 173,
+    "name": "うな膳",
+    "address": "駒林１９５－３",
+    "phone": "263-9816",
+    "category": "飲食店",
+    "menu": "うなぎ",
+    "lat": 35.868784,
+    "lng": 139.530588,
+    "couponType": "both"
+  },
+  {
+    "id": 174,
+    "name": "居酒屋 煮こにこ",
+    "address": "福岡武蔵野１－10",
+    "phone": "266-7525",
+    "category": "飲食店",
+    "menu": "お酒、料理など",
+    "lat": 35.867757,
+    "lng": 139.512527,
+    "couponType": "both"
+  },
+  {
+    "id": 175,
+    "name": "（有）亀昇 懐石料理露﨑・亀寿司",
+    "address": "福岡武蔵野６－17",
+    "phone": "261-5262",
+    "category": "飲食店",
+    "menu": "和食（日本料理、寿司）",
+    "lat": 35.868031,
+    "lng": 139.512003,
+    "couponType": "both"
+  },
+  {
+    "id": 176,
+    "name": "ダイニングバー ポートエレン",
+    "address": "福岡中央２－１－３",
+    "phone": "070-8933-8305",
+    "category": "飲食店",
+    "menu": "酒類、食事",
+    "lat": 35.872747,
+    "lng": 139.517473,
+    "couponType": "both"
+  },
+  {
+    "id": 177,
+    "name": "プレミアムカルビ ふじみ野店",
+    "address": "鶴ヶ舞３ー５－２",
+    "phone": "256-6929",
+    "category": "飲食店",
+    "menu": "焼肉＆デザート",
+    "lat": 35.866416,
+    "lng": 139.507997,
+    "couponType": "both"
+  },
+  {
+    "id": 178,
+    "name": "舞鶴",
+    "address": "鶴ヶ舞３－６－15",
+    "phone": "263-6311",
+    "category": "飲食店",
+    "menu": "定食 他",
+    "lat": 35.868257,
+    "lng": 139.506483,
+    "couponType": "both"
+  },
+  {
+    "id": 179,
+    "name": "道とん堀ふじみ野店",
+    "address": "鶴ヶ舞３－８－10",
+    "phone": "293-9678",
+    "category": "飲食店",
+    "menu": "お好み焼き、もんじゃ焼き",
+    "lat": 35.870146,
+    "lng": 139.505064,
+    "couponType": "both"
+  },
+  {
+    "id": 180,
+    "name": "ステーキ宮 上福岡店",
+    "address": "鶴ヶ岡２－25－25",
+    "phone": "237-6108",
+    "category": "飲食店",
+    "menu": "ステーキ、ハンバーグ",
+    "lat": 35.867183,
+    "lng": 139.506811,
+    "couponType": "both"
+  },
+  {
+    "id": 181,
+    "name": "鑫香源 中華料理",
+    "address": "鶴ヶ岡２－26－23",
+    "phone": "215-7205",
+    "category": "飲食店",
+    "menu": "中華料理",
+    "lat": 35.86609,
+    "lng": 139.507619,
+    "couponType": "both"
+  },
+  {
+    "id": 182,
+    "name": "（株）木曽路 ふじみ野店",
+    "address": "鶴ヶ岡２－28－28",
+    "phone": "278-7060",
+    "category": "飲食店",
+    "menu": "和食、しゃぶしゃぶ",
+    "lat": 35.86533,
+    "lng": 139.508192,
+    "couponType": "both"
+  },
+  {
+    "id": 183,
+    "name": "びっくりドンキー 上福岡店",
+    "address": "ふじみ野２－１－５",
+    "phone": "267-2000",
+    "category": "飲食店",
+    "menu": "ハンバーグ、サラダ、デザート、ドリンク",
+    "lat": 35.861038,
+    "lng": 139.512125,
+    "couponType": "both"
+  },
+  {
+    "id": 184,
+    "name": "焼肉さんあい ふじみ野店",
+    "address": "ふじみ野２－１－64",
+    "phone": "266-3133",
+    "category": "飲食店",
+    "menu": "焼肉",
+    "lat": 35.86081,
+    "lng": 139.512439,
+    "couponType": "both"
+  },
+  {
+    "id": 185,
+    "name": "横浜中華 王記厨房 ふじみ野店",
+    "address": "ふじみ野２－25－１",
+    "phone": "293-8866",
+    "category": "飲食店",
+    "menu": "中華料理",
+    "lat": 35.862248,
+    "lng": 139.516675,
+    "couponType": "both"
+  },
+  {
+    "id": 186,
+    "name": "インド・アジアン料理 ダナパニ ふじみ野本店",
+    "address": "ふじみ野２－25－33",
+    "phone": "262-2510",
+    "category": "飲食店",
+    "menu": "カレー、ナン、チキン、ドリンク",
+    "lat": 35.862602,
+    "lng": 139.517838,
+    "couponType": "both"
+  },
+  {
+    "id": 187,
+    "name": "にぎり長次郎 ふじみ野店",
+    "address": "ふじみ野２－25－36",
+    "phone": "256-8566",
+    "category": "飲食店",
+    "menu": "寿司",
+    "lat": 35.86252,
+    "lng": 139.517559,
+    "couponType": "both"
+  },
+  {
+    "id": 188,
+    "name": "和牛焼肉 凱旋門",
+    "address": "ふじみ野３－１－１",
+    "phone": "264-4129",
+    "category": "飲食店",
+    "menu": "黒毛和牛、お酒など",
+    "lat": 35.86126,
+    "lng": 139.514664,
+    "couponType": "both"
+  },
+  {
+    "id": 189,
+    "name": "国産うなぎ専門店｢一味亭｣",
+    "address": "ふじみ野３－４－10",
+    "phone": "262-5321",
+    "category": "飲食店",
+    "menu": "うなぎ",
+    "lat": 35.862132,
+    "lng": 139.517568,
+    "couponType": "both"
+  },
+  {
+    "id": 190,
+    "name": "コメダ珈琲店ふじみ野店",
+    "address": "ふじみ野３－10－26",
+    "phone": "267-1695",
+    "category": "飲食店",
+    "menu": "コーヒー、サンドイッチ、ケーキ、ソフトクリーム",
+    "lat": 35.859882,
+    "lng": 139.515823,
+    "couponType": "both"
+  },
+  {
+    "id": 191,
+    "name": "麺飯店 貴一",
+    "address": "亀久保１－１－22",
+    "phone": "263-2713",
+    "category": "飲食店",
+    "menu": "ラーメン、中華定食",
+    "lat": 35.858521,
+    "lng": 139.508711,
+    "couponType": "both"
+  },
+  {
+    "id": 192,
+    "name": "牛国屋 ふじみ野店",
+    "address": "亀久保３－１－５",
+    "phone": "293-8729",
+    "category": "飲食店",
+    "menu": "焼肉",
+    "lat": 35.859404,
+    "lng": 139.509441,
+    "couponType": "both"
+  },
+  {
+    "id": 193,
+    "name": "（Reflet? いいえ、(有)美可美) （有）美可美",
+    "address": "亀久保３－12－46",
+    "phone": "264-7141",
+    "category": "飲食店",
+    "menu": "和食",
+    "lat": 35.861558,
+    "lng": 139.511257,
+    "couponType": "both"
+  },
+  {
+    "id": 194,
+    "name": "（有）㐂久家",
+    "address": "亀久保４－７－20",
+    "phone": "261-3496",
+    "category": "飲食店",
+    "menu": "そば、うどん、定食、丼物",
+    "lat": 35.858884,
+    "lng": 139.5127,
+    "couponType": "both"
+  },
+  {
+    "id": 195,
+    "name": "浅野屋",
+    "address": "亀久保１１３６－24",
+    "phone": "264-2355",
+    "category": "飲食店",
+    "menu": "そば、うどん、丼",
+    "lat": 35.85358,
+    "lng": 139.505169,
+    "couponType": "both"
+  },
+  {
+    "id": 196,
+    "name": "モスバーガー ふじみ野店",
+    "address": "苗間１－10－33",
+    "phone": "266-8776",
+    "category": "飲食店",
+    "menu": "ハンバーガー、ポテト",
+    "lat": 35.857567,
+    "lng": 139.522469,
+    "couponType": "both"
+  },
+  {
+    "id": 197,
+    "name": "インド・アジアン料理 ダナパニ ふじみ野苗間店",
+    "address": "苗間１－13－35",
+    "phone": "261-6390",
+    "category": "飲食店",
+    "menu": "カレー、ナン、チキン、ドリンク",
+    "lat": 35.856813,
+    "lng": 139.520912,
+    "couponType": "both"
+  },
+  {
+    "id": 198,
+    "name": "蕎麦処 天和庵",
+    "address": "苗間２９５－１",
+    "phone": "262-0801",
+    "category": "飲食店",
+    "menu": "そば",
+    "lat": 35.861116,
+    "lng": 139.528064,
+    "couponType": "both"
+  },
+  {
+    "id": 199,
+    "name": "Ｇｒａｕ Ｃｒａｆｔ ｂｅｅｒ ｂａｒ",
+    "address": "苗間３７２－９",
+    "phone": "293-3441",
+    "category": "飲食店",
+    "menu": "クラフトビール、スパイスカレー、燻製等",
+    "lat": 35.859091,
+    "lng": 139.528915,
+    "couponType": "both"
+  },
+  {
+    "id": 200,
+    "name": "やきとん なつ屋",
+    "address": "苗間３７２－10",
+    "phone": "267-4411",
+    "category": "飲食店",
+    "menu": "やきとん串、牛モツ煮込み、他料理",
+    "lat": 35.859044,
+    "lng": 139.528951,
+    "couponType": "both"
+  },
+  {
+    "id": 201,
+    "name": "Ｃａｆｅ ａｎｄ ｇｉｆｔ ＤａｎｄＤ",
+    "address": "苗間５８５－114",
+    "phone": "270-9293",
+    "category": "飲食店",
+    "menu": "ケーキ類､コーヒー類､ランチ",
+    "lat": 35.863261,
+    "lng": 139.534259,
+    "couponType": "both"
+  },
+  {
+    "id": 202,
+    "name": "㈲むさしの篠原そば店",
+    "address": "苗間５９５－５",
+    "phone": "262-5786",
+    "category": "飲食店",
+    "menu": "セイロそば、天ざる、カツ丼、天丼",
+    "lat": 35.862699,
+    "lng": 139.533116,
+    "couponType": "both"
+  },
+  {
+    "id": 203,
+    "name": "朝榮(有) （楽苑）",
+    "address": "大井１－５－９",
+    "phone": "264-9960",
+    "category": "飲食店",
+    "menu": "中華料理",
+    "lat": 35.851239,
+    "lng": 139.517235,
+    "couponType": "both"
+  },
+  {
+    "id": 204,
+    "name": "ビストロ ボヌール",
+    "address": "旭１－14－26",
+    "phone": "293-6005",
+    "category": "飲食店",
+    "menu": "フランス料理",
+    "lat": 35.856396,
+    "lng": 139.519588,
+    "couponType": "both"
+  },
+  {
+    "id": 205,
+    "name": "餃子の王将 ふじみ野店",
+    "address": "うれし野１－３－８",
+    "phone": "267-5556",
+    "category": "飲食店",
+    "menu": "中華料理",
+    "lat": 35.854789,
+    "lng": 139.517941,
+    "couponType": "both"
+  },
+  {
+    "id": 206,
+    "name": "Jam3281",
+    "address": "うれし野２－５－18",
+    "phone": "264-3099",
+    "category": "飲食店",
+    "menu": "カレー",
+    "lat": 35.856819,
+    "lng": 139.522919,
+    "couponType": "both"
+  },
+  {
+    "id": 207,
+    "name": "エクトルカフェ",
+    "address": "市沢２－14－21",
+    "phone": "090-6343-2010",
+    "category": "飲食店",
+    "menu": "コーヒー､パスタ",
+    "lat": 35.853693,
+    "lng": 139.525321,
+    "couponType": "both"
+  },
+  {
+    "id": 208,
+    "name": "麺屋 英",
+    "address": "大井中央４－８－13",
+    "phone": "263-7645",
+    "category": "飲食店",
+    "menu": "つけ麺、ラーメン",
+    "lat": 35.859945,
+    "lng": 139.502011,
+    "couponType": "both"
+  },
+  {
+    "id": 209,
+    "name": "ヘアーサロン＆エステ ミッキー",
+    "address": "上福岡１－14－45",
+    "phone": "261-6206",
     "category": "サービス",
-    "subCategory": "その他のサービス",
-    "menu": "衣類、インテリア用品等のクリーニング",
-    "lat": 35.85994,
+    "menu": "カット、シェービング、フェイシャルエステ、化粧品",
+    "lat": 35.875378,
+    "lng": 139.515457,
+    "couponType": "both"
+  },
+  {
+    "id": 210,
+    "name": "（有）カットサロンスズキ",
+    "address": "上福岡２－９－５",
+    "phone": "261-3769",
+    "category": "サービス",
+    "menu": "カット、カラー､パーマ､レディースシェーブ､フェイスエステ",
+    "lat": 35.873371,
+    "lng": 139.517838,
+    "couponType": "both"
+  },
+  {
+    "id": 211,
+    "name": "しおだ理容",
+    "address": "上福岡３－11－22",
+    "phone": "262-0537",
+    "category": "サービス",
+    "menu": "理容",
+    "lat": 35.87125,
+    "lng": 139.515213,
+    "couponType": "both"
+  },
+  {
+    "id": 212,
+    "name": "プラス・ヘア",
+    "address": "上福岡５－１－10",
+    "phone": "264-0144",
+    "category": "サービス",
+    "menu": "ヘアカラー､パーマ、カット､ブローセット",
+    "lat": 35.872196,
+    "lng": 139.512405,
+    "couponType": "both"
+  },
+  {
+    "id": 213,
+    "name": "美容室ライム",
+    "address": "西２－１－20",
+    "phone": "262-7845",
+    "category": "サービス",
+    "menu": "カット、パーマ､ カラー",
+    "lat": 35.872097,
+    "lng": 139.507584,
+    "couponType": "both"
+  },
+  {
+    "id": 214,
+    "name": "美容室コーリン",
+    "address": "霞ヶ丘１－４－10",
+    "phone": "264-9060",
+    "category": "サービス",
+    "menu": "美容技術一般",
+    "lat": 35.874128,
+    "lng": 139.510456,
+    "couponType": "both"
+  },
+  {
+    "id": 215,
+    "name": "クリエイトサロン アンカー",
+    "address": "霞ヶ丘２－１－４",
+    "phone": "293-5931",
+    "category": "サービス",
+    "menu": "カット、カラー、パーマ、レディースシェービング",
+    "lat": 35.873344,
+    "lng": 139.50827,
+    "couponType": "both"
+  },
+  {
+    "id": 216,
+    "name": "ヘアーサロンハヤサカ",
+    "address": "北野２－７－８",
+    "phone": "261-4760",
+    "category": "サービス",
+    "menu": "カット、顔剃り",
+    "lat": 35.879505,
+    "lng": 139.513794,
+    "couponType": "both"
+  },
+  {
+    "id": 217,
+    "name": "髪エステ倶楽部ＫＡＲＵＤＡＮ",
+    "address": "北野２－12－１",
+    "phone": "263-5300",
+    "category": "サービス",
+    "menu": "カラー、、シャンプー、カット、シェービング、その他",
+    "lat": 35.881184,
     "lng": 139.515106,
     "couponType": "both"
   },
   {
-    "id": 259,
-    "name": "（株）中央住宅 ポラスのきりんハウス・ポラスの賃貸",
-    "address": "ふじみ野４－１３－17",
-    "phone": "264-5111",
+    "id": 218,
+    "name": "コバヤシ理容所",
+    "address": "仲２－２－８",
+    "phone": "261-1001",
     "category": "サービス",
-    "subCategory": "その他のサービス",
-    "menu": "不動産仲介手数料",
-    "lat": 35.858555,
-    "lng": 139.518127,
+    "menu": "理容",
+    "lat": 35.873051,
+    "lng": 139.532745,
     "couponType": "both"
   },
   {
-    "id": 260,
-    "name": "クリーニングのいせや 鶴ヶ舞店",
-    "address": "鶴ヶ舞２－６－８",
-    "phone": "261-2779",
+    "id": 219,
+    "name": "新井理容室",
+    "address": "福岡中央１－４－５",
+    "phone": "261-0236",
     "category": "サービス",
-    "subCategory": "その他のサービス",
-    "menu": "クリーニング・洋服・靴・バッグ修理・その他各種加工",
-    "lat": 35.868702,
-    "lng": 139.511292,
-    "couponType": "both"
-  },
-  {
-    "id": 261,
-    "name": "クリーニングのいせや 駒林店",
-    "address": "駒林元町３－８－１",
-    "phone": "261-2779",
-    "category": "サービス",
-    "subCategory": "その他のサービス",
-    "menu": "クリーニング・洋服・靴・バッグ修理・その他各種加工",
-    "lat": 35.866203,
-    "lng": 139.523224,
-    "couponType": "both"
-  },
-  {
-    "id": 262,
-    "name": "（株）白洋舍 大井コープサービス店",
-    "address": "苗間１－１２－１",
-    "phone": "263-3112",
-    "category": "サービス",
-    "subCategory": "その他のサービス",
-    "menu": "一般衣類、インテリア、寝具、敷物、皮革等のクリーニング",
-    "lat": 35.857994,
-    "lng": 139.52179,
-    "couponType": "both"
-  },
-  {
-    "id": 263,
-    "name": "クリーニングのいせや 苗間店",
-    "address": "苗間１－14－28",
-    "phone": "261-2779",
-    "category": "サービス",
-    "subCategory": "その他のサービス",
-    "menu": "クリーニング・洋服・靴・バッグ修理・その他各種加工",
-    "lat": 35.85701,
-    "lng": 139.520416,
-    "couponType": "both"
-  },
-  {
-    "id": 264,
-    "name": "クリーニングのいせや 大井中央店",
-    "address": "大井中央４－１－２０",
-    "phone": "261-2779",
-    "category": "サービス",
-    "subCategory": "その他のサービス",
-    "menu": "クリーニング・洋服・靴・バッグ修理・その他各種加工",
-    "lat": 35.859615,
-    "lng": 139.503998,
-    "couponType": "both"
-  },
-  {
-    "id": 265,
-    "name": "フジミ薬局",
-    "address": "福岡中央１－４－７",
-    "phone": "261-0610",
-    "category": "サービス",
-    "subCategory": "その他",
-    "menu": "処方せん調剤、一般薬・介護用品販売、相談等",
+    "menu": "理容一般",
     "lat": 35.872677,
-    "lng": 139.521194,
+    "lng": 139.520935,
     "couponType": "both"
   },
   {
-    "id": 266,
-    "name": "調剤薬局ツルハドラッグふじみ野店",
-    "address": "ふじみ野１－２－１",
-    "phone": "269-0268",
+    "id": 220,
+    "name": "さくら美容室",
+    "address": "鶴ヶ舞１－16－６",
+    "phone": "261-4670",
     "category": "サービス",
-    "subCategory": "その他",
-    "menu": "保険調剤、OTC医薬品等",
-    "lat": 35.860817,
-    "lng": 139.513092,
+    "menu": "カット、カラー、パーマ、泥スパ（ヘッドマッサージ付）",
+    "lat": 35.866913,
+    "lng": 139.51268,
     "couponType": "both"
   },
   {
-    "id": 267,
-    "name": "（Ref.）上福岡本町薬局",
-    "address": "福岡中央１－４－２",
-    "phone": "269-0050",
+    "id": 221,
+    "name": "（有）グリーンぺぺ",
+    "address": "鶴ヶ舞２－３－９",
+    "phone": "262-1139",
     "category": "サービス",
-    "subCategory": "その他",
-    "menu": "処方せん調剤、一般用医薬品の販売等",
-    "lat": 35.872707,
-    "lng": 139.520447,
+    "menu": "カット、カラー、パーマ",
+    "lat": 35.867195,
+    "lng": 139.510101,
     "couponType": "both"
   },
   {
-    "id": 268,
-    "name": "（Ref.）（有）上福岡調剤薬局",
-    "address": "上福岡５－６－１７",
-    "phone": "265-0210",
+    "id": 222,
+    "name": "いいね！カット",
+    "address": "鶴ヶ舞３－２－22",
+    "phone": "090-9798-6772",
     "category": "サービス",
-    "subCategory": "その他",
-    "menu": "処方せん調剤、医薬品等販売",
-    "lat": 35.869038,
-    "lng": 139.511444,
+    "menu": "カット",
+    "lat": 35.866116,
+    "lng": 139.50914,
     "couponType": "both"
   },
   {
-    "id": 269,
-    "name": "コスモ薬局 ふじみ野店",
-    "address": "うれし野２－１６－２",
-    "phone": "256-7870",
+    "id": 223,
+    "name": "ＢＡＲ ＢＥＲ ＧＡＲＤＥＮ",
+    "address": "鶴ヶ舞３－７－３",
+    "phone": "264-2077",
     "category": "サービス",
-    "subCategory": "その他",
-    "menu": "保険調剤、医薬品・衛生材料販売等",
-    "lat": 35.856045,
-    "lng": 139.522232,
+    "menu": "理容一般",
+    "lat": 35.868694,
+    "lng": 139.506073,
     "couponType": "both"
   },
   {
-    "id": 270,
-    "name": "セイジョー薬局 上福岡店",
-    "address": "霞ヶ丘１－３",
-    "phone": "262-1189",
+    "id": 224,
+    "name": "（有）ノブ美容室",
+    "address": "亀久保１２３９－26",
+    "phone": "263-0072",
     "category": "サービス",
-    "subCategory": "その他",
-    "menu": "調剤、OTC医薬品等",
-    "lat": 35.873711,
-    "lng": 139.509872,
-    "couponType": "both"
-  },
-  {
-    "id": 271,
-    "name": "ウエルシア薬局ふじみ野亀久保店",
-    "address": "亀久保４－９－２０",
-    "phone": "278-7206",
-    "category": "サービス",
-    "subCategory": "その他",
-    "menu": "調剤、OTC、一般販売",
-    "lat": 35.858051,
-    "lng": 139.513504,
-    "couponType": "both"
-  },
-  {
-    "id": 272,
-    "name": "セキ薬局 新駒林店",
-    "address": "新駒林２－４－12",
-    "phone": "256-5052",
-    "category": "サービス",
-    "subCategory": "その他",
-    "menu": "処方箋調剤、一般用医薬品等",
-    "lat": 35.868553,
-    "lng": 139.528198,
-    "couponType": "both"
-  },
-  {
-    "id": 273,
-    "name": "スギ薬局 亀久保店（調剤）",
-    "address": "亀久保１２３９ー１",
-    "phone": "293-6219",
-    "category": "サービス",
-    "subCategory": "その他",
-    "menu": "処方せん調剤、一般医薬品、健康食品等",
+    "menu": "パーマ、カット、カラー、マニキュア",
     "lat": 35.859207,
     "lng": 139.501694,
     "couponType": "both"
   },
   {
-    "id": 274,
-    "name": "スギ薬局 駒林店（調剤）",
-    "address": "駒林３－８－２０",
-    "phone": "256-6403",
+    "id": 225,
+    "name": "美容室クープ・ド・クール",
+    "address": "うれし野２－15－14",
+    "phone": "256-0852",
     "category": "サービス",
-    "subCategory": "その他",
-    "menu": "処方せん調剤、一般医薬品、健康食品等",
-    "lat": 35.869312,
-    "lng": 139.537704,
+    "menu": "カット、カラー、パーマ、ホームケア商品",
+    "lat": 35.855831,
+    "lng": 139.52269,
+    "couponType": "both"
+  },
+  {
+    "id": 226,
+    "name": "ＩＬＯＨＡＳ Fｕｊｉｍｉｎｏ ｈａｉｒ ｓａｌｏｎ",
+    "address": "市沢１－14－21",
+    "phone": "293-2535",
+    "category": "サービス",
+    "menu": "カット、シャンプー、シェーヴ、カラー",
+    "lat": 35.855858,
+    "lng": 139.525803,
+    "couponType": "both"
+  },
+  {
+    "id": 227,
+    "name": "美容室 ゆう",
+    "address": "大井中央３－12－26",
+    "phone": "266-5067",
+    "category": "サービス",
+    "menu": "ヘナ、パーマ、カット、カラー",
+    "lat": 35.858021,
+    "lng": 139.502991,
+    "couponType": "both"
+  },
+  {
+    "id": 228,
+    "name": "ヴィヴァーチェ",
+    "address": "大原１－６－11",
+    "phone": "080-9196-3319",
+    "category": "サービス",
+    "menu": "リラクゼーションサロン",
+    "lat": 35.877872,
+    "lng": 139.513458,
+    "couponType": "both"
+  },
+  {
+    "id": 229,
+    "name": "さくら整骨院",
+    "address": "上福岡１－２－17",
+    "phone": "265-1343",
+    "category": "サービス",
+    "menu": "保険外施術、サポーター",
+    "lat": 35.873207,
+    "lng": 139.513626,
+    "couponType": "both"
+  },
+  {
+    "id": 230,
+    "name": "ｆｏｒｚａフィットネススタジオ上福岡店",
+    "address": "上福岡１－４－３",
+    "phone": "080-5242-9814",
+    "category": "サービス",
+    "menu": "セミパーソナル、マシンピラティス",
+    "lat": 35.873474,
+    "lng": 139.51326,
+    "couponType": "both"
+  },
+  {
+    "id": 231,
+    "name": "がじゅまる整骨院",
+    "address": "上福岡１－５－17",
+    "phone": "265-8911",
+    "category": "サービス",
+    "menu": "整骨、整体",
+    "lat": 35.874508,
+    "lng": 139.514786,
+    "couponType": "both"
+  },
+  {
+    "id": 232,
+    "name": "ポーラザビューティー上福岡店",
+    "address": "上福岡１－６－38",
+    "phone": "293-6716",
+    "category": "サービス",
+    "menu": "化粧品等",
+    "lat": 35.874535,
+    "lng": 139.513275,
+    "couponType": "both"
+  },
+  {
+    "id": 233,
+    "name": "ふくみ整骨院",
+    "address": "上福岡１－７－９",
+    "phone": "278-2252",
+    "category": "サービス",
+    "menu": "自費マッサージ 30分2,000円など",
+    "lat": 35.874905,
+    "lng": 139.512985,
+    "couponType": "both"
+  },
+  {
+    "id": 234,
+    "name": "上福岡駅前鍼灸整骨院",
+    "address": "上福岡１－７－26",
+    "phone": "265-7740",
+    "category": "サービス",
+    "menu": "マッサージ、鍼灸",
+    "lat": 35.874306,
+    "lng": 139.511932,
+    "couponType": "both"
+  },
+  {
+    "id": 235,
+    "name": "トリミングサロン エル",
+    "address": "上福岡１－11－２",
+    "phone": "261-3405",
+    "category": "サービス",
+    "menu": "ペット美容、ペットホテル",
+    "lat": 35.875435,
+    "lng": 139.512924,
+    "couponType": "both"
+  },
+  {
+    "id": 236,
+    "name": "上福岡鍼灸整骨院",
+    "address": "上福岡１－11－17",
+    "phone": "265-5677",
+    "category": "サービス",
+    "menu": "鍼灸、接骨、美容鍼など",
+    "lat": 35.876709,
+    "lng": 139.514145,
+    "couponType": "both"
+  },
+  {
+    "id": 237,
+    "name": "ひかり鍼灸整骨院",
+    "address": "上福岡１－11－24",
+    "phone": "290-8076",
+    "category": "サービス",
+    "menu": "接骨、鍼灸、整体、よもぎ蒸し",
+    "lat": 35.876488,
+    "lng": 139.513412,
+    "couponType": "both"
+  },
+  {
+    "id": 238,
+    "name": "あかつき鍼灸接骨院 上福岡院",
+    "address": "上福岡１－14－43",
+    "phone": "257-6455",
+    "category": "サービス",
+    "menu": "接骨、整体、鍼灸、オイルマッサージ",
+    "lat": 35.875183,
+    "lng": 139.515518,
+    "couponType": "both"
+  },
+  {
+    "id": 239,
+    "name": "上福岡みつばち美容整骨院",
+    "address": "上福岡２－６－２",
+    "phone": "262-5008",
+    "category": "サービス",
+    "menu": "整体、整骨、矯正",
+    "lat": 35.875011,
+    "lng": 139.516418,
+    "couponType": "both"
+  },
+  {
+    "id": 240,
+    "name": "（有）末広湯",
+    "address": "上福岡３－７－４",
+    "phone": "261-2848",
+    "category": "サービス",
+    "menu": "炭酸泉、遠赤外線サウナ、コインランドリー",
+    "lat": 35.872368,
+    "lng": 139.516663,
+    "couponType": "both"
+  },
+  {
+    "id": 241,
+    "name": "デイリーホテル上福岡駅前店",
+    "address": "上福岡６－１－８",
+    "phone": "278-1010",
+    "category": "サービス",
+    "menu": "宿泊",
+    "lat": 35.872494,
+    "lng": 139.510941,
+    "couponType": "both"
+  },
+  {
+    "id": 242,
+    "name": "まつば治療院",
+    "address": "上福岡６－４－２",
+    "phone": "261-2359",
+    "category": "サービス",
+    "menu": "鍼灸 整体 施術 美容鍼",
+    "lat": 35.87199,
+    "lng": 139.50882,
+    "couponType": "both"
+  },
+  {
+    "id": 243,
+    "name": "阿部政子ピアノ教室",
+    "address": "西２－８－19",
+    "phone": "080-3255-0871",
+    "category": "サービス",
+    "menu": "初回レッスン料、楽譜代",
+    "lat": 35.871853,
+    "lng": 139.504135,
+    "couponType": "both"
+  },
+  {
+    "id": 244,
+    "name": "東名クリーニング",
+    "address": "北野２－８－１",
+    "phone": "261-4774",
+    "category": "サービス",
+    "menu": "洋服、布団、毛布、和服 クリーニング",
+    "lat": 35.879551,
+    "lng": 139.513947,
+    "couponType": "both"
+  },
+  {
+    "id": 245,
+    "name": "リラクゼーションサロンＣＡＳＡ",
+    "address": "滝１－２－38",
+    "phone": "290-8274",
+    "category": "サービス",
+    "menu": "全身マッサージ、足つぼ、リンパマッサージ",
+    "lat": 35.878239,
+    "lng": 139.525375,
+    "couponType": "both"
+  },
+  {
+    "id": 246,
+    "name": "（有）上福岡葬祭さとう式典",
+    "address": "中丸１－２－５",
+    "phone": "264-7788",
+    "category": "サービス",
+    "menu": "葬儀、仏壇、墓地 他",
+    "lat": 35.876862,
+    "lng": 139.530655,
+    "couponType": "both"
+  },
+  {
+    "id": 247,
+    "name": "プルメリア",
+    "address": "中ノ島１－１－19",
+    "phone": "261-4108",
+    "category": "サービス",
+    "menu": "化粧品",
+    "lat": 35.875378,
+    "lng": 139.531479,
+    "couponType": "both"
+  },
+  {
+    "id": 248,
+    "name": "（株）ゾルキンホーキー",
+    "address": "松山２－６－２",
+    "phone": "278-2821",
+    "category": "サービス",
+    "menu": "家事代行、ハウスクリーニング",
+    "lat": 35.87299,
+    "lng": 139.528549,
+    "couponType": "both"
+  },
+  {
+    "id": 249,
+    "name": "クリックマリー結婚相談所",
+    "address": "新駒林２－４－20",
+    "phone": "090-3173-9609",
+    "category": "サービス",
+    "menu": "婚活サポート、写真撮影、レタッチ",
+    "lat": 35.86874,
+    "lng": 139.527435,
+    "couponType": "both"
+  },
+  {
+    "id": 250,
+    "name": "（有）宮沢ランドリー",
+    "address": "福岡中央１－６－24",
+    "phone": "261-0250",
+    "category": "サービス",
+    "menu": "一般クリーニング",
+    "lat": 35.873589,
+    "lng": 139.521851,
+    "couponType": "both"
+  },
+  {
+    "id": 251,
+    "name": "ｃｈｅｅｃｈａｎ ｐｈｏｔｏｇｒａｐｈ（ちーちゃんフォトグラフ）",
+    "address": "富士見台１８－３",
+    "phone": "080-6514-7775",
+    "category": "サービス",
+    "menu": "撮影（出張、スタジオ）、アルバム、パネル",
+    "lat": 35.872284,
+    "lng": 139.523697,
+    "couponType": "both"
+  },
+  {
+    "id": 252,
+    "name": "Ｐａｔｉｏ（合）",
+    "address": "南台２－５－19",
+    "phone": "090-2632-0257",
+    "category": "サービス",
+    "menu": "耳つぼ施術、マッサージ、講座の開催、認定書発行業務、関連商品の販売",
+    "lat": 35.867672,
+    "lng": 139.516983,
+    "couponType": "both"
+  },
+  {
+    "id": 253,
+    "name": "心理カウンセリングサロン 純イノセンス",
+    "address": "福岡武蔵野５－11",
+    "phone": "050-3566-3516",
+    "category": "サービス",
+    "menu": "心理カウンセリング",
+    "lat": 35.867256,
+    "lng": 139.512772,
+    "couponType": "both"
+  },
+  {
+    "id": 254,
+    "name": "おそうじ本舗 ふじみ野上福岡店",
+    "address": "鶴ヶ舞１－18－７",
+    "phone": "090-3312-4136",
+    "category": "サービス",
+    "menu": "エアコン、キッチン、浴室他の清掃",
+    "lat": 35.866966,
+    "lng": 139.512985,
+    "couponType": "both"
+  },
+  {
+    "id": 255,
+    "name": "パーソナルｼﾞﾑNEXT LEVEL",
+    "address": "東久保１－２－２",
+    "phone": "090-9365-7772",
+    "category": "サービス",
+    "menu": "フィットネストレーニング",
+    "lat": 35.863529,
+    "lng": 139.510315,
+    "couponType": "both"
+  },
+  {
+    "id": 256,
+    "name": "もみほぐし処 手心～tecoro",
+    "address": "緑ヶ丘１－１－２",
+    "phone": "290-3220",
+    "category": "サービス",
+    "menu": "もみほぐし",
+    "lat": 35.860546,
+    "lng": 139.502121,
+    "couponType": "both"
+  },
+  {
+    "id": 257,
+    "name": "S STYLE",
+    "address": "ふじみ野４－13－７",
+    "phone": "080-5179-6860",
+    "category": "サービス",
+    "menu": "手技療法",
+    "lat": 35.858643,
+    "lng": 139.518204,
+    "couponType": "both"
+  },
+  {
+    "id": 258,
+    "name": "得洗隊（株）",
+    "address": "亀久保１６６９－２",
+    "phone": "265-8186",
+    "category": "サービス",
+    "menu": "カー用品、カーコーティング、カークリーニング",
+    "lat": 35.853168,
+    "lng": 139.481354,
+    "couponType": "both"
+  },
+  {
+    "id": 259,
+    "name": "心身健康増進 サロン板倉",
+    "address": "亀久保３－12－37",
+    "phone": "264-7391",
+    "category": "サービス",
+    "menu": "整体、フェイシャル、トレーニング",
+    "lat": 35.862389,
+    "lng": 139.511063,
+    "couponType": "both"
+  },
+  {
+    "id": 260,
+    "name": "（株）オーダーメイドリハビリ Mano",
+    "address": "亀久保１－３－１",
+    "phone": "293-2308",
+    "category": "サービス",
+    "menu": "３０分、６０分、９０分コース（自費リハビリ）",
+    "lat": 35.858391,
+    "lng": 139.508759,
+    "couponType": "both"
+  },
+  {
+    "id": 261,
+    "name": "ペットサロン島本",
+    "address": "苗間１－14－16",
+    "phone": "261-7550",
+    "category": "サービス",
+    "menu": "犬の美容、物販",
+    "lat": 35.857441,
+    "lng": 139.521545,
+    "couponType": "both"
+  },
+  {
+    "id": 262,
+    "name": "クリーニング共栄 本店",
+    "address": "苗間２５－23",
+    "phone": "261-5623",
+    "category": "サービス",
+    "menu": "クリーニング",
+    "lat": 35.851906,
+    "lng": 139.511978,
+    "couponType": "both"
+  },
+  {
+    "id": 263,
+    "name": "ダイヤモンド交通（株）",
+    "address": "苗間３５３－４",
+    "phone": "248-2233",
+    "category": "サービス",
+    "menu": "タクシー利用",
+    "lat": 35.860954,
+    "lng": 139.530762,
+    "couponType": "both"
+  },
+  {
+    "id": 264,
+    "name": "真名井の湯 大井店",
+    "address": "大井２－19－１",
+    "phone": "267-2641",
+    "category": "サービス",
+    "menu": "入浴、リラクゼーション類、床屋、食事",
+    "lat": 35.851871,
+    "lng": 139.518372,
+    "couponType": "both"
+  },
+  {
+    "id": 265,
+    "name": "森井商工",
+    "address": "大井６５１－４",
+    "phone": "261-4454",
+    "category": "サービス",
+    "menu": "歯科部品",
+    "lat": 35.849453,
+    "lng": 139.525894,
+    "couponType": "both"
+  },
+  {
+    "id": 266,
+    "name": "リッツクリーニング＆ランドリー 市沢店",
+    "address": "市沢２－12－13",
+    "phone": "266-1230",
+    "category": "サービス",
+    "menu": "クリーニング",
+    "lat": 35.854702,
+    "lng": 139.52562,
+    "couponType": "both"
+  },
+  {
+    "id": 267,
+    "name": "ドライクリーニング日光",
+    "address": "桜ヶ丘１－１－29",
+    "phone": "262-2720",
+    "category": "サービス",
+    "menu": "クリーニング全般",
+    "lat": 35.855881,
+    "lng": 139.506714,
+    "couponType": "both"
+  },
+  {
+    "id": 268,
+    "name": "（株）小林土建",
+    "address": "川崎１１－６",
+    "phone": "262-1488",
+    "category": "サービス",
+    "menu": "土木工事一式",
+    "lat": 35.887337,
+    "lng": 139.521011,
+    "couponType": "both"
+  },
+  {
+    "id": 269,
+    "name": "（有）水LABO TOMA",
+    "address": "清見１－２－２",
+    "phone": "261-0041",
+    "category": "サービス",
+    "menu": "水まわりの交換、修理、リフォーム",
+    "lat": 35.881111,
+    "lng": 139.518784,
+    "couponType": "both"
+  },
+  {
+    "id": 270,
+    "name": "愛夢リフォーム",
+    "address": "清見３－１－41",
+    "phone": "262-1071",
+    "category": "サービス",
+    "menu": "水廻り設備、内外装のリフォーム",
+    "lat": 35.883251,
+    "lng": 139.521194,
+    "couponType": "both"
+  },
+  {
+    "id": 271,
+    "name": "斎木ガス（株）",
+    "address": "上福岡１－４－12",
+    "phone": "261-0101",
+    "category": "サービス",
+    "menu": "リフォーム、ガス機器",
+    "lat": 35.873444,
+    "lng": 139.514328,
+    "couponType": "both"
+  },
+  {
+    "id": 272,
+    "name": "近藤リフレサービス（株）",
+    "address": "上福岡１－14－７",
+    "phone": "211-0188",
+    "category": "サービス",
+    "menu": "水まわり設備の交換、内装工事、外装工事等リフォーム全般",
+    "lat": 35.874546,
+    "lng": 139.514832,
+    "couponType": "both"
+  },
+  {
+    "id": 273,
+    "name": "（株）東北建装",
+    "address": "上福岡１－14－40",
+    "phone": "263-6363",
+    "category": "サービス",
+    "menu": "内外改修",
+    "lat": 35.875031,
+    "lng": 139.515076,
+    "couponType": "both"
+  },
+  {
+    "id": 274,
+    "name": "（株）須崎工業所",
+    "address": "上福岡３－８－２",
+    "phone": "261-2860",
+    "category": "サービス",
+    "menu": "タイル工事、住宅設備工事、各種リフォーム工事",
+    "lat": 35.872246,
+    "lng": 139.516541,
     "couponType": "both"
   },
   {
     "id": 275,
-    "name": "ミヤコシ（宮腰畳店）",
-    "address": "大原１－２－２",
-    "phone": "261-2577",
+    "name": "福研住宅サービス",
+    "address": "北野１－７－９",
+    "phone": "261-3598",
     "category": "サービス",
-    "subCategory": "建築・リフォーム",
-    "menu": "畳製造、施工、販売",
-    "lat": 35.876881,
-    "lng": 139.516006,
+    "menu": "内外装各種リフォーム・畳工事一式",
+    "lat": 35.87804,
+    "lng": 139.511276,
     "couponType": "both"
   },
   {
     "id": 276,
-    "name": "（Ref.）（有）新島硝子店",
-    "address": "上福岡１－１２－２２",
-    "phone": "261-0504",
+    "name": "（有）藤井電気企画",
+    "address": "元福岡２－２－３",
+    "phone": "264-6676",
     "category": "サービス",
-    "subCategory": "建築・リフォーム",
-    "menu": "ガラス・サッシ・エクステリア等リフォーム工事",
-    "lat": 35.875207,
-    "lng": 139.513549,
+    "menu": "一般電気工事、空調工事",
+    "lat": 35.883175,
+    "lng": 139.517792,
     "couponType": "both"
   },
   {
     "id": 277,
-    "name": "（株）山一",
-    "address": "福岡中央１－４－６",
-    "phone": "261-0268",
+    "name": "（Reflet? いいえ、(有)ムサシ管工) （有）ムサシ管工",
+    "address": "新駒林３－４－11",
+    "phone": "262-1240",
     "category": "サービス",
-    "subCategory": "建築・リフォーム",
-    "menu": "建材・セメント、リフォーム、建築資材等",
-    "lat": 35.872677,
-    "lng": 139.521103,
+    "menu": "土木一式、給排水工事、外構、エクステリア",
+    "lat": 35.870537,
+    "lng": 139.528336,
     "couponType": "both"
   },
   {
     "id": 278,
-    "name": "リフォームサービス（株）",
-    "address": "新駒林２－３－１１",
-    "phone": "262-3455",
+    "name": "（株）ベネフィットカンパニー",
+    "address": "新駒林４－４－２",
+    "phone": "269-1755",
     "category": "サービス",
-    "subCategory": "建築・リフォーム",
-    "menu": "外壁塗装、水回りリフォーム、小工事等住宅リフォーム全般",
-    "lat": 35.867599,
-    "lng": 139.527145,
+    "menu": "販促サイン、旗（のぼり）、シールなど",
+    "lat": 35.870308,
+    "lng": 139.528931,
     "couponType": "both"
   },
   {
     "id": 279,
-    "name": "近藤建設（株）",
-    "address": "ふじみ野１－１－３",
-    "phone": "264-1112",
+    "name": "（株）奥山建設",
+    "address": "福岡中央１－１－14",
+    "phone": "262-2239",
     "category": "サービス",
-    "subCategory": "建築・リフォーム",
-    "menu": "リフォーム工事、新築工事請負、リノベーション工事",
-    "lat": 35.860554,
-    "lng": 139.512634,
+    "menu": "新築､リフォーム",
+    "lat": 35.872959,
+    "lng": 139.517929,
     "couponType": "both"
   },
   {
     "id": 280,
-    "name": "近藤不動産（株）",
-    "address": "ふじみ野１－１－３",
-    "phone": "264-1111",
+    "name": "中村畳店",
+    "address": "福岡中央２－10－18",
+    "phone": "261-4593",
     "category": "サービス",
-    "subCategory": "建築・リフォーム",
-    "menu": "仲介手数料、リフォーム工事、分譲住宅販売、火災保険",
-    "lat": 35.860554,
-    "lng": 139.512634,
+    "menu": "畳工事一式",
+    "lat": 35.871025,
+    "lng": 139.518982,
     "couponType": "both"
   },
   {
     "id": 281,
-    "name": "近藤リフレ（株）",
-    "address": "ふじみ野１－１－３",
-    "phone": "262-5201",
+    "name": "（株）鈴木建設",
+    "address": "新田２－１－６",
+    "phone": "264-2131",
     "category": "サービス",
-    "subCategory": "建築・リフォーム",
-    "menu": "リフォーム工事全般、アフターメンテナンス",
-    "lat": 35.860554,
-    "lng": 139.512634,
+    "menu": "新築・リフォーム",
+    "lat": 35.871765,
+    "lng": 139.524582,
     "couponType": "both"
   },
   {
     "id": 282,
-    "name": "（Ref.）（有）金子建築",
-    "address": "鶴ヶ岡２－１－１７",
-    "phone": "261-4560",
+    "name": "（株）みうらハウス工業",
+    "address": "南台１－５－９",
+    "phone": "262-3654",
     "category": "サービス",
-    "subCategory": "建築・リフォーム",
-    "menu": "建築請負、新築、リフォーム、改修等、木造注文住宅",
-    "lat": 35.864674,
-    "lng": 139.507431,
+    "menu": "リフォーム工事、外構工事、電気設備工事",
+    "lat": 35.869724,
+    "lng": 139.518188,
     "couponType": "both"
   },
   {
     "id": 283,
-    "name": "（Ref.）（有）内田ガラス店",
-    "address": "鶴ヶ舞１－２－６",
-    "phone": "261-1273",
+    "name": "（有）大野設備管工",
+    "address": "南台１－７－５",
+    "phone": "261-1713",
     "category": "サービス",
-    "subCategory": "建築・リフォーム",
-    "menu": "住宅サッシ、窓・ドアリフォーム、エクステリア等",
-    "lat": 35.864979,
-    "lng": 139.509995,
+    "menu": "水まわり修理、リフォーム工事",
+    "lat": 35.869411,
+    "lng": 139.518463,
     "couponType": "both"
   },
   {
     "id": 284,
-    "name": "（株）ヤマダデンキ テックランド上福岡店",
-    "address": "大原２－１－３０",
-    "phone": "256-3101",
-    "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "家電製品、日用品等",
-    "lat": 35.880405,
-    "lng": 139.51947,
-    "couponType": "onlyB"
+    "name": "ライフアップ住設(株)",
+    "address": "西鶴ヶ岡２－１－２",
+    "phone": "262-4454",
+    "category": "サービス",
+    "menu": "水まわりの修理、リフォーム",
+    "lat": 35.862854,
+    "lng": 139.50061,
+    "couponType": "both"
   },
   {
     "id": 285,
-    "name": "（株）ヤオコー 上福岡駒林店",
-    "address": "駒林元町１－１０－５",
-    "phone": "261-5511",
-    "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "食料品、酒、日用品",
-    "lat": 35.866997,
-    "lng": 139.527695,
-    "couponType": "onlyB"
+    "name": "atrehome（株） （アットリホーム）",
+    "address": "亀久保４－３－１",
+    "phone": "262-8555",
+    "category": "サービス",
+    "menu": "住宅リフォーム",
+    "lat": 35.860165,
+    "lng": 139.511627,
+    "couponType": "both"
   },
   {
     "id": 286,
-    "name": "生協ユーコープ コープおおい店",
-    "address": "苗間１－１２－１",
-    "phone": "263-3111",
-    "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "食料品、日用品",
-    "lat": 35.857994,
-    "lng": 139.52179,
-    "couponType": "onlyB"
+    "name": "（有）和田工務店",
+    "address": "亀久保1146－17",
+    "phone": "263-7396",
+    "category": "サービス",
+    "menu": "新築、リフォーム、塗替え、屋根、外構工事、その他",
+    "lat": 35.853668,
+    "lng": 139.502686,
+    "couponType": "both"
   },
   {
     "id": 287,
-    "name": "イオンリテール（株） イオンスタイルふじみ野",
-    "address": "ふじみ野１－２－１",
-    "phone": "264-5100",
-    "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "食料品、日用品、衣料品、家電等",
-    "lat": 35.860817,
-    "lng": 139.513092,
-    "couponType": "onlyB"
+    "name": "TOTO水彩プラザふじみ野店",
+    "address": "亀久保1243－５",
+    "phone": "256-6266",
+    "category": "サービス",
+    "menu": "水廻り全般",
+    "lat": 35.858631,
+    "lng": 139.500641,
+    "couponType": "both"
   },
   {
     "id": 288,
-    "name": "（株）ヤオコー ららぽーと富士見店",
-    "address": "鶴瀬東２－１０－８７",
-    "phone": "269-3111",
-    "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "食料品、お酒、住居、家庭用品",
-    "lat": 35.865055,
-    "lng": 139.503693,
-    "couponType": "onlyB"
+    "name": "（Reflet? いいえ、(有)細田建具店) （Reflet? いいえ、(有)細田建具店) （有）細田建具店",
+    "address": "苗間３１－１",
+    "phone": "261-2558",
+    "category": "サービス",
+    "menu": "アルミサッシ工事、住宅リフォーム",
+    "lat": 35.854275,
+    "lng": 139.513931,
+    "couponType": "both"
   },
   {
     "id": 289,
-    "name": "ソヨカふじみ野 ロピアふじみ野ソヨカ店",
-    "address": "うれし野２－１０－８７",
-    "phone": "256-7440",
-    "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "食料品、お酒等",
-    "lat": 35.856411,
-    "lng": 139.522858,
-    "couponType": "onlyB"
+    "name": "（有）神木工務店",
+    "address": "苗間２３９",
+    "phone": "261-0535",
+    "category": "サービス",
+    "menu": "リフォーム、リノベーション",
+    "lat": 35.859486,
+    "lng": 139.527344,
+    "couponType": "both"
   },
   {
     "id": 290,
-    "name": "ギガセレクション 鶴ヶ舞店",
-    "address": "鶴ヶ舞３－１１－１",
-    "phone": "256-5533",
-    "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "食料品、お酒、日用雑貨",
-    "lat": 35.868942,
-    "lng": 139.506165,
-    "couponType": "onlyB"
+    "name": "（株）朝日工務店",
+    "address": "苗間４００－１",
+    "phone": "261-0600",
+    "category": "サービス",
+    "menu": "リフォーム､増改築､新築",
+    "lat": 35.856701,
+    "lng": 139.526855,
+    "couponType": "both"
   },
   {
     "id": 291,
-    "name": "エディオン イオンタウンふじみ野店",
-    "address": "福岡１－２－１",
-    "phone": "269-0212",
-    "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "家電製品、日用品等",
-    "lat": 35.873053,
-    "lng": 139.513315,
-    "couponType": "onlyB"
+    "name": "（株）リフレット",
+    "address": "大井１－２－33",
+    "phone": "256-2662",
+    "category": "サービス",
+    "menu": "リフォーム工事",
+    "lat": 35.852623,
+    "lng": 139.516556,
+    "couponType": "both"
   },
   {
     "id": 292,
-    "name": "デコホーム イオンタウンふじみ野店",
-    "address": "福岡１－２－１",
-    "phone": "261-5501",
-    "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "家具、インテリア雑貨等",
-    "lat": 35.873053,
-    "lng": 139.513315,
-    "couponType": "onlyB"
+    "name": "大井バスセンター",
+    "address": "大井1073－１",
+    "phone": "261-0548",
+    "category": "サービス",
+    "menu": "給湯器、水回り設備",
+    "lat": 35.850906,
+    "lng": 139.515976,
+    "couponType": "both"
   },
   {
     "id": 293,
-    "name": "イオンバイク イオンタウンふじみ野店",
-    "address": "福岡１－２－１",
-    "phone": "256-5151",
-    "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "自転車、関連パーツ、修理、点検",
-    "lat": 35.873053,
-    "lng": 139.513315,
-    "couponType": "onlyB"
+    "name": "田村工務店",
+    "address": "大井中央１－８－37",
+    "phone": "266-5388",
+    "category": "サービス",
+    "menu": "新築、リフォーム、全般",
+    "lat": 35.856812,
+    "lng": 139.507507,
+    "couponType": "both"
   },
   {
     "id": 294,
-    "name": "ピーコックストア イオンタウンふじみ野店",
-    "address": "福岡１－２－１",
-    "phone": "256-5001",
-    "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "食料品、日用品等",
-    "lat": 35.873053,
-    "lng": 139.513315,
-    "couponType": "onlyB"
+    "name": "（有）橋本畳店",
+    "address": "大井中央３－22－５",
+    "phone": "261-5695",
+    "category": "サービス",
+    "menu": "畳工事、襖工事、障子工事、網戸、カーテン",
+    "lat": 35.859837,
+    "lng": 139.504135,
+    "couponType": "both"
   },
   {
     "id": 295,
-    "name": "ノジマ イオンタウンふじみ野店",
-    "address": "福岡１－２－１",
-    "phone": "261-1100",
-    "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "家電製品、日用品等",
-    "lat": 35.873053,
-    "lng": 139.513315,
-    "couponType": "onlyB"
+    "name": "（株）髙野塗装",
+    "address": "桜ヶ丘２－７－33",
+    "phone": "261-7570",
+    "category": "サービス",
+    "menu": "外壁塗装",
+    "lat": 35.851501,
+    "lng": 139.509186,
+    "couponType": "both"
   },
   {
     "id": 296,
-    "name": "（株）ダイエー イオンタウンふじみ野店",
-    "address": "福岡１－２－１",
-    "phone": "256-5100",
+    "name": "サンドラッグ上福岡大原店",
+    "address": "大原１－１－15",
+    "phone": "263-0211",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "食料品、日用品、衣料品等",
-    "lat": 35.873053,
-    "lng": 139.513315,
-    "couponType": "onlyB"
+    "menu": "医薬品、食品、雑貨",
+    "lat": 35.876041,
+    "lng": 139.51619,
+    "couponType": "a_only"
   },
   {
     "id": 297,
-    "name": "ウエルシア薬局 イオンタウンふじみ野店",
-    "address": "福岡１－２－１",
-    "phone": "269-1100",
+    "name": "サンドラッグふじみ野大原店",
+    "address": "大原２－１－30",
+    "phone": "214-6200",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "医薬品、化粧品、日用品、食品等",
-    "lat": 35.873053,
-    "lng": 139.513315,
-    "couponType": "onlyB"
+    "menu": "医薬品、食品、雑貨",
+    "lat": 35.880405,
+    "lng": 139.51947,
+    "couponType": "a_only"
   },
   {
     "id": 298,
-    "name": "スポーツオーソリティ イオンタウンふじみ野店",
-    "address": "福岡１－２－１",
-    "phone": "256-5500",
+    "name": "ヤオコー ふじみ野大原店",
+    "address": "大原２－１－32",
+    "phone": "257-6110",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "スポーツ用品、アウトドア用品等",
-    "lat": 35.873053,
-    "lng": 139.513315,
-    "couponType": "onlyB"
+    "menu": "食品、雑貨類",
+    "lat": 35.880547,
+    "lng": 139.51918,
+    "couponType": "a_only"
   },
   {
     "id": 299,
-    "name": "トイザらス・ベビーザらス ふじみ野店",
-    "address": "福岡１－２－１",
-    "phone": "263-8800",
+    "name": "ヤオコー 上福岡西口店",
+    "address": "霞ヶ丘１－２－27",
+    "phone": "256-5711",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "玩具、ベビー用品等",
-    "lat": 35.873053,
-    "lng": 139.513315,
-    "couponType": "onlyB"
+    "menu": "食品、雑貨類",
+    "lat": 35.873539,
+    "lng": 139.510986,
+    "couponType": "a_only"
   },
   {
     "id": 300,
-    "name": "未来屋書店 イオンタウンふじみ野店",
-    "address": "福岡１－２－１",
-    "phone": "256-5011",
+    "name": "カレーハウスCoCo壱番屋",
+    "address": "霞ヶ丘１－２－３",
+    "phone": "261-8494",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "書籍、雑誌、文具等",
-    "lat": 35.873053,
-    "lng": 139.513315,
-    "couponType": "onlyB"
+    "menu": "カレーライスなど",
+    "lat": 35.873573,
+    "lng": 139.510391,
+    "couponType": "a_only",
+    "mall": "ココネ上福岡"
   },
   {
     "id": 301,
-    "name": "セカンドストリート イオンタウンふじみ野店",
-    "address": "福岡１－２－１",
-    "phone": "256-5022",
+    "name": "かみふく酒場ナナホシ",
+    "address": "霞ヶ丘１－２－３",
+    "phone": "256-7924",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "古着、リサイクル品等",
-    "lat": 35.873053,
-    "lng": 139.513315,
-    "couponType": "onlyB"
+    "menu": "飲食物",
+    "lat": 35.873573,
+    "lng": 139.510391,
+    "couponType": "a_only",
+    "mall": "ココネ上福岡"
   },
   {
     "id": 302,
-    "name": "ダイソー イオンタウンふじみ野店",
-    "address": "福岡１－２－１",
-    "phone": "256-5033",
+    "name": "ココマル上福岡",
+    "address": "霞ヶ丘１－２－３",
+    "phone": "202-2202",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "100円均一商品、日用雑貨等",
-    "lat": 35.873053,
-    "lng": 139.513315,
-    "couponType": "onlyB"
+    "menu": "日用雑貨品、食料品",
+    "lat": 35.873573,
+    "lng": 139.510391,
+    "couponType": "a_only",
+    "mall": "ココネ上福岡"
   },
   {
     "id": 303,
-    "name": "スギドラッグ イオンタウンふじみ野店",
-    "address": "福岡１－２－１",
-    "phone": "256-5044",
+    "name": "マツモトキヨシ 上福岡西口店",
+    "address": "霞ヶ丘１－100",
+    "phone": "267-8021",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "医薬品、化粧品、日用品、食品",
-    "lat": 35.873053,
-    "lng": 139.513315,
-    "couponType": "onlyB"
+    "menu": "医薬品、化粧品、日用品など",
+    "lat": 35.873848,
+    "lng": 139.510193,
+    "couponType": "a_only"
   },
   {
     "id": 304,
-    "name": "（株）ライトオン イオンタウンふじみ野店",
-    "address": "福岡１－２－１",
-    "phone": "256-5055",
+    "name": "イオンスタイルふじみ野",
+    "address": "福岡２－１－６",
+    "phone": "278-7111",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "衣料品、カジュアルウェア等",
-    "lat": 35.873053,
-    "lng": 139.513315,
-    "couponType": "onlyB"
+    "menu": "衣料品、日用品、食料品など",
+    "lat": 35.879387,
+    "lng": 139.522018,
+    "couponType": "a_only",
+    "mall": "イオンタウンふじみ野"
   },
   {
     "id": 305,
-    "name": "ジーユー イオンタウンふじみ野店",
-    "address": "福岡１－２－１",
-    "phone": "256-5066",
+    "name": "(株)コジマ×ビックカメラ イオンタウンふじみ野店",
+    "address": "福岡２－１－６",
+    "phone": "267-7511",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "衣料品、ファストファッション等",
-    "lat": 35.873053,
-    "lng": 139.513315,
-    "couponType": "onlyB"
+    "menu": "家庭用電気機械器具",
+    "lat": 35.879387,
+    "lng": 139.522018,
+    "couponType": "a_only",
+    "mall": "イオンタウンふじみ野"
   },
   {
     "id": 306,
-    "name": "西松屋チェーン イオンタウンふじみ野店",
-    "address": "福岡１－２－１",
-    "phone": "256-5077",
+    "name": "インド料理 ダナパニ イオンタウンふじみ野店",
+    "address": "福岡２－１－６",
+    "phone": "293-5011",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "ベビー用品、子供服等",
-    "lat": 35.873053,
-    "lng": 139.513315,
-    "couponType": "onlyB"
+    "menu": "カレー、ナン、チキン、ドリンク",
+    "lat": 35.879387,
+    "lng": 139.522018,
+    "couponType": "a_only",
+    "mall": "イオンタウンふじみ野"
   },
   {
     "id": 307,
-    "name": "ユニクロ イオンタウンふじみ野店",
-    "address": "福岡１－２－１",
-    "phone": "256-5088",
+    "name": "イオンタウン（株）イオンタウンふじみ野",
+    "address": "福岡２－１－６",
+    "phone": "256-3002",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "衣料品、カジュアルウェア等",
-    "lat": 35.873053,
-    "lng": 139.513315,
-    "couponType": "onlyB"
+    "menu": "衣料、食品、日用品、電化製品、サービス",
+    "lat": 35.879387,
+    "lng": 139.522018,
+    "couponType": "a_only",
+    "mall": "イオンタウンふじみ野"
   },
   {
     "id": 308,
-    "name": "ヤマダデンキ テックランドふじみ野店",
-    "address": "うれし野２－１６－１",
-    "phone": "264-1100",
+    "name": "イオンバイクイオンタウンふじみ野店",
+    "address": "福岡２－１－６",
+    "phone": "293-3723",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "家電製品、日用品等",
-    "lat": 35.855995,
-    "lng": 139.522141,
-    "couponType": "onlyB"
+    "menu": "自転車、販売、修理",
+    "lat": 35.879387,
+    "lng": 139.522018,
+    "couponType": "a_only",
+    "mall": "イオンタウンふじみ野"
   },
   {
     "id": 309,
-    "name": "（株）ロフト ふじみ野ロフト",
-    "address": "うれし野２－１０－８７",
-    "phone": "269-0200",
+    "name": "ヤオコー 上福岡駒林店",
+    "address": "駒林元町２－１－20",
+    "phone": "256-5411",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "生活雑貨、文具等",
-    "lat": 35.856411,
-    "lng": 139.522858,
-    "couponType": "onlyB"
+    "menu": "食品、雑貨類",
+    "lat": 35.866768,
+    "lng": 139.525436,
+    "couponType": "a_only"
   },
   {
     "id": 310,
-    "name": "アカチャンホンポ ららぽーと富士見店",
-    "address": "鶴瀬東２－１０－８７",
-    "phone": "269-0111",
+    "name": "生鮮市場ＴＯＰ 鶴ケ舞店",
+    "address": "鶴ヶ舞２－２－17",
+    "phone": "256-5900",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "ベビー用品、子供服等",
-    "lat": 35.865055,
-    "lng": 139.503693,
-    "couponType": "onlyB"
+    "menu": "食料品、日用雑貨",
+    "lat": 35.866268,
+    "lng": 139.509399,
+    "couponType": "a_only"
   },
   {
     "id": 311,
-    "name": "無印良品 ららぽーと富士見",
-    "address": "鶴瀬東２－１０－８７",
-    "phone": "269-0211",
+    "name": "ドラッグストアセキ鶴ヶ舞店",
+    "address": "鶴ヶ舞２－２－17",
+    "phone": "278-1100",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "衣服、生活雑貨、食品等",
-    "lat": 35.865055,
-    "lng": 139.503693,
-    "couponType": "onlyB"
+    "menu": "医薬品、食品、雑貨、化粧品",
+    "lat": 35.866268,
+    "lng": 139.509399,
+    "couponType": "a_only"
   },
   {
     "id": 312,
-    "name": "（株）ケーヨー ケーヨーデイツー唐瀬店",
-    "address": "亀久保１６７７－１",
-    "phone": "261-0011",
+    "name": "(Reflet? いいえ、(有)上福岡家具センター) (有)上福岡家具センター",
+    "address": "鶴ヶ舞２－６－12",
+    "phone": "264-8611",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "DIY用品、園芸用品、日用品等",
-    "lat": 35.857773,
-    "lng": 139.484268,
-    "couponType": "onlyB"
+    "menu": "家具",
+    "lat": 35.869007,
+    "lng": 139.511536,
+    "couponType": "a_only"
   },
   {
     "id": 313,
-    "name": "コメリハード＆グリーン大井店",
-    "address": "大井２－１０－１",
-    "phone": "267-3111",
+    "name": "(株)リブラ",
+    "address": "鶴ヶ舞２－６－12",
+    "phone": "264-1134",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "DIY用品、園芸用品、日用品等",
-    "lat": 35.852905,
-    "lng": 139.521729,
-    "couponType": "onlyB"
+    "menu": "業務用家具、オーダー家具",
+    "lat": 35.869007,
+    "lng": 139.511536,
+    "couponType": "a_only"
   },
   {
     "id": 314,
-    "name": "（株）サンディ 埼玉大井店",
-    "address": "苗間３８７－１",
-    "phone": "269-0111",
+    "name": "ベルク大井緑ヶ丘店",
+    "address": "緑ヶ丘１－５－８",
+    "phone": "278-1188",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "食料品、日用品等",
-    "lat": 35.858101,
-    "lng": 139.526016,
-    "couponType": "onlyB"
+    "menu": "日用品、食料品、酒など",
+    "lat": 35.859421,
+    "lng": 139.501038,
+    "couponType": "a_only"
   },
   {
     "id": 315,
-    "name": "業務スーパー 大井店",
-    "address": "東久保２－３－４",
-    "phone": "269-0211",
+    "name": "スーパービバホーム埼玉大井店",
+    "address": "西鶴ヶ岡１－３－15",
+    "phone": "278-7911",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "食料品、お酒、冷凍食品等",
-    "lat": 35.864155,
-    "lng": 139.513382,
-    "couponType": "onlyB"
+    "menu": "日用品、ペット、インテリア、資材など",
+    "lat": 35.862591,
+    "lng": 139.501144,
+    "couponType": "a_only",
+    "mall": "ビバモール埼玉大井"
   },
   {
     "id": 316,
-    "name": "ビック・エー ふじみ野苗間店",
-    "address": "苗間１－１３－１５",
-    "phone": "256-0311",
+    "name": "（株）イトーヨーカ堂 食品館埼玉大井店",
+    "address": "西鶴ヶ岡１－３－15",
+    "phone": "262-5111",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "食料品、日用品等",
-    "lat": 35.857643,
-    "lng": 139.52153,
-    "couponType": "onlyB"
+    "menu": "食料品、衣料品、住まいの品",
+    "lat": 35.862591,
+    "lng": 139.501144,
+    "couponType": "a_only",
+    "mall": "ビバモール埼玉大井"
   },
   {
     "id": 317,
-    "name": "スーパー・セカンドストリート 大井店",
-    "address": "東久保１－１－５",
-    "phone": "261-0211",
+    "name": "シュープラザ 埼玉大井ビバモール店",
+    "address": "西鶴ヶ岡１－３－15",
+    "phone": "256-8311",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "古着、リサイクル品、家電等",
-    "lat": 35.863106,
-    "lng": 139.510727,
-    "couponType": "onlyB"
+    "menu": "靴",
+    "lat": 35.862591,
+    "lng": 139.501144,
+    "couponType": "a_only",
+    "mall": "ビバモール埼玉大井"
   },
   {
     "id": 318,
-    "name": "（株）セリア ピアシティふじみ野店",
-    "address": "ふじみ野２－２５－３３",
-    "phone": "263-0111",
+    "name": "モスバーガー ビバホーム大井町店",
+    "address": "西鶴ヶ岡１－３－15",
+    "phone": "278-7757",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "100円均一商品、日用雑貨等",
-    "lat": 35.862602,
-    "lng": 139.517838,
-    "couponType": "onlyB"
+    "menu": "ハンバーガー、ポテト",
+    "lat": 35.862591,
+    "lng": 139.501144,
+    "couponType": "a_only",
+    "mall": "ビバモール埼玉大井"
   },
   {
     "id": 319,
-    "name": "クリエイトＳ・Ｄ ピアシティふじみ野店",
-    "address": "ふじみ野２－２５－３３",
-    "phone": "263-0211",
+    "name": "（株）カスミ ふじみ野店",
+    "address": "西鶴ヶ岡２－３－１",
+    "phone": "278-7255",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "医薬品、日用品、食品等",
-    "lat": 35.862602,
-    "lng": 139.517838,
-    "couponType": "onlyB"
+    "menu": "食品等",
+    "lat": 35.863682,
+    "lng": 139.498932,
+    "couponType": "a_only",
+    "mall": "ピアシティふじみ野"
   },
   {
     "id": 320,
-    "name": "カスミ ふじみ野店",
-    "address": "ふじみ野２－２５－３３",
-    "phone": "263-0311",
+    "name": "マツモトキヨシ ピアシティふじみ野",
+    "address": "西鶴ヶ岡２－３－１",
+    "phone": "256-8585",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "食料品、酒、日用品等",
-    "lat": 35.862602,
-    "lng": 139.517838,
-    "couponType": "onlyB"
+    "menu": "医薬品、日用品、化粧品、食品（お酒など含）",
+    "lat": 35.863682,
+    "lng": 139.498932,
+    "couponType": "a_only",
+    "mall": "ピアシティふじみ野"
   },
   {
     "id": 321,
-    "name": "（株）ベルク ふじみ野店",
-    "address": "ふじみ野４－１－２",
-    "phone": "262-1111",
+    "name": "ヤマダデンキ テックランドふじみ野店",
+    "address": "西鶴ヶ岡２－３－１",
+    "phone": "293-1141",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "食料品、酒、日用品",
-    "lat": 35.859592,
-    "lng": 139.515594,
-    "couponType": "onlyB"
+    "menu": "家電",
+    "lat": 35.863682,
+    "lng": 139.498932,
+    "couponType": "a_only",
+    "mall": "ピアシティふじみ野"
   },
   {
     "id": 322,
-    "name": "PCデポスマートライフ ふじみ野店",
-    "address": "ふじみ野４－５－１",
-    "phone": "266-9911",
+    "name": "（株）しまむら ファッションセンターしまむら大井店",
+    "address": "鶴ヶ岡２－１－１",
+    "phone": "278-1387",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "パソコン、デジタル機器等",
-    "lat": 35.8601,
-    "lng": 139.518402,
-    "couponType": "onlyB"
+    "menu": "衣料品、日用品",
+    "lat": 35.864674,
+    "lng": 139.507431,
+    "couponType": "a_only"
   },
   {
     "id": 323,
-    "name": "イエローハット ふじみ野店",
-    "address": "ふじみ野４－９－２",
-    "phone": "256-8211",
+    "name": "イオンリテール（株）イオン大井店",
+    "address": "ふじみ野１－２－１",
+    "phone": "261-3101",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "カー用品、タイヤ、オイル、車検等",
-    "lat": 35.85796,
-    "lng": 139.517059,
-    "couponType": "onlyB"
+    "menu": "食料品、衣料品、暮らしの品等",
+    "lat": 35.860817,
+    "lng": 139.513092,
+    "couponType": "a_only",
+    "mall": "イオン大井店"
   },
   {
     "id": 324,
-    "name": "シューマート ふじみ野店",
-    "address": "ふじみ野４－１３－17",
-    "phone": "261-0211",
+    "name": "生鮮市場ＴＯＰ 苗間店",
+    "address": "苗間４２－５",
+    "phone": "267-1785",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "靴全般",
-    "lat": 35.858555,
-    "lng": 139.518127,
-    "couponType": "onlyB"
+    "menu": "食料品、日用雑貨",
+    "lat": 35.853584,
+    "lng": 139.514587,
+    "couponType": "a_only"
   },
   {
     "id": 325,
-    "name": "ハードオフ・オフハウス ふじみ野店",
-    "address": "ふじみ野４－１３－２０",
-    "phone": "256-7411",
+    "name": "ReMyu",
+    "address": "うれし野２－10－37",
+    "phone": "090-1404-7276",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "リユース品全般",
-    "lat": 35.858639,
-    "lng": 139.51915,
-    "couponType": "onlyB"
+    "menu": "ケーキ、焼き菓子、ドリンク、食事",
+    "lat": 35.858166,
+    "lng": 139.525162,
+    "couponType": "a_only",
+    "mall": "トナリエふじみ野"
   },
   {
     "id": 326,
-    "name": "ブックオフ ふじみ野店",
-    "address": "ふじみ野４－１３－２５",
-    "phone": "256-8211",
+    "name": "ジラフラーチ",
+    "address": "うれし野２－10－87",
+    "phone": "263-7079",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "本、ゲーム、CD、DVD等",
-    "lat": 35.858555,
-    "lng": 139.518127,
-    "couponType": "onlyB"
+    "menu": "メンズ・レディース衣料品",
+    "lat": 35.856411,
+    "lng": 139.522858,
+    "couponType": "a_only",
+    "mall": "トナリエふじみ野"
   },
   {
     "id": 327,
-    "name": "ジェーソン ふじみ野店",
-    "address": "苗間３７５－１",
-    "phone": "261-8411",
+    "name": "ドラッグ セガミ トナリエふじみ野店",
+    "address": "うれし野２－10－87",
+    "phone": "256-6003",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "バラエティストア商品、日用品等",
-    "lat": 35.859638,
-    "lng": 139.529099,
-    "couponType": "onlyB"
+    "menu": "医薬品、化粧品、日用品",
+    "lat": 35.856411,
+    "lng": 139.522858,
+    "couponType": "a_only",
+    "mall": "トナリエふじみ野"
   },
   {
     "id": 328,
-    "name": "ドン・キホーテ ふじみ野店",
-    "address": "苗間１－１３－３１",
-    "phone": "261-1211",
+    "name": "ロピア ふじみ野店",
+    "address": "うれし野２－10－87",
+    "phone": "261-0298",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "ディスカウントストア商品、雑貨、食品等",
-    "lat": 35.856968,
-    "lng": 139.521408,
-    "couponType": "onlyB"
+    "menu": "食料品、お酒など",
+    "lat": 35.856411,
+    "lng": 139.522858,
+    "couponType": "a_only",
+    "mall": "トナリエふじみ野"
   },
   {
     "id": 329,
-    "name": "ケーズデンキ ふじみ野店",
-    "address": "大井１－４－１",
-    "phone": "262-8411",
+    "name": "美容整体 Forchure FUJIMINO",
+    "address": "うれし野２－10－87",
+    "phone": "293-9695",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "家電製品等",
-    "lat": 35.852287,
-    "lng": 139.517639,
-    "couponType": "onlyB"
+    "menu": "フェイシャル複合機",
+    "lat": 35.856411,
+    "lng": 139.522858,
+    "couponType": "a_only",
+    "mall": "トナリエふじみ野"
   },
   {
     "id": 330,
-    "name": "スポーツデポ ふじみ野店",
-    "address": "大井１－４－２",
-    "phone": "264-2411",
+    "name": "デコホーム トナリエふじみ野店",
+    "address": "うれし野２－10－87",
+    "phone": "0120-014-210",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "スポーツ用品、アウトドア用品等",
-    "lat": 35.852322,
-    "lng": 139.517746,
-    "couponType": "onlyB"
+    "menu": "雑貨、日用品など",
+    "lat": 35.856411,
+    "lng": 139.522858,
+    "couponType": "a_only",
+    "mall": "トナリエふじみ野"
   },
   {
     "id": 331,
-    "name": "ニトリ ふじみ野店",
-    "address": "大井２－１－１",
-    "phone": "261-7111",
+    "name": "学校制服スクールベン トナリエふじみ野店",
+    "address": "うれし野２－10－87",
+    "phone": "265-6036",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "家具、インテリア雑貨等",
-    "lat": 35.852943,
-    "lng": 139.518036,
-    "couponType": "onlyB"
+    "menu": "学校制服、体育着、その他学校関連用品",
+    "lat": 35.856411,
+    "lng": 139.522858,
+    "couponType": "a_only",
+    "mall": "トナリエふじみ野"
   },
   {
     "id": 332,
-    "name": "サンドラッグ 大井中央店",
-    "address": "大井中央４－１－２０",
-    "phone": "266-0011",
+    "name": "ケーズデンキ ふじみ野店",
+    "address": "大井中央２－20－１",
+    "phone": "257-5620",
     "category": "大型店",
-    "subCategory": "大型店",
-    "menu": "医薬品、食品、日用品等",
-    "lat": 35.859615,
-    "lng": 139.503998,
-    "couponType": "onlyB"
+    "menu": "家庭用電器製品",
+    "lat": 35.856792,
+    "lng": 139.504715,
+    "couponType": "a_only"
   }
 ];
 
-export const RESTAURANT_GENRES = ["飲食店"];
+export function getAreaFromAddress(address: string): string {
+  const local = address.replace(/^(埼玉県)?ふじみ野市/, "");
+  if (local.startsWith("上福岡")) return "上福岡";
+  if (local.startsWith("ふじみ野")) return "ふじみ野";
+  if (local.startsWith("大井中央") || local.startsWith("大井武蔵野") || local.startsWith("大井")) {
+    return "大井";
+  }
+  if (local.startsWith("苗間")) return "苗間";
+  if (local.startsWith("鶴ヶ岡") || local.startsWith("西鶴ヶ岡")) return "鶴ヶ岡";
+  if (local.startsWith("亀久保")) return "亀久保";
+  if (local.startsWith("清見")) return "清見";
+  if (local.startsWith("うれし野")) return "うれし野";
+  if (local.startsWith("福岡新田") || local.startsWith("福岡東") || local.startsWith("福岡中央") || local.startsWith("福岡")) {
+    return "福岡";
+  }
+  if (local.startsWith("大原") || local.startsWith("霞ヶ丘") || local.startsWith("霞ケ丘") || local.startsWith("鶴ヶ舞") || local.startsWith("北野")) {
+    return "上福岡";
+  }
+  if (local.startsWith("駒林")) return "福岡";
+  if (local.startsWith("桜ヶ丘") || local.startsWith("東久保")) return "大井";
+  if (local.startsWith("富士見台")) return "福岡";
+  
+  for (const area of ["上福岡", "ふじみ野", "大井", "苗間", "鶴ヶ岡", "亀久保", "清見", "うれし野", "福岡"]) {
+    if (local.includes(area)) return area;
+  }
+  return "その他";
+}
+
+function getPdfCategory(id: number): string {
+  if (id >= 1 && id <= 40) return "飲食料品";
+  if (id >= 41 && id <= 48) return "衣料品・靴・寝具";
+  if (id >= 49 && id <= 65) return "生活用品";
+  if (id >= 66 && id <= 77) return "ドラッグストア";
+  if (id >= 78 && id <= 100) return "コンビニエンスストア・スーパーマーケット";
+  if (id >= 101 && id <= 123) return "その他の小売";
+  if (id >= 124 && id <= 208) return "飲食店";
+  if (id >= 209 && id <= 227) return "理容・美容";
+  if (id >= 228 && id <= 267) return "その他のサービス";
+  if (id >= 268 && id <= 295) return "建築・リフォーム・各種設備工事";
+  if (id >= 296 && id <= 332) return "大型店";
+  return "その他";
+}
 
 export const RESTAURANTS: Restaurant[] = RAW_RESTAURANTS.map((r) => {
-  const isRestaurant = RESTAURANT_GENRES.includes(r.category);
+  const fullAddress = r.address.startsWith("埼玉県ふじみ野市") ? r.address : "埼玉県ふじみ野市" + r.address;
   return {
     ...r,
-    address: r.address.startsWith("埼玉県ふじみ野市") ? r.address : "埼玉県ふじみ野市" + r.address,
-    category: isRestaurant ? "飲食店" : r.category,
-    subCategory: isRestaurant ? r.category : undefined,
-    lat: r.lat,
-    lng: r.lng
+    category: getPdfCategory(r.id),
+    address: fullAddress,
+    area: getAreaFromAddress(fullAddress)
   };
 });

@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { RESTAURANTS, CATEGORIES, Restaurant } from "./data";
 import LeafletMap from "./components/LeafletMap";
 import cuponLogo from "./assets/cupon_fujimin.webp";
@@ -43,6 +43,14 @@ export default function App() {
   const [selectedCouponType, setSelectedCouponType] = useState<"all" | "both" | "a_only">("all");
   const [selectedMall, setSelectedMall] = useState<string | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const restaurantsWithOverrides = RESTAURANTS;
 
@@ -75,9 +83,7 @@ export default function App() {
         selectedCategory === "すべて" || r.category === selectedCategory;
 
       const matchesArea =
-        selectedArea === "すべて" || 
-        r.address.includes(selectedArea) || 
-        (selectedArea === "福岡" && r.address.includes("福岡") && !r.address.includes("上福岡"));
+        selectedArea === "すべて" || r.area === selectedArea;
 
       const rCouponType = r.couponType || "both";
       const matchesCouponType =
@@ -149,12 +155,24 @@ export default function App() {
         <AnimatePresence initial={false}>
           {isSidebarOpen && (
             <motion.aside
-              initial={{ width: 0, opacity: 0 }}
-              animate={{ width: "320px", opacity: 1 }}
-              exit={{ width: 0, opacity: 0 }}
+              initial={isMobile ? { x: "-100%", opacity: 0 } : { width: 0, opacity: 0 }}
+              animate={isMobile ? { x: 0, opacity: 1 } : { width: "320px", opacity: 1 }}
+              exit={isMobile ? { x: "-100%", opacity: 0 } : { width: 0, opacity: 0 }}
               transition={{ duration: 0.2, ease: "easeInOut" }}
-              className="w-full md:w-80 bg-white border-r border-slate-200 flex flex-col h-full z-10 flex-shrink-0 shadow-sm"
+              className="absolute md:relative top-0 left-0 h-full w-full md:w-80 bg-white border-r border-slate-200 flex flex-col z-[450] md:z-10 flex-shrink-0 shadow-md"
             >
+              {/* Mobile-only Header with clear Close Button */}
+              <div className="md:hidden px-4 py-3 bg-slate-50 border-b border-slate-200 flex items-center justify-between flex-shrink-0">
+                <button
+                  onClick={() => setIsSidebarOpen(false)}
+                  className="text-xs text-slate-700 hover:text-slate-900 font-bold flex items-center gap-1.5 px-3 py-2 bg-white border border-slate-300 rounded shadow-sm hover:bg-slate-50 transition-all duration-150 active:scale-95"
+                >
+                  <span className="text-[10px]">◀︎</span>
+                  <span>メニューを閉じる</span>
+                </button>
+                <span className="text-xs font-extrabold text-slate-600">加盟店舗 検索・絞り込み</span>
+              </div>
+
               {/* Search & Filters block */}
               <div className="p-3 border-b border-slate-100 bg-slate-50/50 space-y-2.5 flex-shrink-0">
                 {/* Search query input */}
@@ -446,23 +464,22 @@ export default function App() {
             </p>
           </div>
 
-          {/* Floating toggle for Mobile Sidebar */}
-          <button
-            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-            className="md:hidden absolute bottom-5 right-5 bg-slate-900 text-white hover:bg-slate-800 p-3.5 rounded-full shadow-lg z-[400] transition active:scale-95"
-          >
-            <SlidersHorizontal className="h-4.5 w-4.5" />
-          </button>
+          {/* Floating toggle for Mobile Sidebar (Only visible when sidebar is closed, positioned to clear Leaflet logo) */}
+          {!isSidebarOpen && (
+            <button
+              onClick={() => setIsSidebarOpen(true)}
+              className="md:hidden absolute bottom-14 right-5 bg-slate-950 text-white hover:bg-slate-900 px-4 py-2.5 rounded-full shadow-lg z-[400] transition active:scale-95 flex items-center gap-2 text-xs font-bold"
+            >
+              <SlidersHorizontal className="h-4 w-4" />
+              <span>メニューを開く</span>
+            </button>
+          )}
         </main>
       </div>
 
       {/* High-density Footer */}
-      <footer className="h-8 bg-slate-800 flex items-center px-4 justify-between text-[10px] text-slate-400 shrink-0 z-20">
-        <div>© 2026 ふじみ野市消費活性化クーポン加盟店マップ</div>
-        <div className="flex gap-4">
-          <span>令和8年度版 参加登録店リスト</span>
-          <span>A券・B券共通</span>
-        </div>
+      <footer className="h-8 bg-slate-800 flex items-center justify-center px-4 text-[10px] text-slate-400 shrink-0 z-20">
+        <div>ふじみ野市消費活性化クーポン検索マップ（令和8年度版）</div>
       </footer>
     </div>
   );
