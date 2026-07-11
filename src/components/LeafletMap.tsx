@@ -162,34 +162,34 @@ export default function LeafletMap({
         zIndexOffset: isSelected ? 1000 : 0,
       });
 
-      let couponBadge = '<div class="text-[11px] bg-emerald-50 text-emerald-800 border border-emerald-200 px-1.5 py-0.5 rounded inline-block mt-1 font-semibold">A券・B券 利用可</div>';
+      let couponBadge = '<div class="text-xs bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded inline-block mt-1 font-bold">A券・B券 利用可</div>';
       if (restaurant.couponType === "a_only") {
-        couponBadge = '<div class="text-[11px] bg-green-50 text-green-700 border border-green-200 px-1.5 py-0.5 rounded inline-block mt-1 font-semibold">A券のみ 利用可</div>';
+        couponBadge = '<div class="text-xs bg-green-50 text-green-700 border border-green-200 px-2 py-0.5 rounded inline-block mt-1 font-bold">A券のみ 利用可</div>';
       } else if (restaurant.couponType === "none") {
-        couponBadge = '<div class="text-[11px] bg-slate-100 text-slate-500 border border-slate-200 px-1.5 py-0.5 rounded inline-block mt-1 font-semibold">クーポン対象外</div>';
+        couponBadge = '<div class="text-xs bg-slate-100 text-slate-500 border border-slate-200 px-2 py-0.5 rounded inline-block mt-1 font-bold">クーポン対象外</div>';
       }
 
       // Simple HTML Popup with external navigation links
       const displayCategory = restaurant.subCategory ? `飲食店 (${restaurant.subCategory})` : restaurant.category;
       const popupContent = `
-        <div class="p-1 max-w-[200px] font-sans">
-          <div class="text-[10px] font-semibold text-blue-600 mb-0.5">${displayCategory}</div>
-          <h3 class="font-bold text-sm text-gray-900 mb-1 leading-tight">${restaurant.name}</h3>
-          <p class="text-xs text-gray-600 mb-1 leading-normal">${restaurant.address}</p>
-          <p class="text-xs text-gray-500 font-semibold mb-1 leading-none">${restaurant.phone === "なし" ? "" : "📞 " + restaurant.phone}</p>
+        <div class="p-1 max-w-[220px] font-sans">
+          <div class="text-xs font-bold text-blue-600 mb-0.5">${displayCategory}</div>
+          <h3 class="font-extrabold text-base text-gray-900 mb-1 leading-tight">${restaurant.name}</h3>
+          <p class="text-sm text-gray-600 mb-1 leading-normal">${restaurant.address}</p>
+          <p class="text-sm text-gray-500 font-bold mb-1 leading-none">${restaurant.phone === "なし" ? "" : "📞 " + restaurant.phone}</p>
           ${couponBadge}
-          <div class="mt-2.5 pt-2 border-t border-gray-100 grid grid-cols-2 gap-1">
+          <div class="mt-2.5 pt-2 border-t border-gray-100 grid grid-cols-2 gap-1.5">
             <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(restaurant.name + " " + restaurant.address)}" 
                target="_blank" 
                rel="noopener noreferrer" 
-               class="text-[9px] bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 rounded py-0.5 text-center font-bold inline-block"
+               class="text-xs bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 rounded py-1 text-center font-bold inline-block"
                style="text-decoration: none; display: block;">
                Googleマップ
             </a>
             <a href="https://maps.apple.com/?q=${encodeURIComponent(restaurant.name + " " + restaurant.address)}" 
                target="_blank" 
                rel="noopener noreferrer" 
-               class="text-[9px] bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 rounded py-0.5 text-center font-bold inline-block"
+               class="text-xs bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 rounded py-1 text-center font-bold inline-block"
                style="text-decoration: none; display: block;">
                Appleマップ
             </a>

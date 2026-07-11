@@ -130,13 +130,13 @@ export default function App() {
             <div id="header-logo-fallback" className="hidden w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-white text-base shrink-0">
               🎫
             </div>
-            <span className="text-[8px] md:text-[9px] font-extrabold text-slate-600 mt-0.5 leading-none shrink-0">ふじみ野市</span>
+            <span className="text-[10px] md:text-[11px] font-extrabold text-slate-600 mt-0.5 leading-none shrink-0">ふじみ野市</span>
           </div>
           <div>
-            <h1 className="text-sm md:text-base font-bold text-slate-800 tracking-tight">
+            <h1 className="text-base md:text-lg font-bold text-slate-800 tracking-tight">
               消費活性化クーポン検索マップ2026
             </h1>
-            <p className="hidden md:block text-[9px] text-slate-500 font-medium">
+            <p className="hidden md:block text-xs text-slate-500 font-bold">
               加盟店舗 {RESTAURANTS.length}ヶ所
             </p>
           </div>
@@ -160,12 +160,12 @@ export default function App() {
             >
               {/* Mobile-only Header with clear Close Button */}
               <div className="md:hidden px-4 py-3 bg-slate-50 border-b border-slate-200 flex items-center justify-between flex-shrink-0">
-                <span className="text-xs font-extrabold text-slate-700">加盟店舗 検索・絞り込み</span>
+                <span className="text-sm font-extrabold text-slate-700">加盟店舗 検索・絞り込み</span>
                 <button
                   onClick={() => setIsSidebarOpen(false)}
-                  className="text-xs text-white bg-slate-950 hover:bg-slate-900 font-bold flex items-center gap-1.5 px-3 py-2 border border-slate-950 rounded shadow-sm transition-all duration-150 active:scale-95"
+                  className="text-sm text-white bg-slate-950 hover:bg-slate-900 font-bold flex items-center gap-1.5 px-3 py-2 border border-slate-950 rounded shadow-sm transition-all duration-150 active:scale-95"
                 >
-                  <span className="text-[10px]">◀︎</span>
+                  <span className="text-xs">◀︎</span>
                   <span>メニューを閉じる</span>
                 </button>
               </div>
@@ -174,18 +174,18 @@ export default function App() {
               <div className="p-3 border-b border-slate-100 bg-slate-50/50 space-y-2.5 flex-shrink-0">
                 {/* Search query input */}
                 <div className="relative">
-                  <Search className="absolute left-2.5 top-2 h-3.5 w-3.5 text-slate-400" />
+                  <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-slate-400" />
                   <input
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="店名、住所、飲食ジャンル(カフェ等)で検索..."
-                    className="w-full pl-8 pr-7 py-1.5 bg-white border border-slate-200 rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 shadow-xs"
+                    className="w-full pl-9 pr-7 py-2 bg-white border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 shadow-xs"
                   />
                   {searchQuery && (
                     <button
                       onClick={() => setSearchQuery("")}
-                      className="absolute right-2.5 top-1.5 text-slate-400 hover:text-slate-600 text-xs font-semibold"
+                      className="absolute right-2.5 top-2 text-slate-400 hover:text-slate-600 text-sm font-semibold"
                     >
                       ✕
                     </button>
@@ -194,13 +194,13 @@ export default function App() {
 
                 {/* Area dropdown */}
                 <div className="flex items-center justify-between gap-2 py-0.5">
-                  <label className="text-xs font-bold text-slate-700 shrink-0">
+                  <label className="text-sm font-bold text-slate-700 shrink-0">
                     地区でさがす
                   </label>
                   <select
                     value={selectedArea}
                     onChange={(e) => setSelectedArea(e.target.value)}
-                    className="w-40 text-xs bg-white border border-slate-200 rounded py-1 px-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500/20 shadow-xs cursor-pointer"
+                    className="w-40 text-sm bg-white border border-slate-200 rounded py-1 px-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500/20 shadow-xs cursor-pointer"
                   >
                     {AREAS.map((area) => (
                       <option key={area} value={area}>
@@ -212,10 +212,10 @@ export default function App() {
 
                 {/* Coupon Type Filter Segment */}
                 <div className="flex items-center justify-between gap-2 py-0.5">
-                  <label className="text-xs font-bold text-slate-700 shrink-0">
+                  <label className="text-sm font-bold text-slate-700 shrink-0">
                     クーポン利用区分
                   </label>
-                  <div className="flex bg-slate-100 p-0.5 rounded border border-slate-200 text-center text-[10px] font-bold w-40 shadow-xs">
+                  <div className="flex bg-slate-100 p-0.5 rounded border border-slate-200 text-center text-xs font-bold w-40 shadow-xs">
                     <button
                       type="button"
                       onClick={() => setSelectedCouponType("all")}
@@ -256,7 +256,7 @@ export default function App() {
 
                 {/* Shopping Malls Section */}
                 <div className="flex items-center justify-between gap-2 py-0.5">
-                  <label className="text-xs font-bold text-slate-700 shrink-0">
+                  <label className="text-sm font-bold text-slate-700 shrink-0">
                     ショッピングモール
                   </label>
                   <select
@@ -272,7 +272,7 @@ export default function App() {
                         setSearchQuery("");
                       }
                     }}
-                    className="w-40 text-xs bg-white border border-slate-200 rounded py-1 px-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500/20 shadow-xs cursor-pointer"
+                    className="w-40 text-sm bg-white border border-slate-200 rounded py-1 px-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500/20 shadow-xs cursor-pointer"
                   >
                     <option value="選択しない">選択しない</option>
                     {MALLS.map((mall) => (
@@ -285,14 +285,14 @@ export default function App() {
               </div>
 
               {/* Horizontal scroll Categories for quick filtering */}
-              <div className="px-3 py-1.5 bg-slate-50/20 border-b border-slate-100 flex gap-1 overflow-x-auto scrollbar-none flex-shrink-0">
+              <div className="px-3 py-1.5 bg-slate-50/20 border-b border-slate-100 flex gap-1.5 overflow-x-auto scrollbar-none flex-shrink-0">
                 {CATEGORIES.map((cat) => {
                   const isSelected = selectedCategory === cat;
                   return (
                     <button
                       key={cat}
                       onClick={() => setSelectedCategory(cat)}
-                      className={`text-[10px] px-2 py-0.5 rounded border whitespace-nowrap transition font-semibold ${
+                      className={`text-xs px-2.5 py-1 rounded border whitespace-nowrap transition font-bold ${
                         isSelected
                           ? "bg-slate-800 border-slate-800 text-white"
                           : "bg-white border-slate-200 text-slate-600 hover:border-slate-300"
@@ -305,9 +305,9 @@ export default function App() {
               </div>
 
               {/* Filter statistics strip - Moved under Categories */}
-              <div className="px-3 py-2 bg-slate-50 border-b border-slate-200 flex items-center justify-between text-xs text-slate-500 font-bold flex-shrink-0 shadow-xs">
+              <div className="px-3 py-2.5 bg-slate-50 border-b border-slate-200 flex items-center justify-between text-sm text-slate-500 font-bold flex-shrink-0 shadow-xs">
                 <p className="tracking-wider">
-                  検索結果: <span className="text-slate-900 font-extrabold text-sm">{filteredRestaurants.length}</span> 件
+                  検索結果: <span className="text-slate-900 font-extrabold text-base">{filteredRestaurants.length}</span> 件
                 </p>
                 {(searchQuery || selectedCategory !== "すべて" || selectedArea !== "すべて" || selectedCouponType !== "all" || selectedMall) && (
                   <button
@@ -318,7 +318,7 @@ export default function App() {
                       setSelectedCouponType("all");
                       setSelectedMall(null);
                     }}
-                    className="text-blue-600 hover:text-blue-800 font-bold hover:underline text-[10px]"
+                    className="text-blue-600 hover:text-blue-800 font-bold hover:underline text-xs"
                   >
                     条件クリア
                   </button>
@@ -334,55 +334,55 @@ export default function App() {
                       <div
                         key={restaurant.id}
                         onClick={() => handleSelectRestaurant(restaurant)}
-                        className={`p-3.5 border-b border-slate-100 hover:bg-slate-50/50 transition cursor-pointer flex flex-col gap-1 ${
+                        className={`p-3.5 border-b border-slate-100 hover:bg-slate-50/50 transition cursor-pointer flex flex-col gap-1.5 ${
                           isSelected ? "bg-blue-50/80 border-l-4 border-l-blue-600" : ""
                         }`}
                         id={`restaurant-card-${restaurant.id}`}
                       >
                         <div className="flex justify-between items-start gap-1">
-                          <h3 className="font-bold text-slate-900 text-xs leading-tight">
+                          <h3 className="font-extrabold text-slate-900 text-sm md:text-base leading-tight">
                             {restaurant.name}
                           </h3>
-                          <span className="text-[8px] font-extrabold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200 shrink-0">
+                          <span className="text-[10px] md:text-xs font-extrabold px-2 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200 shrink-0">
                             {restaurant.subCategory || restaurant.category}
                           </span>
                         </div>
-                        <p className="text-[10px] text-slate-500 line-clamp-1 flex items-center gap-1">
-                          <MapPin className="h-2.5 w-2.5 text-slate-400 shrink-0" />
+                        <p className="text-xs text-slate-500 line-clamp-1 flex items-center gap-1">
+                          <MapPin className="h-3 w-3 text-slate-400 shrink-0" />
                           <span>{restaurant.address}</span>
                         </p>
                         
-                        <div className="text-[10px] text-slate-600 bg-slate-100/55 p-1.5 rounded border border-slate-100/30 font-medium italic mt-0.5 line-clamp-2">
+                        <div className="text-xs md:text-sm text-slate-600 bg-slate-100/55 p-2 rounded border border-slate-200/30 font-medium italic mt-1 line-clamp-2">
                           {restaurant.menu}
                         </div>
                         
-                        <div className="flex flex-col gap-2 mt-2 pt-1.5 border-t border-slate-100">
+                        <div className="flex flex-col gap-2.5 mt-2.5 pt-2 border-t border-slate-100">
                           <div className="flex items-center justify-between">
                             <div className="flex gap-1">
                               {restaurant.couponType === "a_only" ? (
-                                <span className="px-1.5 py-0.5 bg-green-50 text-green-700 text-[9px] font-extrabold rounded border border-green-200">A券のみ 利用可</span>
+                                <span className="px-2 py-1 bg-green-50 text-green-700 text-[10px] md:text-xs font-extrabold rounded border border-green-200">A券のみ 利用可</span>
                               ) : (
                                 <>
-                                  <span className="px-1.5 py-0.5 bg-green-50 text-green-700 text-[9px] font-extrabold rounded border border-green-200">A券 利用可</span>
-                                  <span className="px-1.5 py-0.5 bg-orange-50 text-orange-700 text-[9px] font-extrabold rounded border border-orange-200">B券 利用可</span>
+                                  <span className="px-2 py-1 bg-green-50 text-green-700 text-[10px] md:text-xs font-extrabold rounded border border-green-200">A券 利用可</span>
+                                  <span className="px-2 py-1 bg-orange-50 text-orange-700 text-[10px] md:text-xs font-extrabold rounded border border-orange-200">B券 利用可</span>
                                 </>
                               )}
                             </div>
-                            <span className="text-[9px] text-blue-600 font-bold flex items-center gap-0.5">
+                            <span className="text-xs text-blue-600 font-bold flex items-center gap-1">
                               位置を表示
-                              <ChevronRight className="h-2.5 w-2.5" />
+                              <ChevronRight className="h-3 w-3" />
                             </span>
                           </div>
 
-                          <div className="grid grid-cols-2 gap-1 mt-0.5">
+                          <div className="grid grid-cols-2 gap-1.5 mt-0.5">
                             <a
                               href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(restaurant.name + " " + restaurant.address)}`}
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={(e) => e.stopPropagation()}
-                              className="py-1 px-1.5 rounded bg-blue-50 hover:bg-blue-100 text-blue-700 text-[9px] font-bold text-center border border-blue-200/50 transition-all duration-150 flex items-center justify-center gap-1"
+                              className="py-1.5 px-2 rounded bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-bold text-center border border-blue-200/50 transition-all duration-150 flex items-center justify-center gap-1"
                             >
-                              <MapPin className="h-2.5 w-2.5 shrink-0" />
+                              <MapPin className="h-3 w-3 shrink-0" />
                               Googleマップ
                             </a>
                             <a
@@ -390,9 +390,9 @@ export default function App() {
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={(e) => e.stopPropagation()}
-                              className="py-1 px-1.5 rounded bg-slate-50 hover:bg-slate-100 text-slate-700 text-[9px] font-bold text-center border border-slate-200/50 transition-all duration-150 flex items-center justify-center gap-1"
+                              className="py-1.5 px-2 rounded bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-bold text-center border border-slate-200/50 transition-all duration-150 flex items-center justify-center gap-1"
                             >
-                              <Compass className="h-2.5 w-2.5 shrink-0" />
+                              <Compass className="h-3 w-3 shrink-0" />
                               Appleマップ
                             </a>
                           </div>
@@ -403,7 +403,7 @@ export default function App() {
                 ) : (
                   <div className="p-8 text-center text-slate-400 space-y-2">
                     <AlertTriangle className="h-6 w-6 mx-auto text-slate-300 animate-pulse" />
-                    <p className="text-xs font-semibold">店舗が見つかりません</p>
+                    <p className="text-sm font-semibold">店舗が見つかりません</p>
                   </div>
                 )}
               </div>
@@ -429,14 +429,14 @@ export default function App() {
           />
 
           {/* Quick Stats Overlay (Floating on Map) */}
-          <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-sm p-3 rounded-lg shadow-md border border-slate-200 text-[11px] text-slate-700 z-[400] max-w-[190px] hidden sm:block">
-            <h4 className="font-bold text-slate-900 mb-1 flex items-center gap-1">
+          <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-sm p-3.5 rounded-lg shadow-md border border-slate-200 text-xs text-slate-700 z-[400] max-w-[210px] hidden sm:block">
+            <h4 className="font-extrabold text-slate-900 mb-1.5 flex items-center gap-1.5 text-xs">
               <span className="w-2 h-2 rounded-full bg-blue-600 inline-block" />
               現在の表示範囲
             </h4>
             <p className="mb-0.5">登録ヶ所: <strong className="text-slate-900">{filteredRestaurants.length}ヶ所</strong></p>
             <p className="mb-1">加盟店舗: <strong className="text-slate-900">{filteredRestaurants.length}店舗</strong></p>
-            <p className="text-[9px] text-slate-500 leading-normal border-t border-slate-100 pt-1 mt-1 font-medium">
+            <p className="text-[10px] text-slate-500 leading-normal border-t border-slate-100 pt-1.5 mt-1.5 font-medium">
               ※ クーポンが利用可能な加盟店舗・ショッピングモールを地図上に表示しています。
             </p>
           </div>
@@ -455,7 +455,7 @@ export default function App() {
       </div>
 
       {/* High-density Footer */}
-      <footer className="h-8 bg-slate-800 flex items-center justify-center px-4 text-[10px] text-slate-400 shrink-0 z-20">
+      <footer className="h-8 bg-slate-800 flex items-center justify-center px-4 text-xs text-slate-400 shrink-0 z-20">
         <div>ふじみ野市消費活性化クーポン検索マップ2026 ※2026/7/2現在</div>
       </footer>
     </div>
