@@ -458,11 +458,11 @@ export default function App() {
             </p>
           </div>
 
-          {/* Floating toggle for Mobile Sidebar (Only visible when sidebar is closed, positioned to clear Leaflet logo) */}
+          {/* Floating toggle for Mobile Sidebar (Only visible when sidebar is closed, positioned in the top-right corner) */}
           {!isSidebarOpen && (
             <button
               onClick={() => setIsSidebarOpen(true)}
-              className="md:hidden absolute bottom-14 right-5 bg-slate-950 text-white hover:bg-slate-900 px-4 py-2.5 rounded-full shadow-lg z-[400] transition active:scale-95 flex items-center gap-2 text-xs font-bold"
+              className="md:hidden absolute top-3 right-3 bg-slate-950 text-white hover:bg-slate-900 px-4 py-2.5 rounded-full shadow-lg z-[1020] transition active:scale-95 flex items-center gap-2 text-xs font-bold"
             >
               <SlidersHorizontal className="h-4 w-4" />
               <span>メニューを開く</span>
