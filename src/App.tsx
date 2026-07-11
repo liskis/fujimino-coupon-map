@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import { RESTAURANTS, CATEGORIES, Restaurant } from "./data";
 import LeafletMap from "./components/LeafletMap";
-import cuponLogo from "./assets/cupon_fujimin.webp";
+import cuponLogo from "../assets/cupon_fujimin.webp";
 import { 
   Search, 
   MapPin, 
