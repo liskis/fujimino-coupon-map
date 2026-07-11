@@ -5413,7 +5413,7 @@ export function getAreaFromAddress(address: string): string {
     area = area.replace(/ケ/g, "ヶ");
     
     // Handle neighboring cities or out-of-city locations
-    if (area.includes("三芳") || area.includes("鶴瀬") || area.includes("川越") || area.includes("富士見")) {
+    if (area.includes("三芳") || area.includes("鶴瀬") || area.includes("川越") || (area.includes("富士見") && area !== "富士見台")) {
       return "市外";
     }
     
