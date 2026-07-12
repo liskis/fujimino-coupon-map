@@ -163,10 +163,10 @@ export default function App() {
                 <span className="text-sm font-extrabold text-slate-700">加盟店舗 検索・絞り込み</span>
                 <button
                   onClick={() => setIsSidebarOpen(false)}
-                  className="text-sm text-white bg-slate-950 hover:bg-slate-900 font-bold flex items-center gap-1.5 px-3 py-2 border border-slate-950 rounded shadow-sm transition-all duration-150 active:scale-95"
+                  className="bg-slate-950 text-white hover:bg-slate-900 px-4 py-2.5 rounded-full shadow-lg transition active:scale-95 flex items-center gap-2 text-xs font-bold"
                 >
                   <span className="text-xs">◀︎</span>
-                  <span>メニューを閉じる</span>
+                  <span>地図を表示</span>
                 </button>
               </div>
 
@@ -448,7 +448,7 @@ export default function App() {
               className="md:hidden absolute top-3 right-3 bg-slate-950 text-white hover:bg-slate-900 px-4 py-2.5 rounded-full shadow-lg z-[1020] transition active:scale-95 flex items-center gap-2 text-xs font-bold"
             >
               <SlidersHorizontal className="h-4 w-4" />
-              <span>メニューを開く</span>
+              <span>リストを表示</span>
             </button>
           )}
         </main>
