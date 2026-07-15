@@ -488,8 +488,9 @@ export default function App() {
       </div>
 
       {/* High-density Footer */}
-      <footer className="h-8 bg-slate-800 flex items-center justify-center px-4 text-xs text-slate-400 shrink-0 z-20">
-        <div>ふじみ野市消費活性化クーポン検索マップ2026 ※2026/7/2現在</div>
+      <footer className="h-8 bg-slate-800 flex items-center justify-between px-4 text-xs text-slate-400 shrink-0 z-20">
+        <div className="font-medium">©️ 2026 LISKIS.inc</div>
+        <div className="text-[10px] sm:text-xs text-slate-400 font-medium">※2026/7/2現在</div>
       </footer>
 
       {/* Share/QR Modal */}
