@@ -8,7 +8,11 @@ import {
   SlidersHorizontal, 
   Compass,
   AlertTriangle,
-  ChevronRight
+  ChevronRight,
+  QrCode,
+  Share2,
+  Copy,
+  Check
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
@@ -38,6 +42,28 @@ export default function App() {
   const [selectedMall, setSelectedMall] = useState<string | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyLink = () => {
+    const url = "https://liskis.github.io/fujimino-coupon-map/";
+    navigator.clipboard.writeText(url).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }).catch(() => {
+      const input = document.getElementById("share-url-input") as HTMLInputElement;
+      if (input) {
+        input.select();
+        try {
+          document.execCommand("copy");
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2000);
+        } catch (err) {
+          console.error("Failed to copy link", err);
+        }
+      }
+    });
+  };
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -143,6 +169,13 @@ export default function App() {
         </div>
 
         <div className="flex items-center gap-2">
+          <button
+            onClick={() => setIsShareModalOpen(true)}
+            className="flex items-center gap-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 px-3 py-1.5 rounded-full text-xs font-bold border border-blue-200 transition active:scale-95 cursor-pointer shadow-xs"
+          >
+            <QrCode className="w-3.5 h-3.5" />
+            <span>友達に教える</span>
+          </button>
         </div>
       </header>
 
@@ -458,6 +491,98 @@ export default function App() {
       <footer className="h-8 bg-slate-800 flex items-center justify-center px-4 text-xs text-slate-400 shrink-0 z-20">
         <div>ふじみ野市消費活性化クーポン検索マップ2026 ※2026/7/2現在</div>
       </footer>
+
+      {/* Share/QR Modal */}
+      <AnimatePresence>
+        {isShareModalOpen && (
+          <div className="fixed inset-0 z-[3000] flex items-center justify-center p-4">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsShareModalOpen(false)}
+              className="absolute inset-0 bg-slate-900/60 backdrop-blur-xs"
+            />
+            
+            {/* Modal Box */}
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ type: "spring", duration: 0.3 }}
+              className="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 max-w-sm w-full space-y-5 text-center relative z-10"
+            >
+              {/* Close button */}
+              <button
+                onClick={() => setIsShareModalOpen(false)}
+                className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 font-bold text-lg p-1 transition cursor-pointer"
+                aria-label="閉じる"
+              >
+                ✕
+              </button>
+              
+              <div className="space-y-1">
+                <h2 className="text-base font-extrabold text-slate-800 flex items-center justify-center gap-1.5">
+                  <Share2 className="w-4 h-4 text-blue-600" />
+                  お友達に教える / 共有
+                </h2>
+                <p className="text-xs text-slate-500 font-semibold leading-relaxed">
+                  QRコードをスマートフォンで読み取るか、<br />URLをコピーしてお友達に共有できます。
+                </p>
+              </div>
+              
+              {/* QR Image */}
+              <div className="bg-slate-50 p-4 rounded-xl inline-block border border-slate-200/60 shadow-inner">
+                <img
+                  src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fliskis.github.io%2Ffujimino-coupon-map%2F"
+                  alt="ふじみ野市消費活性化クーポン検索マップ2026 QRコード"
+                  className="w-40 h-40 mx-auto object-contain rounded"
+                  referrerPolicy="no-referrer"
+                  loading="lazy"
+                />
+              </div>
+              
+              {/* Copy Container */}
+              <div className="space-y-2">
+                <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-lg p-1.5">
+                  <input
+                    id="share-url-input"
+                    type="text"
+                    readOnly
+                    value="https://liskis.github.io/fujimino-coupon-map/"
+                    className="flex-1 bg-transparent border-none text-xs font-mono text-slate-600 focus:outline-none px-2 text-center"
+                  />
+                  <button
+                    onClick={handleCopyLink}
+                    className={`flex items-center justify-center gap-1 px-3 py-1.5 rounded-md text-xs font-bold transition-all shrink-0 cursor-pointer ${
+                      copied
+                        ? "bg-emerald-600 text-white"
+                        : "bg-blue-600 hover:bg-blue-700 text-white shadow-xs"
+                    }`}
+                  >
+                    {copied ? (
+                      <>
+                        <Check className="w-3.5 h-3.5" />
+                        <span>コピー済</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-3.5 h-3.5" />
+                        <span>コピー</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
+              
+              <p className="text-[10px] text-slate-400 font-semibold">
+                ふじみ野市消費活性化クーポン検索マップ2026
+              </p>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
