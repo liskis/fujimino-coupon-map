@@ -2287,7 +2287,7 @@ export const RAW_RESTAURANTS: Restaurant[] = [
   },
   {
     "id": 52,
-    "name": "（Reflet? いいえ、(有)福岡モータース) （有）福岡モータース",
+    "name": "（有）福岡モータース",
     "address": "上福岡１－５－１４",
     "phone": "261-0270",
     "category": "サービス",
@@ -2639,7 +2639,7 @@ export const RAW_RESTAURANTS: Restaurant[] = [
   },
   {
     "id": 84,
-    "name": "(Reflet? いいえ、(有)野本企画 ファミリーマートふじみ野上野台店) (有)野本企画 ファミリーマートふじみ野上野台店",
+    "name": "(有)野本企画 ファミリーマートふじみ野上野台店",
     "address": "上野台１－２－１",
     "phone": "090-4719-7518",
     "category": "スーパー・食料品",
@@ -2958,7 +2958,7 @@ export const RAW_RESTAURANTS: Restaurant[] = [
   },
   {
     "id": 113,
-    "name": "（Reflet? いいえ、(有)玉田商店) （有）玉田商店",
+    "name": "（有）玉田商店",
     "address": "仲１－４－２",
     "phone": "261-3610",
     "category": "商業・ショッピング",
@@ -3178,7 +3178,7 @@ export const RAW_RESTAURANTS: Restaurant[] = [
   },
   {
     "id": 133,
-    "name": "(Reflet? いいえ、(Reflet? いいえ、(有)小巻商事 (黄河菜館プラス))) (有)小巻商事 (黄河菜館プラス)",
+    "name": "(有)小巻商事 (黄河菜館プラス)",
     "address": "上福岡１－６－17",
     "phone": "261-3280",
     "category": "飲食店",
@@ -3838,7 +3838,7 @@ export const RAW_RESTAURANTS: Restaurant[] = [
   },
   {
     "id": 193,
-    "name": "（Reflet? いいえ、(有)美可美) （有）美可美",
+    "name": "（有）美可美",
     "address": "亀久保３－12－46",
     "phone": "264-7141",
     "category": "飲食店",
@@ -4762,7 +4762,7 @@ export const RAW_RESTAURANTS: Restaurant[] = [
   },
   {
     "id": 277,
-    "name": "（Reflet? いいえ、(有)ムサシ管工) （有）ムサシ管工",
+    "name": "（有）ムサシ管工",
     "address": "新駒林３－４－11",
     "phone": "262-1240",
     "category": "サービス",
@@ -4883,7 +4883,7 @@ export const RAW_RESTAURANTS: Restaurant[] = [
   },
   {
     "id": 288,
-    "name": "（Reflet? いいえ、(有)細田建具店) （Reflet? いいえ、(有)細田建具店) （有）細田建具店",
+    "name": "（有）細田建具店",
     "address": "苗間３１－１",
     "phone": "261-2558",
     "category": "サービス",
@@ -5155,7 +5155,7 @@ export const RAW_RESTAURANTS: Restaurant[] = [
   },
   {
     "id": 312,
-    "name": "(Reflet? いいえ、(有)上福岡家具センター) (有)上福岡家具センター",
+    "name": "(有)上福岡家具センター",
     "address": "鶴ヶ舞２－６－12",
     "phone": "264-8611",
     "category": "大型店",
