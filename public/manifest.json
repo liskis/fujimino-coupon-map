@@ -1,0 +1,17 @@
+{
+  "name": "ふじみ野市消費活性化クーポン検索マップ",
+  "short_name": "ふじみ野クーポン",
+  "description": "ふじみ野市消費活性化クーポン加盟店舗を簡単便利に検索・比較できるマップです。",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1e293b",
+  "icons": [
+    {
+      "src": "./cupon_fujimin.webp",
+      "sizes": "192x192 256x256 384x384 512x512",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    }
+  ]
+}
