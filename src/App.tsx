@@ -95,6 +95,10 @@ export default function App() {
   // Filter restaurants based on search, category, subcategory, and area
   const filteredRestaurants = useMemo(() => {
     return restaurantsWithOverrides.filter((r) => {
+      if (selectedCategory === "すべて" && r.id >= 10000) {
+        return false;
+      }
+
       const matchesSearch =
         r.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         r.address.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -125,7 +129,7 @@ export default function App() {
 
   // Count restaurants per category for badge display
   const categoryCounts = useMemo(() => {
-    const counts: Record<string, number> = { すべて: restaurantsWithOverrides.length };
+    const counts: Record<string, number> = { すべて: restaurantsWithOverrides.filter(r => r.id < 10000).length };
     CATEGORIES.forEach(cat => {
       if (cat !== "すべて") {
         counts[cat] = restaurantsWithOverrides.filter(r => r.category === cat).length;
@@ -169,7 +173,7 @@ export default function App() {
               消費活性化クーポン検索マップ2026
             </h1>
             <p className="hidden md:block text-xs text-slate-500 font-bold">
-              加盟店舗 {RESTAURANTS.length}ヶ所
+              加盟店舗 {RESTAURANTS.filter(r => r.id < 10000).length}ヶ所
             </p>
           </div>
         </div>

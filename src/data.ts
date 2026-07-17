@@ -19,13 +19,12 @@ export const CATEGORIES = [
   "衣料品・靴・寝具",
   "生活用品",
   "ドラッグストア",
-  "コンビニ・スーパー",
+  "スーパー・コンビニ",
   "その他の小売",
   "飲食店",
   "理容・美容",
   "その他のサービス",
-  "建築・リフォーム",
-  "大型店"
+  "建築・リフォーム"
 ];
 
 export interface CategoryStyle {
@@ -72,7 +71,7 @@ export const CATEGORY_STYLES: Record<string, CategoryStyle> = {
     textClass: "text-teal-700",
     letter: "薬"
   },
-  "コンビニ・スーパー": {
+  "スーパー・コンビニ": {
     color: "#22c55e", // Green
     bgClass: "bg-emerald-50",
     borderClass: "border-emerald-200",
@@ -106,13 +105,6 @@ export const CATEGORY_STYLES: Record<string, CategoryStyle> = {
     borderClass: "border-slate-200",
     textClass: "text-slate-700",
     letter: "建"
-  },
-  "大型店": {
-    color: "#f43f5e", // Rose
-    bgClass: "bg-rose-50",
-    borderClass: "border-rose-200",
-    textClass: "text-rose-700",
-    letter: "大"
   }
 };
 
@@ -5521,17 +5513,22 @@ export function getAreaFromAddress(address: string): string {
 }
 
 function getPdfCategory(id: number): string {
+  if (id === 329) return "その他のサービス";
+  if (id === 317 || id === 322 || id === 326 || id === 331) return "衣料品・靴・寝具";
+  if (id === 300 || id === 301 || id === 306 || id === 318 || id === 325) return "飲食店";
+  if (id === 296 || id === 297 || id === 303 || id === 320 || id === 327 || id === 311) return "ドラッグストア";
+  if (id === 298 || id === 299 || id === 302 || id === 307 || id === 309 || id === 310 || id === 314 || id === 316 || id === 319 || id === 323 || id === 324 || id === 328) return "スーパー・コンビニ";
+  if (id === 305 || id === 308 || id === 312 || id === 313 || id === 315 || id === 321 || id === 330 || id === 332) return "生活用品";
   if (id >= 1 && id <= 40) return "飲食料品";
   if (id >= 41 && id <= 48) return "衣料品・靴・寝具";
   if (id >= 49 && id <= 65) return "生活用品";
   if (id >= 66 && id <= 77) return "ドラッグストア";
-  if (id >= 78 && id <= 100) return "コンビニ・スーパー";
+  if (id >= 78 && id <= 100) return "スーパー・コンビニ";
   if (id >= 101 && id <= 123) return "その他の小売";
   if (id >= 124 && id <= 208) return "飲食店";
   if (id >= 209 && id <= 227) return "理容・美容";
   if (id >= 228 && id <= 267) return "その他のサービス";
   if (id >= 268 && id <= 295) return "建築・リフォーム";
-  if (id >= 296 && id <= 332) return "大型店";
   return "その他";
 }
 
@@ -5540,6 +5537,9 @@ function getSubCategory(category: string, menu: string, name: string): string {
   const n = name || "";
   
   if (category === "飲食店") {
+    if (n.includes("モスバーガー") || m.includes("ハンバーガー") || m.includes("バーガー")) {
+      return "洋食・カフェ・パン";
+    }
     if (m.includes("ラーメン") || m.includes("餃子") || m.includes("ギョウザ") || m.includes("中華")) {
       return "ラーメン・中華";
     }
@@ -5552,7 +5552,7 @@ function getSubCategory(category: string, menu: string, name: string): string {
     if (m.includes("焼肉") || m.includes("ホルモン") || m.includes("肉") || m.includes("やきとり") || m.includes("焼鳥") || m.includes("ステーキ") || m.includes("ハンバーグ") || m.includes("とんかつ") || m.includes("串カツ")) {
       return "焼肉・肉料理";
     }
-    if (m.includes("酒") || m.includes("アルコール") || m.includes("ビール") || m.includes("居酒屋") || m.includes("バー") || m.includes("バル") || m.includes("スナック")) {
+    if (n.includes("酒場") || n.includes("居酒屋") || n.includes("バル") || m.includes("酒") || m.includes("アルコール") || m.includes("ビール") || m.includes("居酒屋") || m.includes("バー") || m.includes("バル") || m.includes("スナック")) {
       return "居酒屋・バー";
     }
     return "その他・多国籍・テイクアウト";
@@ -5585,7 +5585,7 @@ function getSubCategory(category: string, menu: string, name: string): string {
   }
   
   if (category === "生活用品") {
-    if (m.includes("家電") || m.includes("テレビ") || m.includes("エアコン") || m.includes("電気") || m.includes("冷蔵庫") || m.includes("洗濯機") || m.includes("ガス") || m.includes("灯油")) {
+    if (m.includes("家電") || m.includes("テレビ") || m.includes("エアコン") || m.includes("電気") || m.includes("電器") || m.includes("デンキ") || m.includes("冷蔵庫") || m.includes("洗濯機") || m.includes("ガス") || m.includes("灯油") || n.includes("コジマ") || n.includes("ケーズ") || n.includes("ヤマダ")) {
       return "家電・住宅設備";
     }
     if (m.includes("自転車") || m.includes("バイク") || m.includes("オートバイ") || m.includes("自動車") || m.includes("車") || m.includes("整備") || m.includes("新車") || m.includes("中古車")) {
@@ -5597,7 +5597,7 @@ function getSubCategory(category: string, menu: string, name: string): string {
     return "その他生活雑貨・印刷";
   }
   
-  if (category === "コンビニ・スーパー") {
+  if (category === "スーパー・コンビニ") {
     if (n.includes("ファミリーマート") || n.includes("セブン") || n.includes("ローソン") || n.includes("ミニストップ") || n.includes("デイリーヤマザキ") || n.includes("コンビニ") || m.includes("コンビニ")) {
       return "コンビニエンスストア";
     }
@@ -5622,7 +5622,7 @@ function getSubCategory(category: string, menu: string, name: string): string {
   }
   
   if (category === "その他のサービス") {
-    if (m.includes("整体") || m.includes("整骨") || m.includes("接骨") || m.includes("マッサージ") || m.includes("鍼灸") || m.includes("ピラティス") || m.includes("矯正") || m.includes("リラクゼーション")) {
+    if (n.includes("整体") || m.includes("整体") || m.includes("整骨") || m.includes("接骨") || m.includes("マッサージ") || m.includes("鍼灸") || m.includes("ピラティス") || m.includes("矯正") || m.includes("リラクゼーション")) {
       return "整体・マッサージ・鍼灸";
     }
     if (m.includes("クリーニング") || m.includes("洋服") || m.includes("直し")) {
@@ -5646,38 +5646,74 @@ function getSubCategory(category: string, menu: string, name: string): string {
     }
     return "その他工事・看板・サイン";
   }
-  
-  if (category === "大型店") {
-    if (m.includes("家電") || m.includes("電化製品") || m.includes("電気機械")) {
-      return "家電量販店";
-    }
-    if (m.includes("薬") || m.includes("医薬品") || m.includes("化粧品")) {
-      return "大型ドラッグストア";
-    }
-    if (m.includes("服") || m.includes("衣料") || m.includes("靴") || m.includes("家具") || m.includes("オーダー家具") || m.includes("制服") || m.includes("体育着")) {
-      return "衣料・家具・専門店";
-    }
-    if (m.includes("カレー") || m.includes("ナン") || m.includes("バーガー") || m.includes("ポテト") || m.includes("ケーキ") || m.includes("食事") || m.includes("カレーライス")) {
-      return "大型店内の飲食店";
-    }
-    return "スーパー・ホームセンター";
-  }
 
   if (category === "ドラッグストア") {
-    return "ドラッグストア（日用品・食品含む）";
+    if (n.includes("セイムス")) return "ドラッグセイムス";
+    if (n.includes("セイジョー")) return "セイジョー";
+    if (n.includes("ドラッグエース")) return "ドラッグエース";
+    if (n.includes("セキ")) return "ドラッグストアセキ";
+    if (n.includes("スギ薬局")) return "スギ薬局";
+    if (n.includes("マツモトキヨシ")) return "マツモトキヨシ";
+    if (n.includes("サンドラッグ")) return "サンドラッグ";
+    if (n.includes("ウエルシア")) return "ウエルシア";
+    if (n.includes("セガミ")) return "ドラッグ セガミ";
+    return "その他ドラッグストア";
   }
   
   return "その他";
 }
 
-export const RESTAURANTS: Restaurant[] = RAW_RESTAURANTS.map((r) => {
+export const RESTAURANTS: Restaurant[] = [];
+RAW_RESTAURANTS.forEach((r) => {
   const fullAddress = r.address.startsWith("埼玉県ふじみ野市") ? r.address : "埼玉県ふじみ野市" + r.address;
-  const category = getPdfCategory(r.id);
-  return {
-    ...r,
-    category,
-    subCategory: getSubCategory(category, r.menu, r.name),
-    address: fullAddress,
-    area: getAreaFromAddress(fullAddress)
-  };
+  if (r.id === 307) {
+    // 1. スーパー・コンビニ classification
+    const cat1 = "スーパー・コンビニ";
+    RESTAURANTS.push({
+      ...r,
+      category: cat1,
+      subCategory: getSubCategory(cat1, r.menu, r.name),
+      address: fullAddress,
+      area: getAreaFromAddress(fullAddress)
+    });
+    // 2. 生活用品 classification
+    const cat2 = "生活用品";
+    RESTAURANTS.push({
+      ...r,
+      id: 10307,
+      category: cat2,
+      subCategory: getSubCategory(cat2, r.menu, r.name),
+      address: fullAddress,
+      area: getAreaFromAddress(fullAddress)
+    });
+  } else if (r.id === 304) {
+    // 1. 衣料品・靴・寝具 classification
+    const cat1 = "衣料品・靴・寝具";
+    RESTAURANTS.push({
+      ...r,
+      category: cat1,
+      subCategory: getSubCategory(cat1, r.menu, r.name),
+      address: fullAddress,
+      area: getAreaFromAddress(fullAddress)
+    });
+    // 2. 生活用品 classification
+    const cat2 = "生活用品";
+    RESTAURANTS.push({
+      ...r,
+      id: 10304,
+      category: cat2,
+      subCategory: getSubCategory(cat2, r.menu, r.name),
+      address: fullAddress,
+      area: getAreaFromAddress(fullAddress)
+    });
+  } else {
+    const category = getPdfCategory(r.id);
+    RESTAURANTS.push({
+      ...r,
+      category,
+      subCategory: getSubCategory(category, r.menu, r.name),
+      address: fullAddress,
+      area: getAreaFromAddress(fullAddress)
+    });
+  }
 });
