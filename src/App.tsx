@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import { RESTAURANTS, CATEGORIES, Restaurant } from "./data";
+import { RESTAURANTS, CATEGORIES, Restaurant, getCategoryStyle } from "./data";
 import LeafletMap from "./components/LeafletMap";
 import cuponLogo from "./assets/cupon_fujimin.webp";
 import { 
@@ -37,9 +37,9 @@ export default function App() {
   const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("すべて");
+  const [selectedSubCategory, setSelectedSubCategory] = useState("すべて");
   const [selectedArea, setSelectedArea] = useState("すべて");
   const [selectedCouponType, setSelectedCouponType] = useState<"all" | "both" | "a_only">("all");
-  const [selectedMall, setSelectedMall] = useState<string | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
@@ -74,22 +74,25 @@ export default function App() {
 
   const restaurantsWithOverrides = RESTAURANTS;
 
-  // Compute store counts for each shopping mall
-  const mallCounts = useMemo(() => {
-    const counts: Record<string, number> = {};
-    MALLS.forEach((mall) => {
-      counts[mall] = restaurantsWithOverrides.filter((r) => r.mall === mall).length;
-    });
-    return counts;
-  }, [restaurantsWithOverrides]);
-
   // Keep selected restaurant coordinates updated
   const currentSelectedRestaurant = useMemo(() => {
     if (!selectedRestaurant) return null;
     return restaurantsWithOverrides.find(r => r.id === selectedRestaurant.id) || selectedRestaurant;
   }, [selectedRestaurant, restaurantsWithOverrides]);
 
-  // Filter restaurants based on search, category, area, and shopping mall
+  // Dynamic list of subcategories for the selected category
+  const availableSubCategories = useMemo(() => {
+    if (selectedCategory === "すべて") return [];
+    const subCats = new Set<string>();
+    restaurantsWithOverrides.forEach((r) => {
+      if (r.category === selectedCategory && r.subCategory) {
+        subCats.add(r.subCategory);
+      }
+    });
+    return Array.from(subCats).sort();
+  }, [selectedCategory, restaurantsWithOverrides]);
+
+  // Filter restaurants based on search, category, subcategory, and area
   const filteredRestaurants = useMemo(() => {
     return restaurantsWithOverrides.filter((r) => {
       const matchesSearch =
@@ -102,6 +105,11 @@ export default function App() {
       const matchesCategory =
         selectedCategory === "すべて" || r.category === selectedCategory;
 
+      const matchesSubCategory =
+        selectedCategory === "すべて" ||
+        selectedSubCategory === "すべて" ||
+        r.subCategory === selectedSubCategory;
+
       const matchesArea =
         selectedArea === "すべて" || r.area === selectedArea;
 
@@ -111,11 +119,9 @@ export default function App() {
         (selectedCouponType === "both" && rCouponType !== "none" && rCouponType !== "a_only") ||
         (selectedCouponType === "a_only" && rCouponType === "a_only");
 
-      const matchesMall = !selectedMall || r.mall === selectedMall;
-
-      return matchesSearch && matchesCategory && matchesArea && matchesCouponType && matchesMall;
+      return matchesSearch && matchesCategory && matchesSubCategory && matchesArea && matchesCouponType;
     });
-  }, [restaurantsWithOverrides, searchQuery, selectedCategory, selectedArea, selectedCouponType, selectedMall]);
+  }, [restaurantsWithOverrides, searchQuery, selectedCategory, selectedSubCategory, selectedArea, selectedCouponType]);
 
   // Count restaurants per category for badge display
   const categoryCounts = useMemo(() => {
@@ -287,69 +293,83 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* Shopping Malls Section */}
-                <div className="flex items-center justify-between gap-2 py-0.5">
-                  <label className="text-sm font-bold text-slate-700 shrink-0">
-                    ショッピングモール
-                  </label>
-                  <select
-                    value={selectedMall || "選択しない"}
-                    onChange={(e) => {
-                      const val = e.target.value;
-                      if (val === "選択しない") {
-                        setSelectedMall(null);
-                      } else {
-                        setSelectedMall(val);
-                        setSelectedArea("すべて");
-                        setSelectedCategory("すべて");
-                        setSearchQuery("");
-                      }
-                    }}
-                    className="w-40 text-sm bg-white border border-slate-200 rounded py-1 px-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500/20 shadow-xs cursor-pointer"
-                  >
-                    <option value="選択しない">選択しない</option>
-                    {MALLS.map((mall) => (
-                      <option key={mall} value={mall}>
-                        {mall}
-                      </option>
-                    ))}
-                  </select>
-                </div>
               </div>
 
-              {/* Horizontal scroll Categories for quick filtering */}
+              {/* Categories Horizontal scroll */}
               <div className="px-3 py-1.5 bg-slate-50/20 border-b border-slate-100 flex gap-1.5 overflow-x-auto scrollbar-none flex-shrink-0">
                 {CATEGORIES.map((cat) => {
                   const isSelected = selectedCategory === cat;
+                  const catStyle = getCategoryStyle(cat);
                   return (
                     <button
                       key={cat}
-                      onClick={() => setSelectedCategory(cat)}
-                      className={`text-xs px-2.5 py-1 rounded border whitespace-nowrap transition font-bold ${
+                      onClick={() => {
+                        setSelectedCategory(cat);
+                        setSelectedSubCategory("すべて");
+                      }}
+                      className={`text-xs px-2.5 py-1 rounded-full border whitespace-nowrap transition font-bold flex items-center gap-1.5 ${
                         isSelected
                           ? "bg-slate-800 border-slate-800 text-white"
                           : "bg-white border-slate-200 text-slate-600 hover:border-slate-300"
                       }`}
                     >
-                      {cat}
+                      {cat !== "すべて" && (
+                        <span 
+                          className="w-2 h-2 rounded-full shrink-0" 
+                          style={{ backgroundColor: catStyle.color }}
+                        />
+                      )}
+                      <span>{cat}</span>
                     </button>
                   );
                 })}
               </div>
+
+              {/* Sub-categories Horizontal scroll */}
+              {selectedCategory !== "すべて" && availableSubCategories.length > 0 && (
+                <div className="px-3 py-1.5 bg-slate-50 border-b border-slate-100 flex gap-1.5 overflow-x-auto scrollbar-none flex-shrink-0">
+                  <button
+                    onClick={() => setSelectedSubCategory("すべて")}
+                    className={`text-[11px] px-2.5 py-1 rounded-full border whitespace-nowrap transition font-bold ${
+                      selectedSubCategory === "すべて"
+                        ? "bg-blue-600 border-blue-600 text-white"
+                        : "bg-white border-slate-200 text-slate-600 hover:border-slate-300"
+                    }`}
+                  >
+                    すべて
+                  </button>
+                  {availableSubCategories.map((subCat) => {
+                    const isSubSelected = selectedSubCategory === subCat;
+                    return (
+                      <button
+                        key={subCat}
+                        onClick={() => setSelectedSubCategory(subCat)}
+                        className={`text-[11px] px-2.5 py-1 rounded-full border whitespace-nowrap transition font-bold ${
+                          isSubSelected
+                            ? "bg-blue-600 border-blue-600 text-white"
+                            : "bg-white border-slate-200 text-slate-600 hover:border-slate-300"
+                        }`}
+                      >
+                        {subCat}
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
 
               {/* Filter statistics strip - Moved under Categories */}
               <div className="px-3 py-2.5 bg-slate-50 border-b border-slate-200 flex items-center justify-between text-sm text-slate-500 font-bold flex-shrink-0 shadow-xs">
                 <p className="tracking-wider">
                   検索結果: <span className="text-slate-900 font-extrabold text-base">{filteredRestaurants.length}</span> 件
                 </p>
-                {(searchQuery || selectedCategory !== "すべて" || selectedArea !== "すべて" || selectedCouponType !== "all" || selectedMall) && (
+                {(searchQuery || selectedCategory !== "すべて" || selectedSubCategory !== "すべて" || selectedArea !== "すべて" || selectedCouponType !== "all") && (
                   <button
                     onClick={() => {
                       setSearchQuery("");
                       setSelectedCategory("すべて");
+                      setSelectedSubCategory("すべて");
                       setSelectedArea("すべて");
                       setSelectedCouponType("all");
-                      setSelectedMall(null);
                     }}
                     className="text-blue-600 hover:text-blue-800 font-bold hover:underline text-xs"
                   >
@@ -376,9 +396,14 @@ export default function App() {
                           <h3 className="font-extrabold text-slate-900 text-sm md:text-base leading-tight">
                             {restaurant.name}
                           </h3>
-                          <span className="text-[10px] md:text-xs font-extrabold px-2 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200 shrink-0">
-                            {restaurant.subCategory || restaurant.category}
-                          </span>
+                          {(() => {
+                            const style = getCategoryStyle(restaurant.category);
+                            return (
+                              <span className={`text-[10px] md:text-xs font-extrabold px-2 py-0.5 rounded border shrink-0 ${style.bgClass} ${style.textClass} ${style.borderClass}`}>
+                                {restaurant.subCategory || restaurant.category}
+                              </span>
+                            );
+                          })()}
                         </div>
                         <p className="text-xs text-slate-500 line-clamp-1 flex items-center gap-1">
                           <MapPin className="h-3 w-3 text-slate-400 shrink-0" />

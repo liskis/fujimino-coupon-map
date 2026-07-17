@@ -19,14 +19,112 @@ export const CATEGORIES = [
   "衣料品・靴・寝具",
   "生活用品",
   "ドラッグストア",
-  "コンビニエンスストア・スーパーマーケット",
+  "コンビニ・スーパー",
   "その他の小売",
   "飲食店",
   "理容・美容",
   "その他のサービス",
-  "建築・リフォーム・各種設備工事",
+  "建築・リフォーム",
   "大型店"
 ];
+
+export interface CategoryStyle {
+  color: string;
+  bgClass: string;
+  borderClass: string;
+  textClass: string;
+  letter: string;
+}
+
+export const CATEGORY_STYLES: Record<string, CategoryStyle> = {
+  "飲食店": {
+    color: "#ef4444", // Red
+    bgClass: "bg-red-50",
+    borderClass: "border-red-200",
+    textClass: "text-red-700",
+    letter: "食"
+  },
+  "飲食料品": {
+    color: "#f97316", // Orange
+    bgClass: "bg-orange-50",
+    borderClass: "border-orange-200",
+    textClass: "text-orange-700",
+    letter: "料"
+  },
+  "衣料品・靴・寝具": {
+    color: "#ec4899", // Pink
+    bgClass: "bg-pink-50",
+    borderClass: "border-pink-200",
+    textClass: "text-pink-700",
+    letter: "衣"
+  },
+  "生活用品": {
+    color: "#6366f1", // Indigo
+    bgClass: "bg-indigo-50",
+    borderClass: "border-indigo-200",
+    textClass: "text-indigo-700",
+    letter: "生"
+  },
+  "ドラッグストア": {
+    color: "#0d9488", // Teal
+    bgClass: "bg-teal-50",
+    borderClass: "border-teal-200",
+    textClass: "text-teal-700",
+    letter: "薬"
+  },
+  "コンビニ・スーパー": {
+    color: "#22c55e", // Green
+    bgClass: "bg-emerald-50",
+    borderClass: "border-emerald-200",
+    textClass: "text-emerald-700",
+    letter: "コ"
+  },
+  "その他の小売": {
+    color: "#eab308", // Yellow
+    bgClass: "bg-yellow-50",
+    borderClass: "border-yellow-200",
+    textClass: "text-yellow-700",
+    letter: "小"
+  },
+  "理容・美容": {
+    color: "#8b5cf6", // Violet/Purple
+    bgClass: "bg-violet-50",
+    borderClass: "border-violet-200",
+    textClass: "text-violet-700",
+    letter: "美"
+  },
+  "その他のサービス": {
+    color: "#3b82f6", // Blue
+    bgClass: "bg-blue-50",
+    borderClass: "border-blue-200",
+    textClass: "text-blue-700",
+    letter: "サ"
+  },
+  "建築・リフォーム": {
+    color: "#64748b", // Slate
+    bgClass: "bg-slate-50",
+    borderClass: "border-slate-200",
+    textClass: "text-slate-700",
+    letter: "建"
+  },
+  "大型店": {
+    color: "#f43f5e", // Rose
+    bgClass: "bg-rose-50",
+    borderClass: "border-rose-200",
+    textClass: "text-rose-700",
+    letter: "大"
+  }
+};
+
+export const getCategoryStyle = (category: string): CategoryStyle => {
+  return CATEGORY_STYLES[category] || {
+    color: "#64748b", // Default slate
+    bgClass: "bg-slate-50",
+    borderClass: "border-slate-200",
+    textClass: "text-slate-700",
+    letter: "店"
+  };
+};
 
 export const ADDRESS_COORDINATES: Record<string, { lat: number; lng: number }> = {
   "うれし野１－３－２１": {
@@ -5427,21 +5525,158 @@ function getPdfCategory(id: number): string {
   if (id >= 41 && id <= 48) return "衣料品・靴・寝具";
   if (id >= 49 && id <= 65) return "生活用品";
   if (id >= 66 && id <= 77) return "ドラッグストア";
-  if (id >= 78 && id <= 100) return "コンビニエンスストア・スーパーマーケット";
+  if (id >= 78 && id <= 100) return "コンビニ・スーパー";
   if (id >= 101 && id <= 123) return "その他の小売";
   if (id >= 124 && id <= 208) return "飲食店";
   if (id >= 209 && id <= 227) return "理容・美容";
   if (id >= 228 && id <= 267) return "その他のサービス";
-  if (id >= 268 && id <= 295) return "建築・リフォーム・各種設備工事";
+  if (id >= 268 && id <= 295) return "建築・リフォーム";
   if (id >= 296 && id <= 332) return "大型店";
+  return "その他";
+}
+
+function getSubCategory(category: string, menu: string, name: string): string {
+  const m = menu || "";
+  const n = name || "";
+  
+  if (category === "飲食店") {
+    if (m.includes("ラーメン") || m.includes("餃子") || m.includes("ギョウザ") || m.includes("中華")) {
+      return "ラーメン・中華";
+    }
+    if (m.includes("そば") || m.includes("うどん") || m.includes("寿司") || m.includes("海鮮") || m.includes("和食") || m.includes("ちゃんこ") || m.includes("刺身") || m.includes("日本料理") || m.includes("天ぷら") || m.includes("鰻")) {
+      return "和食・寿司・そば";
+    }
+    if (m.includes("パスタ") || m.includes("ピザ") || m.includes("コーヒー") || m.includes("カフェ") || m.includes("喫茶") || m.includes("イタリアン") || m.includes("フレンチ") || m.includes("カレー") || m.includes("洋食") || m.includes("パン") || m.includes("ベーカリー")) {
+      return "洋食・カフェ・パン";
+    }
+    if (m.includes("焼肉") || m.includes("ホルモン") || m.includes("肉") || m.includes("やきとり") || m.includes("焼鳥") || m.includes("ステーキ") || m.includes("ハンバーグ") || m.includes("とんかつ") || m.includes("串カツ")) {
+      return "焼肉・肉料理";
+    }
+    if (m.includes("酒") || m.includes("アルコール") || m.includes("ビール") || m.includes("居酒屋") || m.includes("バー") || m.includes("バル") || m.includes("スナック")) {
+      return "居酒屋・バー";
+    }
+    return "その他・多国籍・テイクアウト";
+  }
+  
+  if (category === "飲食料品") {
+    if (m.includes("茶") || m.includes("狭山茶") || m.includes("のり") || m.includes("茶器")) {
+      return "お茶・海苔";
+    }
+    if (m.includes("菓子") || m.includes("サブレ") || m.includes("だんご") || m.includes("ドーナツ") || m.includes("洋菓子") || m.includes("和菓子") || m.includes("ケーキ") || m.includes("パン") || m.includes("鯛焼き") || m.includes("スイーツ")) {
+      return "菓子・パン・スイーツ";
+    }
+    if (m.includes("精肉") || m.includes("肉") || m.includes("野菜") || m.includes("果物") || m.includes("青果") || m.includes("鮮魚") || m.includes("魚") || m.includes("海鮮") || m.includes("米") || m.includes("豆腐")) {
+      return "精肉・青果・生鮮食品";
+    }
+    return "一般食品・お酒・その他";
+  }
+  
+  if (category === "衣料品・靴・寝具") {
+    if (m.includes("きもの") || m.includes("和装") || m.includes("帯")) {
+      return "きもの・和装";
+    }
+    if (m.includes("学校") || m.includes("学生服") || m.includes("制服")) {
+      return "学校制服・用品";
+    }
+    if (m.includes("靴") || m.includes("シューズ") || m.includes("スリッパ") || m.includes("寝具") || m.includes("布団") || m.includes("毛布")) {
+      return "靴・寝具・家具";
+    }
+    return "衣料・洋服全般";
+  }
+  
+  if (category === "生活用品") {
+    if (m.includes("家電") || m.includes("テレビ") || m.includes("エアコン") || m.includes("電気") || m.includes("冷蔵庫") || m.includes("洗濯機") || m.includes("ガス") || m.includes("灯油")) {
+      return "家電・住宅設備";
+    }
+    if (m.includes("自転車") || m.includes("バイク") || m.includes("オートバイ") || m.includes("自動車") || m.includes("車") || m.includes("整備") || m.includes("新車") || m.includes("中古車")) {
+      return "自転車・自動車・整備";
+    }
+    if (m.includes("メガネ") || m.includes("眼鏡") || m.includes("時計") || m.includes("宝飾") || m.includes("バッグ") || m.includes("宝石")) {
+      return "メガネ・時計・宝飾";
+    }
+    return "その他生活雑貨・印刷";
+  }
+  
+  if (category === "コンビニ・スーパー") {
+    if (n.includes("ファミリーマート") || n.includes("セブン") || n.includes("ローソン") || n.includes("ミニストップ") || n.includes("デイリーヤマザキ") || n.includes("コンビニ") || m.includes("コンビニ")) {
+      return "コンビニエンスストア";
+    }
+    return "スーパーマーケット";
+  }
+  
+  if (category === "その他の小売") {
+    if (m.includes("花") || m.includes("生花") || m.includes("鉢") || m.includes("園芸") || m.includes("観葉植物") || m.includes("苗")) {
+      return "生花・園芸用品";
+    }
+    if (m.includes("CD") || m.includes("本") || m.includes("プラモデル") || m.includes("ミニカー") || m.includes("おもちゃ") || m.includes("ホビー") || m.includes("テニス") || m.includes("スポーツ") || m.includes("アウトドア")) {
+      return "本・ホビー・スポーツ用品";
+    }
+    return "日用品・雑貨・灯油・その他";
+  }
+  
+  if (category === "理容・美容") {
+    if (n.includes("理容") || n.includes("バーバー") || n.includes("床屋") || m.includes("理容") || m.includes("顔剃り") || m.includes("シェービング") || m.includes("シェーヴ")) {
+      return "理容室・床屋";
+    }
+    return "美容室・ネイル・エステ";
+  }
+  
+  if (category === "その他のサービス") {
+    if (m.includes("整体") || m.includes("整骨") || m.includes("接骨") || m.includes("マッサージ") || m.includes("鍼灸") || m.includes("ピラティス") || m.includes("矯正") || m.includes("リラクゼーション")) {
+      return "整体・マッサージ・鍼灸";
+    }
+    if (m.includes("クリーニング") || m.includes("洋服") || m.includes("直し")) {
+      return "クリーニング・衣服修理";
+    }
+    if (m.includes("サウナ") || m.includes("温泉") || m.includes("銭湯") || m.includes("宿泊") || m.includes("ホテル") || m.includes("葬儀") || m.includes("墓")) {
+      return "温泉・宿泊・葬祭・その他";
+    }
+    return "その他サービス・教室";
+  }
+  
+  if (category === "建築・リフォーム") {
+    if (m.includes("リフォーム") || m.includes("増改築") || m.includes("新築") || m.includes("塗装") || m.includes("屋根") || m.includes("外構") || m.includes("土木")) {
+      return "住宅リフォーム・塗装・新築";
+    }
+    if (m.includes("水まわり") || m.includes("水廻り") || m.includes("配管") || m.includes("給排水") || m.includes("給湯器") || m.includes("ガス") || m.includes("電気工事") || m.includes("空調")) {
+      return "水まわり・ガス・電気設備";
+    }
+    if (m.includes("畳") || m.includes("襖") || m.includes("障子") || m.includes("網戸") || m.includes("カーテン") || m.includes("内装")) {
+      return "畳・襖・カーテン・内装";
+    }
+    return "その他工事・看板・サイン";
+  }
+  
+  if (category === "大型店") {
+    if (m.includes("家電") || m.includes("電化製品") || m.includes("電気機械")) {
+      return "家電量販店";
+    }
+    if (m.includes("薬") || m.includes("医薬品") || m.includes("化粧品")) {
+      return "大型ドラッグストア";
+    }
+    if (m.includes("服") || m.includes("衣料") || m.includes("靴") || m.includes("家具") || m.includes("オーダー家具") || m.includes("制服") || m.includes("体育着")) {
+      return "衣料・家具・専門店";
+    }
+    if (m.includes("カレー") || m.includes("ナン") || m.includes("バーガー") || m.includes("ポテト") || m.includes("ケーキ") || m.includes("食事") || m.includes("カレーライス")) {
+      return "大型店内の飲食店";
+    }
+    return "スーパー・ホームセンター";
+  }
+
+  if (category === "ドラッグストア") {
+    return "ドラッグストア（日用品・食品含む）";
+  }
+  
   return "その他";
 }
 
 export const RESTAURANTS: Restaurant[] = RAW_RESTAURANTS.map((r) => {
   const fullAddress = r.address.startsWith("埼玉県ふじみ野市") ? r.address : "埼玉県ふじみ野市" + r.address;
+  const category = getPdfCategory(r.id);
   return {
     ...r,
-    category: getPdfCategory(r.id),
+    category,
+    subCategory: getSubCategory(category, r.menu, r.name),
     address: fullAddress,
     area: getAreaFromAddress(fullAddress)
   };

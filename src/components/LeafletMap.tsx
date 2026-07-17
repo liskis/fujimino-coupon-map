@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Restaurant } from "../data";
+import { Restaurant, getCategoryStyle } from "../data";
 
 interface LeafletMapProps {
   restaurants: Restaurant[];
@@ -87,52 +87,9 @@ export default function LeafletMap({
 
     // Custom Icon helper
     const createCustomIcon = (category: string, isSelected: boolean) => {
-      let color = "#3b82f6"; // Default blue
-      let letter = "食";
-      
-      if (category.includes("肉") || category.includes("焼肉")) {
-        color = "#ef4444"; // Red
-        letter = "肉";
-      } else if (category.includes("ラーメン") || category.includes("中華")) {
-        color = "#f97316"; // Orange
-        letter = "中";
-      } else if (category.includes("和食") || category.includes("寿司") || category.includes("魚") || category.includes("そば") || category.includes("うどん")) {
-        color = "#10b981"; // Green
-        letter = "和";
-      } else if (category.includes("居酒屋") || category.includes("バー")) {
-        color = "#8b5cf6"; // Purple
-        letter = "酒";
-      } else if (category.includes("カフェ") || category.includes("喫茶")) {
-        color = "#ec4899"; // Pink
-        letter = "茶";
-      } else if (category.includes("お好み焼き") || category.includes("たこ焼き")) {
-        color = "#eab308"; // Yellow
-        letter = "粉";
-      } else if (category.includes("役所") || category.includes("公共")) {
-        color = "#475569"; // Slate/Gray
-        letter = "役";
-      } else if (category.includes("公園") || category.includes("スポーツ")) {
-        color = "#22c55e"; // Forest Green
-        letter = "園";
-      } else if (category.includes("商業") || category.includes("ショッピング") || category.includes("スーパー")) {
-        color = "#06b6d4"; // Cyan
-        letter = "商";
-      } else if (category.includes("観光") || category.includes("寺社")) {
-        color = "#b45309"; // Amber/Brown
-        letter = "観";
-      } else if (category.includes("交通") || category.includes("駅")) {
-        color = "#0f172a"; // Dark Slate/Black
-        letter = "駅";
-      } else if (category.includes("医療") || category.includes("クリニック") || category.includes("病院")) {
-        color = "#14b8a6"; // Teal
-        letter = "医";
-      } else if (category.includes("郵便") || category.includes("金融")) {
-        color = "#f43f5e"; // Rose
-        letter = "郵";
-      } else if (category.includes("文化") || category.includes("教育")) {
-        color = "#6366f1"; // Indigo
-        letter = "文";
-      }
+      const style = getCategoryStyle(category);
+      const color = style.color;
+      const letter = style.letter;
 
       const size = isSelected ? 36 : 28;
       const borderSize = isSelected ? "border-4 border-white" : "border-2 border-white";
@@ -158,7 +115,7 @@ export default function LeafletMap({
     restaurants.forEach((restaurant) => {
       const isSelected = selectedRestaurant?.id === restaurant.id;
       const marker = L.marker([restaurant.lat, restaurant.lng], {
-        icon: createCustomIcon(restaurant.subCategory || restaurant.category, isSelected),
+        icon: createCustomIcon(restaurant.category, isSelected),
         zIndexOffset: isSelected ? 1000 : 0,
       });
 
@@ -170,10 +127,11 @@ export default function LeafletMap({
       }
 
       // Simple HTML Popup with external navigation links
-      const displayCategory = restaurant.subCategory ? `飲食店 (${restaurant.subCategory})` : restaurant.category;
+      const catStyle = getCategoryStyle(restaurant.category);
+      const displayCategory = restaurant.subCategory ? `${restaurant.category} (${restaurant.subCategory})` : restaurant.category;
       const popupContent = `
         <div class="p-1 max-w-[220px] font-sans">
-          <div class="text-xs font-bold text-blue-600 mb-0.5">${displayCategory}</div>
+          <div class="text-xs font-extrabold mb-1" style="color: ${catStyle.color};">${displayCategory}</div>
           <h3 class="font-extrabold text-base text-gray-900 mb-1 leading-tight">${restaurant.name}</h3>
           <p class="text-sm text-gray-600 mb-1 leading-normal">${restaurant.address}</p>
           <p class="text-sm text-gray-500 font-bold mb-1 leading-none">${restaurant.phone === "なし" ? "" : "📞 " + restaurant.phone}</p>
